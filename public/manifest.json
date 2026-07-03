@@ -1,0 +1,51 @@
+{
+  "name": "Alfalah Academy",
+  "short_name": "Alfalah",
+  "description": "Alfalah Academy, Sultana (Chirawa, Jhunjhunu, Rajasthan) — a modern school with smart classrooms, science & computer labs, sports and holistic development. Admissions open.",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f9fc",
+  "theme_color": "#1d4ed8",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "assets/img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Admissions",
+      "short_name": "Admissions",
+      "description": "Apply for admission online",
+      "url": "./#!/admissions",
+      "icons": [{ "src": "assets/img/logo.svg", "type": "image/svg+xml", "sizes": "any" }]
+    },
+    {
+      "name": "Login",
+      "short_name": "Login",
+      "description": "Sign in to the student, teacher or admin portal",
+      "url": "./#!/login",
+      "icons": [{ "src": "assets/img/logo.svg", "type": "image/svg+xml", "sizes": "any" }]
+    }
+  ]
+}

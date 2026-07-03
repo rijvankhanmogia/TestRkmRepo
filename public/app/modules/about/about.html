@@ -1,0 +1,117 @@
+<!-- ===================== HERO / HEADER ===================== -->
+<section class="section-tight bg-soft">
+  <div class="container container-aa text-center">
+    <span class="eyebrow reveal"><i class="bi bi-mortarboard"></i>About Alfalah Academy</span>
+    <h1 class="mt-3 mb-3 reveal delay-1">A Legacy of Learning &amp; Values</h1>
+    <p class="lead mb-0 mx-auto reveal delay-2" style="max-width:720px">Nurturing knowledge and building character in Sultana, Chirawa — one child at a time.</p>
+  </div>
+</section>
+
+<!-- ===================== SCHOOL HISTORY ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <div class="ratio ratio-4x3 rounded-4 overflow-hidden shadow" style="background:var(--aa-gradient)">
+          <div class="d-flex align-items-center justify-content-center text-white">
+            <i class="bi bi-bank2" style="font-size:5rem;opacity:.85"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <span class="eyebrow reveal"><i class="bi bi-clock-history"></i>Our Story</span>
+        <h2 class="mt-3 mb-3 reveal delay-1">How Alfalah Academy Began</h2>
+        <p class="reveal delay-2">Founded in 2011 by a group of educators and well-wishers from the Sultana community, Alfalah Academy started with just three classrooms and a firm belief — that quality education should not be a privilege of the cities alone. What began with a handful of eager students has today grown into a thriving school serving families across Chirawa tehsil and neighbouring villages of Jhunjhunu district.</p>
+        <p class="reveal delay-2">Over the years we have steadily expanded — adding smart classrooms, science and computer laboratories, a well-stocked library, and safe transport. Yet our founding spirit remains unchanged: to combine a strong academic curriculum with sports, arts and moral values, so that every child leaves us not only educated, but ready for life.</p>
+        <div class="row g-3 mt-1">
+          <div class="col-sm-6 reveal delay-2"><i class="bi bi-check-circle-fill text-accent me-2"></i>Established in 2011</div>
+          <div class="col-sm-6 reveal delay-3"><i class="bi bi-check-circle-fill text-accent me-2"></i>Classes Nursery to X</div>
+          <div class="col-sm-6 reveal delay-2"><i class="bi bi-check-circle-fill text-accent me-2"></i>Rooted in the community</div>
+          <div class="col-sm-6 reveal delay-3"><i class="bi bi-check-circle-fill text-accent me-2"></i>Growing every year</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISION / MISSION / VALUES ===================== -->
+<section class="section bg-soft">
+  <div class="container container-aa">
+    <section-heading eyebrow="What Drives Us" heading="Vision, Mission &amp; Values"
+      sub="The principles that shape every decision we make at Alfalah Academy."></section-heading>
+    <div class="row g-4">
+      <div class="col-md-4" ng-repeat="p in vm.pillars">
+        <div class="aa-card h-100 reveal" ng-class="'delay-' + $index">
+          <div class="card-body">
+            <div class="feature-icon mb-3"><i class="bi" ng-class="p.icon"></i></div>
+            <h5 class="mb-2">{{ p.title }}</h5>
+            <p class="mb-0">{{ p.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEADERSHIP MESSAGES ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <section-heading eyebrow="Leadership" heading="A Word from Our Leaders"
+      sub="Guided by experience, driven by purpose."></section-heading>
+    <div class="row g-5">
+      <div class="col-lg-6" ng-repeat="m in vm.messages">
+        <div class="aa-card h-100 reveal" ng-class="'delay-' + $index">
+          <div class="card-body">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="faculty-avatar" style="width:72px;height:72px"><i class="bi" ng-class="m.icon"></i></div>
+              <div>
+                <h5 class="mb-0">{{ m.name }}</h5>
+                <span class="text-accent fw-semibold">{{ m.role }}</span>
+              </div>
+            </div>
+            <span class="quote-mark">&ldquo;</span>
+            <p class="mb-3">{{ m.text }}</p>
+            <p class="fw-semibold mb-0">— {{ m.name }}, {{ m.role }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STAFF OVERVIEW ===================== -->
+<section class="section bg-soft">
+  <div class="container container-aa">
+    <section-heading eyebrow="Our People" heading="The Team Behind Alfalah"
+      sub="A dedicated team of educators and support staff working together for our students."></section-heading>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-lg-4" ng-repeat="st in vm.staffStats">
+        <div class="aa-card stat-card reveal" ng-class="'delay-' + $index">
+          <div class="card-body">
+            <div class="feature-icon soft mx-auto mb-3"><i class="bi" ng-class="st.icon"></i></div>
+            <div class="stat-value" count-up="{{ st.value }}" cu-suffix="{{ st.suffix }}"></div>
+            <div class="stat-label">{{ st.label }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <div class="cta-banner p-5 reveal">
+      <div class="row align-items-center g-4 position-relative">
+        <div class="col-lg-8">
+          <h2 class="text-white mb-2">Come and See Us in Person</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.9)">The best way to know Alfalah Academy is to visit our campus. We would love to show you around.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end d-flex flex-lg-column gap-3 justify-content-lg-center">
+          <a href="#!/admissions" class="btn btn-light btn-lg fw-bold text-primary">Apply Now</a>
+          <a href="#!/contact" class="btn btn-outline-light-brand btn-lg">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,369 @@
+<portal-shell role="student" title="Student Portal" menu="vm.menu" active="vm.active" user="vm.user" on-select="vm.select(section)" on-logout="vm.logout()">
+
+  <div ng-switch="vm.active">
+
+    <!-- ================= DASHBOARD ================= -->
+    <div ng-switch-when="dashboard" class="reveal">
+      <div class="row g-3 mb-3">
+        <div class="col-6 col-xl-3" ng-repeat="k in vm.kpis">
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background: {{ k.bg }}"><i class="bi" ng-class="k.icon"></i></div>
+            <div>
+              <div class="kpi-value">{{ k.value }}</div>
+              <div class="kpi-label">{{ k.label }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="panel">
+            <div class="panel-head"><h6><i class="bi bi-table me-2"></i>Today's Timetable</h6><span class="badge-soft">{{ vm.todaySchedule.length }} periods</span></div>
+            <div class="panel-body p-0">
+              <table class="table mb-0">
+                <thead><tr><th>#</th><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr></thead>
+                <tbody>
+                  <tr ng-repeat="p in vm.todaySchedule">
+                    <td>{{ p.period }}</td><td>{{ p.time }}</td>
+                    <td class="fw-semibold">{{ p.subject }}</td><td>{{ p.teacher }}</td><td>{{ p.room }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="panel mb-3">
+            <div class="panel-head"><h6><i class="bi bi-megaphone me-2"></i>Announcements</h6></div>
+            <div class="panel-body">
+              <div class="d-flex justify-content-between align-items-start mb-3" ng-repeat="a in vm.announcements">
+                <div>
+                  <div class="fw-semibold">{{ a.title }}</div>
+                  <div class="text-body-secondary small">{{ a.date }}</div>
+                </div>
+                <span class="badge-soft">{{ a.tag }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h6><i class="bi bi-journal-text me-2"></i>Homework Due</h6></div>
+            <div class="panel-body">
+              <div class="d-flex justify-content-between align-items-center mb-2" ng-repeat="h in vm.homework | filter:{status:'Pending'}">
+                <div><div class="fw-semibold">{{ h.subject }}</div><div class="text-body-secondary small">{{ h.title }}</div></div>
+                <span class="badge-soft">{{ h.due }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PROFILE ================= -->
+    <div ng-switch-when="profile" class="reveal">
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="panel">
+            <div class="panel-body text-center">
+              <div class="portal-avatar mx-auto mb-3" style="width:80px;height:80px;font-size:2rem">{{ vm.student.name | limitTo:1 }}</div>
+              <h5 class="fw-bold mb-0">{{ vm.student.name }}</h5>
+              <div class="text-body-secondary">{{ vm.student.className }}</div>
+              <span class="badge-green mt-2 d-inline-block">Roll No. {{ vm.student.roll }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="panel">
+            <div class="panel-head"><h6><i class="bi bi-person-vcard me-2"></i>Student Details</h6></div>
+            <div class="panel-body">
+              <div class="row g-3">
+                <div class="col-sm-6"><div class="kpi-label">Admission No.</div><div class="fw-semibold">{{ vm.student.admNo }}</div></div>
+                <div class="col-sm-6"><div class="kpi-label">Guardian</div><div class="fw-semibold">{{ vm.student.guardian }}</div></div>
+                <div class="col-sm-6"><div class="kpi-label">Contact</div><div class="fw-semibold">{{ vm.student.contact }}</div></div>
+                <div class="col-sm-6"><div class="kpi-label">Email</div><div class="fw-semibold">{{ vm.student.email }}</div></div>
+                <div class="col-sm-6"><div class="kpi-label">Date of Birth</div><div class="fw-semibold">{{ vm.student.dob }}</div></div>
+                <div class="col-sm-6"><div class="kpi-label">Blood Group</div><div class="fw-semibold">{{ vm.student.blood }}</div></div>
+                <div class="col-12"><div class="kpi-label">Address</div><div class="fw-semibold">{{ vm.student.address }}</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ATTENDANCE ================= -->
+    <div ng-switch-when="attendance" class="reveal">
+      <div class="row g-3 mb-3">
+        <div class="col-lg-4">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="kpi-label">Overall Attendance</div>
+              <div class="kpi-value my-2">{{ vm.attendanceSummary.percent }}%</div>
+              <div class="progress progress-thin mb-2">
+                <div class="progress-bar bg-brand" role="progressbar" style="width: {{ vm.attendanceSummary.percent }}%"></div>
+              </div>
+              <div class="text-body-secondary small">{{ vm.attendanceSummary.present }} / {{ vm.attendanceSummary.total }} days present</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="panel">
+            <div class="panel-head"><h6><i class="bi bi-calendar-check me-2"></i>Recent Attendance</h6></div>
+            <div class="panel-body p-0">
+              <table class="table mb-0">
+                <thead><tr><th>Date</th><th>Day</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr ng-repeat="r in vm.attendanceRows">
+                    <td>{{ r.date }}</td><td>{{ r.day }}</td>
+                    <td>
+                      <span ng-if="r.status === 'Present'" class="badge-green">Present</span>
+                      <span ng-if="r.status === 'Absent'" class="badge bg-danger-subtle text-danger">Absent</span>
+                      <span ng-if="r.status === 'Late'" class="badge bg-warning-subtle text-warning-emphasis">Late</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HOMEWORK ================= -->
+    <div ng-switch-when="homework" class="reveal">
+      <div class="row g-3">
+        <div class="col-md-6 col-xl-4" ng-repeat="h in vm.homework">
+          <div class="panel h-100">
+            <div class="panel-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-soft">{{ h.subject }}</span>
+                <span ng-class="h.status === 'Submitted' ? 'badge-green' : 'badge-soft'">{{ h.status }}</span>
+              </div>
+              <div class="fw-semibold">{{ h.title }}</div>
+              <div class="text-body-secondary small mt-2"><i class="bi bi-clock me-1"></i>Due {{ h.due }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ASSIGNMENTS ================= -->
+    <div ng-switch-when="assignments" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-file-earmark-text me-2"></i>Assignments</h6></div>
+        <div class="panel-body p-0">
+          <table class="table mb-0">
+            <thead><tr><th>Subject</th><th>Title</th><th>Due Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="a in vm.assignments">
+                <td class="fw-semibold">{{ a.subject }}</td><td>{{ a.title }}</td><td>{{ a.due }}</td>
+                <td><span ng-class="a.status === 'Submitted' ? 'badge-green' : 'badge-soft'">{{ a.status }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= RESULTS ================= -->
+    <div ng-switch-when="results" class="reveal">
+      <div class="panel">
+        <div class="panel-head">
+          <h6><i class="bi bi-graph-up me-2"></i>Term Results — Overall {{ vm.resultPercent }}%</h6>
+          <button class="btn btn-sm btn-primary" ng-click="vm.downloadReport()"><i class="bi bi-download me-1"></i>Download Report Card</button>
+        </div>
+        <div class="panel-body p-0">
+          <table class="table mb-0">
+            <thead><tr><th>Subject</th><th>Max</th><th>Marks</th><th>Grade</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="r in vm.results">
+                <td class="fw-semibold">{{ r.subject }}</td><td>{{ r.max }}</td><td>{{ r.marks }}</td>
+                <td><span class="badge-green">{{ r.grade }}</span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="fw-bold"><td>Total</td><td>{{ vm.resultMax }}</td><td>{{ vm.resultTotal }}</td><td>{{ vm.resultPercent }}%</td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FEES ================= -->
+    <div ng-switch-when="fees" class="reveal">
+      <div class="panel">
+        <div class="panel-head">
+          <h6><i class="bi bi-cash-coin me-2"></i>Fee Statement</h6>
+          <button class="btn btn-sm btn-success" ng-click="vm.payNow()"><i class="bi bi-credit-card me-1"></i>Pay Now</button>
+        </div>
+        <div class="panel-body p-0">
+          <table class="table mb-0">
+            <thead><tr><th>Term</th><th>Amount</th><th>Due Date</th><th>Status</th><th class="text-end">Action</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="f in vm.fees">
+                <td class="fw-semibold">{{ f.term }}</td><td>₹{{ f.amount }}</td><td>{{ f.due }}</td>
+                <td>
+                  <span ng-if="f.status === 'Paid'" class="badge-green">Paid</span>
+                  <span ng-if="f.status === 'Due'" class="badge bg-danger-subtle text-danger">Due</span>
+                  <span ng-if="f.status === 'Upcoming'" class="badge-soft">Upcoming</span>
+                </td>
+                <td class="text-end">
+                  <button class="icon-btn" title="Download Receipt" ng-click="vm.downloadReceipt(f.term)"><i class="bi bi-receipt"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TIMETABLE ================= -->
+    <div ng-switch-when="timetable" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-table me-2"></i>Weekly Timetable</h6></div>
+        <div class="panel-body p-0 table-responsive">
+          <table class="table mb-0 text-center">
+            <thead>
+              <tr><th>Day / Time</th><th ng-repeat="t in vm.periods">{{ t }}</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="d in vm.days">
+                <td class="fw-bold">{{ d }}</td>
+                <td ng-repeat="cell in vm.timetable[d]">{{ cell }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= LIBRARY ================= -->
+    <div ng-switch-when="library" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-book me-2"></i>My Issued Books</h6></div>
+        <div class="panel-body p-0">
+          <table class="table mb-0">
+            <thead><tr><th>Title</th><th>Author</th><th>Issued</th><th>Due</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="b in vm.libraryBooks">
+                <td class="fw-semibold">{{ b.title }}</td><td>{{ b.author }}</td><td>{{ b.issued }}</td><td>{{ b.due }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= NOTICES ================= -->
+    <div ng-switch-when="notices" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-megaphone me-2"></i>Notice Board</h6></div>
+        <div class="panel-body">
+          <div class="d-flex gap-3 mb-3" ng-repeat="n in vm.notices">
+            <div class="feature-icon flex-shrink-0"><i class="bi bi-pin-angle-fill"></i></div>
+            <div>
+              <div class="fw-semibold">{{ n.title }} <span class="text-body-secondary small ms-1">{{ n.date }}</span></div>
+              <div class="text-body-secondary small">{{ n.body }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= LEAVE ================= -->
+    <div ng-switch-when="leave" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-envelope-paper me-2"></i>Leave Application</h6></div>
+        <div class="panel-body">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label small fw-semibold">From</label><input type="date" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label small fw-semibold">To</label><input type="date" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label small fw-semibold">Type</label>
+              <select class="form-select"><option>Sick Leave</option><option>Casual Leave</option><option>Other</option></select>
+            </div>
+            <div class="col-12"><label class="form-label small fw-semibold">Reason</label><textarea class="form-control" rows="3" placeholder="Describe the reason for leave..."></textarea></div>
+            <div class="col-12"><button class="btn btn-primary" disabled>Submit Application (demo)</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ID CARD ================= -->
+    <div ng-switch-when="idcard" class="reveal">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <div class="panel">
+            <div class="panel-head"><h6><i class="bi bi-person-badge me-2"></i>Student ID Card</h6></div>
+            <div class="panel-body text-center">
+              <div class="portal-avatar mx-auto mb-3" style="width:76px;height:76px;font-size:1.8rem">{{ vm.student.name | limitTo:1 }}</div>
+              <h5 class="fw-bold mb-0">{{ vm.student.name }}</h5>
+              <div class="text-body-secondary mb-3">{{ vm.student.className }}</div>
+              <div class="row g-2 text-start">
+                <div class="col-6"><div class="kpi-label">Adm No.</div><div class="fw-semibold small">{{ vm.student.admNo }}</div></div>
+                <div class="col-6"><div class="kpi-label">Roll</div><div class="fw-semibold small">{{ vm.student.roll }}</div></div>
+                <div class="col-6"><div class="kpi-label">Blood</div><div class="fw-semibold small">{{ vm.student.blood }}</div></div>
+                <div class="col-6"><div class="kpi-label">Contact</div><div class="fw-semibold small">{{ vm.student.contact }}</div></div>
+              </div>
+              <button class="btn btn-outline-primary btn-sm mt-3" ng-click="vm.downloadReport()"><i class="bi bi-download me-1"></i>Download ID Card</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= REPORT CARD ================= -->
+    <div ng-switch-when="report" class="reveal">
+      <div class="panel">
+        <div class="panel-head">
+          <h6><i class="bi bi-file-earmark-pdf me-2"></i>Report Card</h6>
+          <button class="btn btn-sm btn-primary" ng-click="vm.downloadReport()"><i class="bi bi-download me-1"></i>Download PDF</button>
+        </div>
+        <div class="panel-body">
+          <p class="text-body-secondary">Consolidated academic report for the current session, including term-wise marks, grades, attendance and teacher remarks.</p>
+          <table class="table mb-0">
+            <thead><tr><th>Subject</th><th>Marks</th><th>Grade</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="r in vm.results"><td>{{ r.subject }}</td><td>{{ r.marks }}/{{ r.max }}</td><td>{{ r.grade }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= EXAMS ================= -->
+    <div ng-switch-when="exams" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-clipboard-data me-2"></i>Exams</h6></div>
+        <div class="panel-body text-center py-5">
+          <div class="feature-icon mx-auto mb-3"><i class="bi bi-clipboard-data"></i></div>
+          <h6 class="fw-bold">Exam Schedule &amp; Hall Tickets</h6>
+          <p class="text-body-secondary mb-0">View upcoming exam datesheets, download admit cards and track your exam-wise performance. Coming soon.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SETTINGS ================= -->
+    <div ng-switch-when="settings" class="reveal">
+      <div class="panel">
+        <div class="panel-head"><h6><i class="bi bi-gear me-2"></i>Settings</h6></div>
+        <div class="panel-body text-center py-5">
+          <div class="feature-icon mx-auto mb-3"><i class="bi bi-gear"></i></div>
+          <h6 class="fw-bold">Account Settings</h6>
+          <p class="text-body-secondary mb-0">Update your password, notification preferences and privacy controls. Coming soon.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FALLBACK ================= -->
+    <div ng-switch-default class="reveal">
+      <div class="panel">
+        <div class="panel-body text-center py-5">
+          <div class="feature-icon mx-auto mb-3"><i class="bi bi-info-circle"></i></div>
+          <h6 class="fw-bold">Section Coming Soon</h6>
+          <p class="text-body-secondary mb-0">This module is under construction.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</portal-shell>

@@ -1,0 +1,148 @@
+<!-- ===================== HEADER ===================== -->
+<section class="section-tight bg-soft">
+  <div class="container container-aa text-center">
+    <span class="eyebrow reveal"><i class="bi bi-journal-bookmark-fill"></i>Academics</span>
+    <h1 class="mt-3 mb-3 reveal delay-1">A Curriculum That Builds Strong Foundations</h1>
+    <p class="lead mb-0 mx-auto reveal delay-2" style="max-width:720px">From playful early years to focused board preparation — learning at Alfalah is structured, balanced and meaningful.</p>
+  </div>
+</section>
+
+<!-- ===================== CURRICULUM OVERVIEW ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <section-heading eyebrow="Curriculum" heading="Learning at Every Stage"
+      sub="A carefully sequenced programme from Pre-Primary through Secondary."></section-heading>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" ng-repeat="s in vm.stages">
+        <div class="aa-card h-100 reveal" ng-class="'delay-' + ($index % 4)">
+          <div class="card-body">
+            <div class="feature-icon mb-3"><i class="bi" ng-class="s.icon"></i></div>
+            <span class="badge-soft mb-2 d-inline-block">{{ s.grades }}</span>
+            <h5 class="mb-2">{{ s.title }}</h5>
+            <p class="mb-0">{{ s.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUBJECTS OFFERED ===================== -->
+<section class="section bg-soft">
+  <div class="container container-aa">
+    <section-heading eyebrow="Subjects" heading="Subjects We Offer"
+      sub="A broad mix of academics, languages, technology and the arts."></section-heading>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-3" ng-repeat="sub in vm.subjects">
+        <div class="aa-card text-center reveal" ng-class="'delay-' + ($index % 4)">
+          <div class="card-body d-flex align-items-center gap-3 justify-content-center">
+            <div class="feature-icon soft"><i class="bi" ng-class="sub.icon"></i></div>
+            <h6 class="mb-0">{{ sub.name }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXAMINATION SYSTEM ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <section-heading eyebrow="Assessment" heading="Our Examination System"
+      sub="Continuous and Comprehensive Evaluation across two terms."></section-heading>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="aa-card reveal">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Term</th>
+                    <th scope="col">Assessments</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Period</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="e in vm.examScheme">
+                    <td class="fw-semibold text-accent">{{ e.term }}</td>
+                    <td>{{ e.assessments }}</td>
+                    <td><span class="badge-green">{{ e.weight }}</span></td>
+                    <td class="text-body-secondary">{{ e.period }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="aa-card h-100 reveal delay-1">
+          <div class="card-body">
+            <h5 class="mb-3"><i class="bi bi-clipboard-check text-accent me-2"></i>How It Works</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex gap-2 mb-3" ng-repeat="note in vm.examNotes">
+                <i class="bi bi-check-circle-fill text-accent mt-1"></i>
+                <span>{{ note }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ACADEMIC CALENDAR ===================== -->
+<section class="section bg-soft">
+  <div class="container container-aa">
+    <section-heading eyebrow="Planner" heading="Academic Calendar"
+      sub="Key activities and events across the academic year."></section-heading>
+    <div class="aa-card reveal">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th scope="col" style="width:160px">Month</th>
+                <th scope="col">Activities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in vm.calendar">
+                <td class="fw-semibold text-accent"><i class="bi bi-calendar3 me-2"></i>{{ c.month }}</td>
+                <td>{{ c.activity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOMEWORK POLICY ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <span class="eyebrow reveal"><i class="bi bi-house-heart"></i>Homework Policy</span>
+        <h2 class="mt-3 mb-3 reveal delay-1">Learning That Continues at Home</h2>
+        <p class="reveal delay-2">We believe homework should support learning without stealing childhood. Our policy keeps assignments purposeful, balanced and age-appropriate — with parents kept in the loop every step of the way.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="aa-card reveal delay-1">
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex gap-2 mb-3" ng-repeat="h in vm.homeworkPolicy" ng-class="{ 'mb-0': $last }">
+                <i class="bi bi-check-circle-fill text-accent mt-1"></i>
+                <span>{{ h }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

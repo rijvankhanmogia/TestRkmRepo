@@ -1,0 +1,80 @@
+<!-- ===================== HEADER ===================== -->
+<section class="section-tight bg-soft">
+  <div class="container container-aa text-center">
+    <span class="eyebrow reveal"><i class="bi bi-images"></i>Gallery</span>
+    <h1 class="mt-3 mb-3 reveal delay-1">Life at Alfalah Academy</h1>
+    <p class="lead mb-0 mx-auto reveal delay-2" style="max-width:720px">Moments of learning, celebration and achievement — captured across the year.</p>
+  </div>
+</section>
+
+<!-- ===================== IMAGE GALLERY ===================== -->
+<section class="section">
+  <div class="container container-aa">
+
+    <!-- Category tabs -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5 reveal">
+      <button ng-repeat="c in vm.categories"
+              class="btn btn-sm"
+              ng-class="vm.category === c ? 'btn-accent' : 'btn-ghost'"
+              ng-click="vm.setCategory(c)">{{ c }}</button>
+    </div>
+
+    <!-- Loading skeletons -->
+    <div class="gallery-grid" ng-if="vm.loading">
+      <div class="gallery-item" ng-repeat="i in [1,2,3,4,5,6,7,8]">
+        <div class="skeleton" style="width:100%;height:200px"></div>
+      </div>
+    </div>
+
+    <!-- Masonry grid -->
+    <div class="gallery-grid" ng-if="!vm.loading">
+      <a href="" class="gallery-item d-block reveal"
+         ng-repeat="item in vm.items | filter:vm.matches"
+         ng-class="'delay-' + ($index % 4)"
+         ng-click="vm.open(item); $event.preventDefault()">
+        <div class="ph"><i class="bi bi-image"></i></div>
+        <div class="gallery-cap">{{ item.title }}</div>
+      </a>
+    </div>
+
+    <!-- Empty state -->
+    <div class="text-center py-5" ng-if="!vm.loading && !(vm.items | filter:vm.matches).length">
+      <div class="feature-icon soft mx-auto mb-3"><i class="bi bi-image"></i></div>
+      <p class="text-body-secondary mb-0">No photos in this category yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO GALLERY ===================== -->
+<section class="section bg-soft">
+  <div class="container container-aa">
+    <section-heading eyebrow="Watch" heading="Video Gallery"
+      sub="Relive our biggest events and everyday moments in motion."></section-heading>
+    <div class="row g-4">
+      <div class="col-md-4" ng-repeat="v in vm.videos">
+        <div class="aa-card reveal" ng-class="'delay-' + $index">
+          <div class="card-body p-0">
+            <div class="ph position-relative" style="border-radius:var(--aa-radius) var(--aa-radius) 0 0">
+              <i class="bi bi-play-circle-fill" style="font-size:3.5rem"></i>
+            </div>
+            <div class="p-3">
+              <h6 class="mb-0"><i class="bi bi-camera-video me-2 text-accent"></i>{{ v.title }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" ng-if="vm.active" ng-click="vm.close()">
+  <button class="lightbox-close" ng-click="vm.close(); $event.stopPropagation()" aria-label="Close">
+    <i class="bi bi-x-lg"></i>
+  </button>
+  <div class="text-center" ng-click="$event.stopPropagation()" style="max-width:800px;width:90%">
+    <div class="ph" style="height:60vh"><i class="bi bi-image" style="font-size:4rem"></i></div>
+    <h4 class="text-white mt-3 mb-1">{{ vm.active.title }}</h4>
+    <span class="badge-soft">{{ vm.active.category }}</span>
+  </div>
+</div>
