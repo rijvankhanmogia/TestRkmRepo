@@ -1,0 +1,124 @@
+<!-- ===================== HEADER ===================== -->
+<section class="section-tight bg-soft">
+  <div class="container container-aa text-center">
+    <span class="eyebrow reveal"><i class="bi bi-headset"></i>Contact Us</span>
+    <h1 class="mt-3 mb-3 reveal delay-1">We'd Love to Hear From You</h1>
+    <p class="lead mb-0 mx-auto reveal delay-2" style="max-width:720px">Have a question about admissions, academics or campus life? Reach out and our team will be happy to help.</p>
+  </div>
+</section>
+
+<!-- ===================== CONTACT INFO + FORM ===================== -->
+<section class="section">
+  <div class="container container-aa">
+    <div class="row g-4 g-lg-5">
+
+      <!-- Left: contact info -->
+      <div class="col-lg-5">
+        <span class="eyebrow reveal"><i class="bi bi-geo-alt"></i>Get in Touch</span>
+        <h2 class="mt-3 mb-4 reveal delay-1">Contact Information</h2>
+
+        <div class="aa-card h-auto mb-3 reveal delay-1">
+          <div class="card-body d-flex gap-3">
+            <div class="feature-icon soft flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <h6 class="mb-1">Address</h6>
+              <p class="mb-0">{{ vm.cfg.contact.address.line1 }}, {{ vm.cfg.contact.address.line2 }}, {{ vm.cfg.contact.address.state }}, {{ vm.cfg.contact.address.country }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="aa-card h-auto mb-3 reveal delay-2">
+          <div class="card-body d-flex gap-3">
+            <div class="feature-icon soft flex-shrink-0"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <h6 class="mb-1">Email</h6>
+              <a ng-href="mailto:{{ vm.cfg.contact.email }}">{{ vm.cfg.contact.email }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="aa-card h-auto mb-3 reveal delay-2">
+          <div class="card-body d-flex gap-3">
+            <div class="feature-icon soft flex-shrink-0"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <h6 class="mb-1">Phone</h6>
+              <a ng-href="tel:{{ vm.cfg.contact.phone }}">{{ vm.cfg.contact.phone }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="aa-card h-auto mb-4 reveal delay-3">
+          <div class="card-body d-flex gap-3">
+            <div class="feature-icon soft flex-shrink-0"><i class="bi bi-clock-fill"></i></div>
+            <div>
+              <h6 class="mb-1">Office Timing</h6>
+              <p class="mb-0">{{ vm.cfg.contact.officeTiming }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal delay-3">
+          <h6 class="mb-2">Follow Us</h6>
+          <div class="d-flex gap-2">
+            <a class="btn btn-ghost" ng-href="{{ vm.cfg.social.facebook || '#' }}" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a class="btn btn-ghost" ng-href="{{ vm.cfg.social.instagram || '#' }}" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="btn btn-ghost" ng-href="{{ vm.cfg.social.youtube || '#' }}" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a class="btn btn-ghost" ng-href="{{ vm.cfg.social.whatsapp || '#' }}" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="col-lg-7">
+        <div class="form-card p-4 p-md-5 reveal delay-1">
+          <h4 class="mb-4"><i class="bi bi-chat-dots text-accent me-2"></i>Send Us a Message</h4>
+          <form name="contactForm" novalidate ng-submit="vm.submit(contactForm)">
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <label class="form-label" for="c-name">Full Name <span class="text-danger">*</span></label>
+                <input id="c-name" type="text" class="form-control" name="name" ng-model="vm.model.name" required />
+                <div class="text-danger small mt-1" ng-if="contactForm.$submitted && contactForm.name.$invalid">Please enter your name.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="c-email">Email <span class="text-danger">*</span></label>
+                <input id="c-email" type="email" class="form-control" name="email" ng-model="vm.model.email" required />
+                <div class="text-danger small mt-1" ng-if="contactForm.$submitted && contactForm.email.$invalid">Please enter a valid email address.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="c-phone">Phone <span class="text-danger">*</span></label>
+                <input id="c-phone" type="tel" class="form-control" name="phone" ng-model="vm.model.phone"
+                       ng-pattern="/^[6-9][0-9]{9}$/" required placeholder="10-digit mobile" />
+                <div class="text-danger small mt-1" ng-if="contactForm.$submitted && contactForm.phone.$invalid">Enter a valid 10-digit mobile number.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="c-subject">Subject <span class="text-danger">*</span></label>
+                <input id="c-subject" type="text" class="form-control" name="subject" ng-model="vm.model.subject" required />
+                <div class="text-danger small mt-1" ng-if="contactForm.$submitted && contactForm.subject.$invalid">Please enter a subject.</div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label" for="c-message">Message <span class="text-danger">*</span></label>
+                <textarea id="c-message" class="form-control" rows="5" name="message" ng-model="vm.model.message" required></textarea>
+                <div class="text-danger small mt-1" ng-if="contactForm.$submitted && contactForm.message.$invalid">Please enter your message.</div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-accent btn-lg w-100" ng-disabled="vm.saving">
+                  <span ng-if="!vm.saving"><i class="bi bi-send me-2"></i>Send Message</span>
+                  <span ng-if="vm.saving"><span class="spinner-border spinner-border-sm me-2"></span>Sending…</span>
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+

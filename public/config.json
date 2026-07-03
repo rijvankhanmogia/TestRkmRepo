@@ -1,0 +1,49 @@
+{
+  "app": {
+    "name": "Alfalah Academy",
+    "shortName": "Alfalah",
+    "tagline": "Nurturing Faith, Knowledge & Character",
+    "description": "Alfalah Academy is a modern Islamic school in Sultana, Chirawa, blending quality academics with Islamic values — smart classrooms, science & computer labs, and holistic development.",
+    "locale": "en-IN",
+    "themeColor": "#1d4ed8"
+  },
+  "contact": {
+    "email": "alfalahacademysultana@gmail.com",
+    "phone": "+91 97851 27874",
+    "officeTiming": "Monday - Saturday, 7:30 AM - 1:30 PM",
+    "address": {
+      "line1": "Kishorpura Road, Sultana",
+      "line2": "Tahsil - Chirawa",
+      "district": "",
+      "state": "Rajasthan - 333028",
+      "country": "India"
+    },
+    "map": {
+      "lat": 28.124088,
+      "lng": 75.609324,
+      "zoom": 15
+    }
+  },
+  "social": {
+    "facebook": "#",
+    "instagram": "#",
+    "youtube": "#",
+    "twitter": "#",
+    "whatsapp": "#"
+  },
+  "api": {
+    "baseUrl": "http://localhost:6013/api"
+  },
+  "features": {
+    "darkMode": true,
+    "pwa": true,
+    "onlineAdmission": true,
+    "enquiryForm": true
+  },
+  "stats": [
+    { "label": "Students", "value": 300, "suffix": "+", "icon": "bi-people" },
+    { "label": "Teachers", "value": 12, "suffix": "+", "icon": "bi-person-workspace" },
+    { "label": "Years of Excellence", "value": 10, "suffix": "+", "icon": "bi-award" },
+    { "label": "Pass Percentage", "value": 90, "suffix": "%", "icon": "bi-mortarboard" }
+  ]
+}

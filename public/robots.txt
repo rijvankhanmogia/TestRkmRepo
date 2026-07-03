@@ -1,0 +1,12 @@
+# Alfalah Academy — robots.txt
+# The public marketing site is fully crawlable.
+# Role portals live behind client-side hashbang routes (e.g. /#!/portal/admin)
+# and JWT auth — crawlers cannot reach them, so no server paths are exposed.
+
+User-agent: *
+Allow: /
+
+# Portals are client-side only (hashbang) and gated by login; nothing to crawl.
+# Disallow: /#!/portal   (informational — fragments are not sent to servers)
+
+Sitemap: https://alfalahacademy.example/sitemap.xml

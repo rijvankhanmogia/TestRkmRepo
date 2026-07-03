@@ -1,0 +1,65 @@
+<!-- ===================== HEADER ===================== -->
+<section class="section-tight bg-soft">
+  <div class="container container-aa text-center">
+    <span class="eyebrow reveal"><i class="bi bi-person-workspace"></i>Our Faculty</span>
+    <h1 class="mt-3 mb-3 reveal delay-1">Meet the Teachers Who Inspire</h1>
+    <p class="lead mb-0 mx-auto reveal delay-2" style="max-width:720px">Experienced, qualified and caring — our educators are the heart of Alfalah Academy.</p>
+  </div>
+</section>
+
+<!-- ===================== DIRECTORY ===================== -->
+<section class="section">
+  <div class="container container-aa">
+
+    <!-- Filter -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6 col-lg-4">
+        <label class="form-label small text-body-secondary mb-1"><i class="bi bi-funnel me-1"></i>Filter by department / subject</label>
+        <select class="form-select" ng-model="vm.filter">
+          <option value="">All Departments</option>
+          <option ng-repeat="s in vm.subjects()" value="{{ s }}">{{ s }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading skeletons -->
+    <div class="row g-4" ng-if="vm.loading">
+      <div class="col-sm-6 col-lg-4" ng-repeat="i in [1,2,3,4,5,6]">
+        <div class="aa-card"><div class="card-body">
+          <div class="skeleton mx-auto mb-3" style="width:96px;height:96px;border-radius:50%"></div>
+          <div class="skeleton skeleton-line mx-auto" style="width:60%"></div>
+          <div class="skeleton skeleton-line mx-auto" style="width:40%"></div>
+          <div class="skeleton skeleton-line mx-auto" style="width:70%"></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Faculty cards -->
+    <div class="row g-4" ng-if="!vm.loading">
+      <div class="col-sm-6 col-lg-4" ng-repeat="f in vm.faculty | filter:vm.matches">
+        <div class="aa-card h-100 text-center reveal" ng-class="'delay-' + ($index % 4)">
+          <div class="card-body">
+            <div class="ratio ratio-1x1 mx-auto mb-3" style="max-width:120px">
+              <div class="faculty-avatar w-100 h-100" style="border-radius:50%">
+                <img ng-if="f.photo" ng-src="{{ f.photo }}" alt="{{ f.name }}"
+                     class="w-100 h-100 rounded-circle object-fit-cover" />
+                <span ng-if="!f.photo">{{ f.name | limitTo:1 }}</span>
+              </div>
+            </div>
+            <h5 class="mb-1">{{ f.name }}</h5>
+            <div class="text-accent fw-semibold small mb-2" ng-if="f.role">{{ f.role }}</div>
+            <span class="badge-soft mb-2 d-inline-block">{{ f.subject }}</span>
+            <p class="text-body-secondary small mb-2"><i class="bi bi-mortarboard me-1"></i>{{ f.qualification }}</p>
+            <p class="mb-0 small"><i class="bi bi-briefcase me-1"></i>{{ f.experience }} experience</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="col-12 text-center py-5" ng-if="!(vm.faculty | filter:vm.matches).length">
+        <div class="feature-icon soft mx-auto mb-3"><i class="bi bi-search"></i></div>
+        <p class="text-body-secondary mb-0">No faculty found for this department.</p>
+      </div>
+    </div>
+  </div>
+</section>
