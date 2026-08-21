@@ -1,1 +1,478 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — Village Cross</title>
+<meta name="description" content="Privacy policy for Village Cross, a 4-player traditional 5x5 cross board game for Android." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#1C1613;
+    --ground-2:#241C18;
+    --chalk:#F2EDE3;
+    --chalk-soft:#CFC4B4;
+    --dust:#9C8C7C;
+    --haldi:#E9B44C;
+    --kumkum:#C0453C;
+    --neem:#7E9B63;
+    --line:rgba(242,237,227,.16);
+    --measure:64ch;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--chalk-soft);
+    font-family:"Karla",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:64px 0 44px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+
+  .board{
+    width:min(300px,68vw);
+    height:auto;
+    margin:0 auto 34px;
+    display:block;
+  }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--dust);
+    margin:0 0 14px;
+  }
+
+  .hero h1{
+    font-family:"Rozha One",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(44px,11vw,72px);
+    line-height:1;
+    letter-spacing:.01em;
+    color:var(--chalk);
+    margin:0 0 16px;
+  }
+
+  .hero p{
+    margin:0 auto;
+    max-width:52ch;
+    color:var(--chalk-soft);
+  }
+
+  .stamp{
+    margin-top:26px;
+    font-size:13px;
+    letter-spacing:.08em;
+    color:var(--dust);
+  }
+
+  .stamp b{color:var(--haldi);font-weight:600;}
+
+  /* ---------- short version ---------- */
+  .summary{
+    margin:44px 0 8px;
+    padding:26px 26px 22px;
+    background:var(--ground-2);
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+
+  .summary h2{
+    font-family:"Karla",sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--haldi);
+    margin:0 0 16px;
+  }
+
+  .summary ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+
+  .summary li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:10px;
+    color:var(--chalk);
+  }
+
+  .summary li:last-child{margin-bottom:0;}
+
+  .summary li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:.62em;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--neem);
+  }
+
+  .summary li:nth-child(2)::before{background:var(--haldi);}
+  .summary li:nth-child(3)::before{background:var(--kumkum);}
+  .summary li:nth-child(4)::before{background:var(--chalk-soft);}
+
+  /* ---------- body copy ---------- */
+  main{padding-bottom:12px;}
+
+  section{
+    padding:34px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  section h2{
+    font-family:"Rozha One",Georgia,serif;
+    font-weight:400;
+    font-size:27px;
+    line-height:1.25;
+    color:var(--chalk);
+    margin:0 0 12px;
+  }
+
+  section h3{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--haldi);
+    margin:26px 0 8px;
+  }
+
+  p{margin:0 0 14px;max-width:var(--measure);}
+
+  ul.plain{
+    margin:0 0 14px;
+    padding-left:20px;
+    max-width:var(--measure);
+  }
+
+  ul.plain li{margin-bottom:8px;}
+
+  strong{color:var(--chalk);font-weight:700;}
+
+  a{color:var(--haldi);text-decoration:underline;text-underline-offset:3px;}
+  a:hover{color:var(--chalk);}
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--haldi);
+    outline-offset:3px;
+  }
+
+  .note{
+    font-size:15px;
+    color:var(--dust);
+    font-style:italic;
+  }
+
+  /* ---------- contact ---------- */
+  .contact{
+    border-bottom:none;
+    padding-bottom:10px;
+  }
+
+  .contact .card{
+    display:inline-block;
+    padding:18px 24px;
+    border:1px dashed rgba(242,237,227,.28);
+    border-radius:2px;
+    margin-top:4px;
+  }
+
+  .contact .card span{
+    display:block;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--dust);
+    margin-bottom:4px;
+  }
+
+  .contact .card a{
+    font-family:"Rozha One",Georgia,serif;
+    font-size:22px;
+    text-decoration:none;
+    border-bottom:1px solid var(--haldi);
+    word-break:break-word;
+  }
+
+  .contact .card a.tel{
+    display:inline-block;
+    margin-top:10px;
+    font-size:19px;
+    color:var(--chalk);
+    border-bottom-color:rgba(242,237,227,.4);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:34px 0 56px;
+    border-top:1px solid var(--line);
+    margin-top:34px;
+    font-size:14px;
+    color:var(--dust);
+  }
+
+  footer .rules{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    margin-bottom:18px;
+  }
+
+  footer .rules span{
+    white-space:nowrap;
+  }
+
+  footer .rules b{
+    color:var(--haldi);
+    font-weight:700;
+  }
+
+  /* ---------- chalk drawing ---------- */
+  .stroke{
+    stroke-dasharray:520;
+    stroke-dashoffset:520;
+    animation:draw 1.1s ease-out forwards;
+  }
+
+  .goti{
+    opacity:0;
+    animation:place .5s ease-out forwards;
+  }
+
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes place{
+    from{opacity:0;transform:translateY(-10px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .stroke,.goti{animation:none;stroke-dashoffset:0;opacity:1;}
+  }
+
+  @media (max-width:520px){
+    body{font-size:16px;}
+    .hero{padding:44px 0 34px;}
+    .summary{padding:22px 20px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <svg class="board" viewBox="-30 -30 560 560" role="img" aria-label="A five by five cross board drawn in chalk, with four playing pieces at the corners and the X home square in the middle.">
+      <defs>
+        <filter id="chalk" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#chalk)" stroke="#F2EDE3" stroke-width="3" stroke-linecap="round" opacity=".9" fill="none">
+        <line class="stroke" x1="0"   y1="0"   x2="500" y2="0"   style="animation-delay:.05s"/>
+        <line class="stroke" x1="0"   y1="100" x2="500" y2="100" style="animation-delay:.12s"/>
+        <line class="stroke" x1="0"   y1="200" x2="500" y2="200" style="animation-delay:.19s"/>
+        <line class="stroke" x1="0"   y1="300" x2="500" y2="300" style="animation-delay:.26s"/>
+        <line class="stroke" x1="0"   y1="400" x2="500" y2="400" style="animation-delay:.33s"/>
+        <line class="stroke" x1="0"   y1="500" x2="500" y2="500" style="animation-delay:.40s"/>
+        <line class="stroke" x1="0"   y1="0"   x2="0"   y2="500" style="animation-delay:.47s"/>
+        <line class="stroke" x1="100" y1="0"   x2="100" y2="500" style="animation-delay:.54s"/>
+        <line class="stroke" x1="200" y1="0"   x2="200" y2="500" style="animation-delay:.61s"/>
+        <line class="stroke" x1="300" y1="0"   x2="300" y2="500" style="animation-delay:.68s"/>
+        <line class="stroke" x1="400" y1="0"   x2="400" y2="500" style="animation-delay:.75s"/>
+        <line class="stroke" x1="500" y1="0"   x2="500" y2="500" style="animation-delay:.82s"/>
+      </g>
+
+      <!-- safe squares -->
+      <g filter="url(#chalk)" stroke="#F2EDE3" stroke-width="2.5" stroke-linecap="round" opacity=".45" fill="none">
+        <line class="stroke" x1="215" y1="15"  x2="285" y2="85"  style="animation-delay:.9s"/>
+        <line class="stroke" x1="285" y1="15"  x2="215" y2="85"  style="animation-delay:.9s"/>
+        <line class="stroke" x1="215" y1="415" x2="285" y2="485" style="animation-delay:.95s"/>
+        <line class="stroke" x1="285" y1="415" x2="215" y2="485" style="animation-delay:.95s"/>
+        <line class="stroke" x1="15"  y1="215" x2="85"  y2="285" style="animation-delay:1s"/>
+        <line class="stroke" x1="85"  y1="215" x2="15"  y2="285" style="animation-delay:1s"/>
+        <line class="stroke" x1="415" y1="215" x2="485" y2="285" style="animation-delay:1.05s"/>
+        <line class="stroke" x1="485" y1="215" x2="415" y2="285" style="animation-delay:1.05s"/>
+      </g>
+
+      <!-- home -->
+      <g filter="url(#chalk)" stroke="#E9B44C" stroke-width="6" stroke-linecap="round" fill="none">
+        <line class="stroke" x1="212" y1="212" x2="288" y2="288" style="animation-delay:1.15s"/>
+        <line class="stroke" x1="288" y1="212" x2="212" y2="288" style="animation-delay:1.15s"/>
+      </g>
+
+      <!-- four gotis -->
+      <g>
+        <circle class="goti" cx="50"  cy="50"  r="24" fill="#E9B44C" style="animation-delay:1.35s"/>
+        <circle class="goti" cx="450" cy="50"  r="24" fill="#C0453C" style="animation-delay:1.45s"/>
+        <circle class="goti" cx="450" cy="450" r="24" fill="#7E9B63" style="animation-delay:1.55s"/>
+        <circle class="goti" cx="50"  cy="450" r="24" fill="#F2EDE3" style="animation-delay:1.65s"/>
+      </g>
+    </svg>
+
+    <p class="eyebrow">Privacy Policy</p>
+    <h1>Village Cross</h1>
+    <p>A four-player village board game for Android. This page explains what the game does and does not do with your information.</p>
+    <p class="stamp">Last updated <b>22 August 2026</b></p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li>Village Cross does not ask you to create an account, and does not collect your name, email, phone number or contacts.</li>
+      <li>Your game settings and scores stay on your own device.</li>
+      <li>Advertising and crash-reporting partners may receive limited technical data, such as your device's advertising ID.</li>
+      <li>Uninstalling the game removes the data it stored on your device.</li>
+    </ul>
+  </div>
+
+  <main>
+
+    <section>
+      <h2>Who this policy covers</h2>
+      <p>This policy applies to the Android game <strong>Village Cross</strong> (package <strong>com.indianai.villagecross</strong>), published on Google Play by <strong>Indian AI</strong>, operated by Rijvan Khan Mogia. In this policy, "the game" means that app, and "we" means the publisher.</p>
+      <p>By installing and playing the game, you agree to what is described here.</p>
+    </section>
+
+    <section>
+      <h2>Information we do not collect</h2>
+      <p>The game has no sign-up, no login and no user profile. We do not ask for, receive or store:</p>
+      <ul class="plain">
+        <li>Your name, email address or phone number</li>
+        <li>Your contacts, photos, files or messages</li>
+        <li>Your precise location</li>
+        <li>Payment details — any purchase is handled entirely by Google Play</li>
+      </ul>
+      <p>All four players share a single device, so the game never sends your moves or results to a server.</p>
+    </section>
+
+    <section>
+      <h2>Information collected automatically</h2>
+      <p>The game uses third-party services that may collect limited technical information to show ads and to keep the game stable. This can include:</p>
+      <ul class="plain">
+        <li><strong>Advertising ID</strong> — a resettable identifier Google assigns to your device</li>
+        <li><strong>Device and app details</strong> — model, operating system version, language, app version</li>
+        <li><strong>Approximate region</strong> — derived from your IP address, used to serve relevant ads</li>
+        <li><strong>Crash information</strong> — what the game was doing when it stopped working</li>
+      </ul>
+      <p>We use this only to keep the game running and to support it with advertising. We do not sell it.</p>
+      <p class="note">If your build ships without ads or analytics, delete this section and the third-party list below.</p>
+    </section>
+
+    <section>
+      <h2>Data stored on your device</h2>
+      <p>The game saves a small amount of data locally so it can remember your setup between sessions:</p>
+      <ul class="plain">
+        <li>Player names or colours you choose for the four gotis</li>
+        <li>Sound, vibration and language preferences</li>
+        <li>Match history and high scores</li>
+      </ul>
+      <p>This data never leaves your device. Clearing the app's storage or uninstalling the game deletes it permanently.</p>
+    </section>
+
+    <section>
+      <h2>Permissions the game uses</h2>
+      <ul class="plain">
+        <li><strong>Internet and network state</strong> — to load ads and report crashes</li>
+        <li><strong>Vibrate</strong> — for feedback when you roll the sticks or capture a goti</li>
+      </ul>
+      <p>The game does not request camera, microphone, location, storage or contacts permissions.</p>
+    </section>
+
+    <section>
+      <h2>Third-party services</h2>
+      <p>These services operate under their own privacy policies:</p>
+      <ul class="plain">
+        <li>Google Play Services — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+        <li>Google AdMob — <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">support.google.com/admob</a></li>
+        <li>Firebase Crashlytics — <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></li>
+      </ul>
+      <p>Remove any service your build does not include, and add any you do.</p>
+    </section>
+
+    <section>
+      <h2>Children's privacy</h2>
+      <p>Village Cross is a family game and is suitable for children. We do not knowingly collect personal information from anyone, including children under 13 (or the equivalent minimum age in your country). Any advertising shown in the game is configured to be child-directed and non-personalised where required.</p>
+      <p>If you believe a child has provided us with personal information, write to us and we will delete it.</p>
+    </section>
+
+    <section>
+      <h2>Your choices</h2>
+      <ul class="plain">
+        <li><strong>Reset or delete your advertising ID</strong> in Android Settings → Privacy → Ads.</li>
+        <li><strong>Opt out of personalised ads</strong> in the same settings screen, or through the consent prompt shown in the game where it applies.</li>
+        <li><strong>Delete everything</strong> by uninstalling the game.</li>
+      </ul>
+      <p>If you live in the European Economic Area, the United Kingdom, or a region with similar laws, you may also ask us to confirm what data relates to you and to have it deleted. Contact us and we will respond within 30 days.</p>
+    </section>
+
+    <section>
+      <h2>Data security</h2>
+      <p>Because the game keeps your data on your own device and sends nothing to our servers, there is no account of yours for us to lose. Data handled by our advertising and crash-reporting partners is transmitted over encrypted connections and protected under their own security practices.</p>
+    </section>
+
+    <section>
+      <h2>Changes to this policy</h2>
+      <p>We update this page when the game changes. The date at the top always shows the current version. Substantial changes will also be noted in the app's Google Play listing.</p>
+    </section>
+
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>Questions about this policy, or about your data:</p>
+      <div class="card">
+        <span>Indian AI · Rijvan Khan Mogia</span>
+        <a href="mailto:rijvankhanmogia@gmail.com">rijvankhanmogia@gmail.com</a>
+        <a class="tel" href="tel:+918828117342">+91 88281 17342</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="rules">
+      <span><b>5×5</b> cross board</span>
+      <span><b>4</b> players</span>
+      <span><b>4</b> gotis each</span>
+      <span>Roll <b>1 · 2 · 3 · 4 · 8</b></span>
+      <span>Open on <b>1, 4 or 8</b></span>
+      <span>Middle <b>X</b> is home</span>
+    </div>
+    <p>© 2026 Indian AI. Village Cross is a digital take on the traditional four-stick cross game played on village floors.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
