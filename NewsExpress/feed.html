@@ -1,0 +1,122 @@
+<div class="container nx-feed" nx-keys nx-keys-next="next()" nx-keys-prev="prev()">
+
+    <!-- Language picker and reload, mirroring the app's top row. -->
+    <div class="nx-pager d-flex align-items-center justify-content-between mb-3">
+        <div class="dropdown" ng-if="languages.length">
+            <button class="btn btn-nx btn-sm dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-translate me-1"></i>
+                <span ng-bind="language"></span>
+            </button>
+            <ul class="dropdown-menu nx-dropdown">
+                <li ng-repeat="lang in languages">
+                    <a class="dropdown-item" href="" ng-class="{active: lang === language}"
+                       ng-click="changeLanguage(lang)" ng-bind="lang"></a>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn btn-nx btn-nx-icon" ng-click="reload()" title="Load latest news"
+                aria-label="Load latest news">
+            <i class="bi bi-arrow-clockwise"></i>
+        </button>
+    </div>
+
+    <!-- Non-fatal notice, e.g. the token serving a different language. -->
+    <div class="nx-pager alert alert-warning d-flex justify-content-between align-items-start py-2 px-3"
+         role="alert" ng-if="notice">
+        <small ng-bind="notice"></small>
+        <button type="button" class="btn-close btn-close-sm ms-2" aria-label="Dismiss"
+                ng-click="dismissNotice()"></button>
+    </div>
+
+    <div class="text-center py-5" ng-if="loading">
+        <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading news…</span>
+        </div>
+        <p class="nx-muted mt-3 mb-0">Fetching today's headlines…</p>
+    </div>
+
+    <div class="nx-empty" ng-if="error && !loading">
+        <i class="bi bi-wifi-off d-block mb-3"></i>
+        <p ng-bind="error"></p>
+        <button class="btn btn-nx-accent btn-sm rounded-pill px-4" ng-click="reload()">Retry</button>
+    </div>
+
+    <!-- The story. Swipe up/down on touch; arrows, space or the buttons elsewhere. -->
+    <div ng-if="!loading && !error && current()"
+         nx-swipe nx-swipe-up="next()" nx-swipe-down="prev()">
+
+        <article class="nx-card">
+            <img class="nx-card-image" ng-if="current().imageUrl" ng-src="{{current().imageUrl}}"
+                 alt="{{current().title}}">
+
+            <div class="nx-card-body">
+                <div>
+                    <span class="nx-chip" ng-bind="current().category || 'News'"></span>
+                    <span class="nx-chip nx-chip-breaking" ng-if="current().isBreaking">Breaking</span>
+                </div>
+
+                <h1 class="nx-title" ng-bind="current().title"></h1>
+                <p class="nx-summary" ng-bind="current().summary"></p>
+
+                <!--
+                  Source and publication date shown with the story itself, as Google Play's news
+                  policy requires for aggregated third-party content.
+                -->
+                <div class="nx-attribution">
+                    <div class="nx-source">
+                        Source: <strong ng-bind="current().publisher || 'Publisher not stated'"></strong>
+                    </div>
+                    <div class="nx-published">
+                        <span ng-if="current().publishedLabel">
+                            Published: <span ng-bind="current().publishedLabel"></span>
+                        </span>
+                        <span ng-if="current().agoFromNow">
+                            &middot; <span ng-bind="current().agoFromNow"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center nx-actions">
+                    <a class="btn btn-nx btn-sm px-3" ng-if="current().articleLink"
+                       ng-href="{{current().articleLink}}" target="_blank" rel="noopener noreferrer">
+                        Read original article <i class="bi bi-box-arrow-up-right ms-1"></i>
+                    </a>
+
+                    <button class="btn btn-nx btn-nx-icon" ng-click="toggleSave(current())"
+                            title="Save to favourites" aria-label="Save to favourites">
+                        <i class="bi" ng-class="isSaved(current())
+                            ? 'bi-heart-fill nx-saved' : 'bi-heart'"></i>
+                    </button>
+
+                    <button class="btn btn-nx btn-nx-icon" ng-click="share(current())"
+                            title="Share this story" aria-label="Share this story">
+                        <i class="bi bi-share"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <div class="nx-pager d-flex align-items-center justify-content-between">
+            <button class="btn btn-nx btn-sm px-3" ng-click="prev()" ng-disabled="index === 0">
+                <i class="bi bi-chevron-up me-1"></i> Previous
+            </button>
+
+            <span class="nx-progress">
+                <span ng-bind="index + 1"></span> / <span ng-bind="items.length"></span>
+            </span>
+
+            <button class="btn btn-nx-accent btn-sm px-3" ng-click="next()">
+                Next <i class="bi bi-chevron-down ms-1"></i>
+            </button>
+        </div>
+
+        <p class="nx-hint d-none d-md-block">
+            Use <kbd>↑</kbd> <kbd>↓</kbd> or space to move between stories
+        </p>
+        <p class="nx-hint d-md-none">Swipe up for the next story</p>
+    </div>
+
+    <div class="nx-flash" ng-if="flash" ng-bind="flash"></div>
+</div>
