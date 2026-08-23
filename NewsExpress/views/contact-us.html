@@ -1,0 +1,86 @@
+<div class="container nx-page">
+    <h1>Contact us</h1>
+    <p class="nx-muted">
+        Questions, feedback, advertising enquiries or a publisher takedown request — get in touch.
+    </p>
+
+    <div class="row gy-4 mt-2">
+        <div class="col-lg-5">
+            <div class="nx-panel h-100">
+                <h2 class="mt-0" style="margin-top:0 !important;">Reach us directly</h2>
+
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-3">
+                        <div class="nx-muted small">Developer</div>
+                        <strong>Mohd Rijvan Khan Mogia</strong>
+                        <div class="nx-muted small">App and website developer</div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="nx-muted small">Phone / WhatsApp</div>
+                        <a href="tel:+918828117342">
+                            <i class="bi bi-telephone me-1"></i> +91 88281 17342
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <div class="nx-muted small">Email</div>
+                        <a href="mailto:rijvankhanmogia@gmail.com">
+                            <i class="bi bi-envelope me-1"></i> rijvankhanmogia@gmail.com
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <div class="nx-muted small">Publisher</div>
+                        Indian AI
+                    </li>
+                    <li>
+                        <div class="nx-muted small">Address</div>
+                        Maharashtra Nagar,<br>
+                        Mumbai, Maharashtra — 400088,<br>
+                        India
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="nx-panel">
+                <h2 class="mt-0" style="margin-top:0 !important;">Send a message</h2>
+
+                <div class="alert alert-success py-2 px-3 small" ng-if="sent">
+                    Your email app should have opened with the message ready to send. If it did not,
+                    please write to
+                    <a href="mailto:rijvankhanmogia@gmail.com">rijvankhanmogia@gmail.com</a>.
+                </div>
+
+                <!--
+                  A static site has no back end, so the form composes an email in the visitor's own
+                  mail client rather than pretending to submit somewhere.
+                -->
+                <form name="contactForm" novalidate ng-submit="send()">
+                    <div class="mb-3">
+                        <label class="form-label small" for="nxName">Your name</label>
+                        <input class="form-control nx-form-control" id="nxName" type="text"
+                               ng-model="form.name" required placeholder="Full name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small" for="nxEmail">Your email</label>
+                        <input class="form-control nx-form-control" id="nxEmail" type="email"
+                               ng-model="form.email" required placeholder="you@example.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small" for="nxMessage">Message</label>
+                        <textarea class="form-control nx-form-control" id="nxMessage" rows="5"
+                                  ng-model="form.message" required
+                                  placeholder="How can we help?"></textarea>
+                    </div>
+
+                    <button class="btn btn-nx-accent rounded-pill px-4" type="submit"
+                            ng-disabled="contactForm.$invalid">
+                        <i class="bi bi-send me-1"></i> Open in email app
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
