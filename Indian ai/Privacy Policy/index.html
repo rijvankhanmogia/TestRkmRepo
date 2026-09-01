@@ -1,1 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- ============ SEO ============ -->
+<title>Indian AI – Android Apps by Mohd Rijvan Khan Mogia</title>
+<meta name="description" content="Explore Android apps by Indian AI including Paintora, Cross Village, NewsExpress, Indian Utility Hub and Inshort AI.">
+<meta name="keywords" content="Indian AI, Android apps, Paintora, Cross Village, NewsExpress, Indian Utility Hub, Inshort AI, Mohd Rijvan Khan Mogia, Android developer India, Mumbai app developer">
+<meta name="author" content="Mohd Rijvan Khan Mogia">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0F1330">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Indian AI">
+<meta property="og:title" content="Indian AI – Android Apps by Mohd Rijvan Khan Mogia">
+<meta property="og:description" content="Explore Android apps by Indian AI including Paintora, Cross Village, NewsExpress, Indian Utility Hub and Inshort AI.">
+<meta property="og:image" content="assets/og-cover.png"><!-- REPLACE: 1200x630 social preview image -->
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Indian AI – Android Apps by Mohd Rijvan Khan Mogia">
+<meta name="twitter:description" content="Useful, creative and AI-powered Android apps built by Indian AI.">
+<meta name="twitter:image" content="assets/og-cover.png"><!-- REPLACE -->
+
+<link rel="icon" href="assets/favicon.png"><!-- REPLACE: site favicon -->
+
+<!-- ============ Fonts & libraries ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root{
+  --ink:        #0F1330;   /* deep indigo-navy: dark sections */
+  --ink-2:      #1A2050;   /* raised surface on dark */
+  --paper:      #F4F6FC;   /* cool page background */
+  --white:      #FFFFFF;
+  --body:       #454C6B;   /* body copy on light */
+  --muted:      #737B9C;
+  --line:       #E2E7F3;
+
+  /* Per-app accents — each app owns one colour end to end */
+  --paintora:   #E23E7B;
+  --village:    #F2892B;
+  --news:       #10937A;
+  --utility:    #2E6BE6;
+  --inshort:    #7A3FF2;
+
+  --brand:      var(--utility);
+
+  --radius-lg:  22px;
+  --radius-md:  14px;
+  --radius-sm:  9px;
+  --shadow:     0 18px 44px -24px rgba(15,19,48,.42);
+  --shadow-lift:0 30px 60px -28px rgba(15,19,48,.55);
+  --ease:       cubic-bezier(.22,.72,.28,1);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+html{scroll-behavior:smooth; scroll-padding-top:82px;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--paper);
+  color:var(--body);
+  font-size:1.0125rem;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.display-font{
+  font-family:'Bricolage Grotesque','Plus Jakarta Sans',sans-serif;
+  color:var(--ink);
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.12;
+}
+h1{font-size:clamp(2.3rem,6.2vw,4rem); font-weight:800;}
+h2{font-size:clamp(1.85rem,4.4vw,2.85rem);}
+h3{font-size:clamp(1.15rem,2.4vw,1.4rem);}
+p{margin-bottom:1rem;}
+a{color:var(--brand); text-decoration:none;}
+a:hover{text-decoration:underline;}
+.lead-text{font-size:1.075rem; color:var(--muted); max-width:60ch;}
+
+/* Accessibility: visible focus + skip link */
+a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-link:focus-visible{
+  outline:3px solid var(--utility);
+  outline-offset:3px;
+  border-radius:6px;
+}
+.skip-link{
+  position:absolute; left:12px; top:-64px; z-index:2000;
+  background:var(--ink); color:#fff; padding:.7rem 1.15rem;
+  border-radius:0 0 var(--radius-sm) var(--radius-sm); font-weight:600;
+  transition:top .18s var(--ease);
+}
+.skip-link:focus{top:0; text-decoration:none; color:#fff;}
+
+.section{padding:clamp(4rem,9vw,7rem) 0;}
+.section-dark{background:var(--ink); color:#C3C9E6;}
+.section-dark h1,.section-dark h2,.section-dark h3{color:#fff;}
+.section-dark .lead-text{color:#98A0C6;}
+
+.section-head{max-width:44rem; margin-bottom:3rem;}
+.section-head h2{margin-bottom:.65rem;}
+.section-head p{margin-bottom:0;}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{
+  font-weight:600; border-radius:100px; padding:.72rem 1.6rem;
+  transition:transform .22s var(--ease), box-shadow .22s var(--ease), background-color .22s var(--ease);
+  border:none; font-size:.97rem;
+}
+.btn-ink{background:var(--ink); color:#fff;}
+.btn-ink:hover{background:#050829; color:#fff; transform:translateY(-2px); box-shadow:var(--shadow);}
+.btn-light-outline{background:transparent; color:#fff; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.32);}
+.btn-light-outline:hover{background:rgba(255,255,255,.1); color:#fff; transform:translateY(-2px);}
+.btn-ghost{background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line);}
+.btn-ghost:hover{background:var(--white); color:var(--ink); transform:translateY(-2px); box-shadow:inset 0 0 0 1.5px #C8D0E6, var(--shadow);}
+.btn-play{background:var(--app-color,var(--brand)); color:#fff;}
+.btn-play:hover{color:#fff; transform:translateY(-2px); box-shadow:0 14px 30px -14px var(--app-color,var(--brand)); filter:brightness(1.06);}
+.btn-sm-pill{padding:.55rem 1.15rem; font-size:.9rem;}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar{
+  background:rgba(244,246,252,.72);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;
+  transition:background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+  padding:.85rem 0;
+}
+.navbar.scrolled{
+  background:rgba(244,246,252,.93);
+  border-bottom-color:var(--line);
+  box-shadow:0 6px 26px -20px rgba(15,19,48,.6);
+}
+.brand-mark{
+  width:38px; height:38px; border-radius:11px; flex:none;
+  display:grid; place-items:center; color:#fff; font-weight:800; font-size:1.05rem;
+  font-family:'Bricolage Grotesque',sans-serif;
+  background:linear-gradient(140deg,var(--utility),var(--inshort));
+}
+.navbar-brand{
+  display:flex; align-items:center; gap:.65rem;
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:1.22rem; color:var(--ink); letter-spacing:-.02em;
+}
+.navbar-brand:hover{text-decoration:none; color:var(--ink);}
+.navbar .nav-link{
+  color:var(--body); font-weight:500; font-size:.97rem;
+  padding:.45rem .95rem; border-radius:100px;
+  transition:color .2s var(--ease), background-color .2s var(--ease);
+}
+.navbar .nav-link:hover{color:var(--ink); background:rgba(46,107,230,.08); text-decoration:none;}
+.navbar .nav-link.active{color:var(--utility); background:rgba(46,107,230,.11); font-weight:600;}
+.navbar-toggler{border:1px solid var(--line); padding:.4rem .6rem; border-radius:10px;}
+.navbar-toggler:focus{box-shadow:none;}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  background:var(--ink);
+  position:relative; overflow:hidden;
+  padding:clamp(4.5rem,11vw,7.5rem) 0 clamp(4.5rem,10vw,6.5rem);
+}
+/* soft colour bloom, one per brand accent */
+.hero::before,.hero::after{
+  content:''; position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none;
+}
+.hero::before{width:520px; height:520px; background:rgba(46,107,230,.30); top:-190px; right:-120px;}
+.hero::after{width:420px; height:420px; background:rgba(122,63,242,.22); bottom:-210px; left:-140px;}
+.hero .container{position:relative; z-index:2;}
+.hero h1{color:#fff; margin-bottom:1.15rem;}
+.hero-sub{color:#A7AECF; font-size:1.1rem; max-width:34rem; margin-bottom:2rem;}
+.hero-tag{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  color:#C8CEEA; padding:.42rem 1rem; border-radius:100px;
+  font-size:.85rem; font-weight:500; margin-bottom:1.5rem;
+}
+.hero-tag i{color:#7CA6FF;}
+
+/* Floating app tiles */
+.tile-cloud{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:.95rem;
+  max-width:390px; margin-inline:auto;
+}
+.tile{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-radius:var(--radius-md);
+  padding:1.1rem 1rem;
+  display:flex; align-items:center; gap:.8rem;
+  animation:float 7s var(--ease) infinite;
+}
+.tile:nth-child(1){animation-delay:0s;}
+.tile:nth-child(2){animation-delay:.9s;}
+.tile:nth-child(3){animation-delay:1.8s;}
+.tile:nth-child(4){animation-delay:2.7s;}
+.tile:nth-child(5){grid-column:1 / -1; justify-content:center; animation-delay:3.6s;}
+.tile-icon{
+  width:42px; height:42px; border-radius:12px; flex:none;
+  display:grid; place-items:center; font-size:1.2rem; color:#fff;
+  background:var(--app-color);
+}
+.tile-name{color:#fff; font-weight:600; font-size:.93rem; line-height:1.25;}
+.tile-cat{color:#8F97BE; font-size:.76rem;}
+@keyframes float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-11px);}}
+
+.hero-stats{
+  display:flex; flex-wrap:wrap; gap:2.2rem;
+  margin-top:2.75rem; padding-top:1.9rem;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.hero-stat strong{
+  display:block; font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.75rem; color:#fff; font-weight:700; line-height:1.1;
+}
+.hero-stat span{font-size:.85rem; color:#8F97BE;}
+
+/* =========================================================
+   APP CARDS
+   ========================================================= */
+.app-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  padding:1.75rem;
+  height:100%;
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.app-card::before{
+  content:''; position:absolute; inset:0 0 auto 0; height:4px;
+  background:var(--app-color); opacity:.9;
+}
+.app-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lift); border-color:transparent;}
+.app-icon-wrap{
+  width:64px; height:64px; border-radius:17px; flex:none; overflow:hidden;
+  position:relative; background:var(--app-color);
+  display:grid; place-items:center;
+}
+.app-icon-wrap img{width:100%; height:100%; object-fit:cover; position:relative; z-index:2;}
+.app-icon-wrap .icon-fallback{
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:#fff; font-size:1.7rem; z-index:1;
+}
+.app-badge{
+  display:inline-block; font-size:.74rem; font-weight:600;
+  padding:.25rem .72rem; border-radius:100px;
+  color:var(--app-color); background:color-mix(in srgb,var(--app-color) 12%,transparent);
+}
+.app-title{margin:0; font-size:1.28rem;}
+.app-desc{font-size:.95rem; color:var(--muted); margin:1rem 0 1.1rem;}
+.feature-list{list-style:none; padding:0; margin:0 0 1.5rem; font-size:.91rem;}
+.feature-list li{display:flex; gap:.55rem; align-items:flex-start; padding:.19rem 0; color:var(--body);}
+.feature-list i{color:var(--app-color); font-size:.9rem; margin-top:.34rem; flex:none;}
+.card-actions{margin-top:auto; display:flex; flex-wrap:wrap; gap:.6rem;}
+
+/* Big number treatment for Utility Hub */
+.tool-count{
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
+  font-size:2.6rem; line-height:1; color:var(--utility);
+  display:block;
+}
+
+/* =========================================================
+   WHY / FEATURE HIGHLIGHTS
+   ========================================================= */
+.why-card{
+  background:var(--white); border:1px solid var(--line);
+  border-radius:var(--radius-md); padding:1.6rem; height:100%;
+  transition:transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+.why-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+.why-emoji{font-size:1.6rem; display:block; margin-bottom:.75rem; line-height:1;}
+.why-card h3{font-size:1.06rem; margin-bottom:.4rem;}
+.why-card p{font-size:.92rem; color:var(--muted); margin:0;}
+
+/* =========================================================
+   FEATURE BANNERS
+   ========================================================= */
+.banner{
+  border-radius:clamp(var(--radius-md),3vw,30px);
+  padding:clamp(2.2rem,5vw,3.6rem);
+  position:relative; overflow:hidden;
+}
+.banner-inshort{background:linear-gradient(135deg,#3B1E80 0%,#7A3FF2 100%); color:#E5DBFF;}
+.banner-inshort h2{color:#fff;}
+.banner-utility{background:var(--white); border:1px solid var(--line);}
+.chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.42rem 1rem; border-radius:100px; font-size:.87rem; font-weight:500;
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); color:#fff;
+}
+.chip-light{
+  background:rgba(46,107,230,.07); border:1px solid rgba(46,107,230,.18);
+  color:var(--utility); font-weight:600;
+}
+.powered-badge{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:rgba(255,255,255,.95); color:#3B1E80;
+  padding:.4rem 1rem; border-radius:100px; font-size:.84rem; font-weight:700;
+}
+
+/* =========================================================
+   ABOUT & CONTACT
+   ========================================================= */
+.about-panel{
+  background:var(--white); border:1px solid var(--line);
+  border-radius:var(--radius-lg); padding:clamp(1.6rem,4vw,2.4rem);
+}
+.about-list{list-style:none; padding:0; margin:0;}
+.about-list li{
+  display:flex; gap:.6rem; align-items:center; padding:.42rem 0;
+  font-size:.95rem; border-bottom:1px solid var(--line);
+}
+.about-list li:last-child{border-bottom:none;}
+.about-list i{color:var(--utility);}
+
+.contact-row{
+  display:flex; gap:1rem; align-items:flex-start;
+  padding:1.15rem 0; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.contact-row:last-of-type{border-bottom:none;}
+.contact-ico{
+  width:44px; height:44px; border-radius:12px; flex:none;
+  display:grid; place-items:center; font-size:1.1rem; color:#fff;
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14);
+}
+.contact-label{font-size:.79rem; color:#8F97BE; margin-bottom:.1rem;}
+.contact-value{color:#fff; font-weight:600; font-size:1rem; word-break:break-word;}
+a.contact-value:hover{color:#9FC0FF; text-decoration:none;}
+
+/* =========================================================
+   SCREENSHOT PLACEHOLDERS (modals)
+   ========================================================= */
+.shot-frame{
+  border-radius:var(--radius-md); overflow:hidden;
+  border:1px solid var(--line); background:#EEF1F9;
+  aspect-ratio:9/16; position:relative;
+  display:grid; place-items:center;
+}
+.shot-frame img{width:100%; height:100%; object-fit:cover; position:relative; z-index:2;}
+.shot-fallback{
+  position:absolute; inset:0; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.5rem; text-align:center; padding:1rem; color:var(--muted); font-size:.8rem;
+}
+.shot-fallback i{font-size:1.6rem; color:var(--app-color);}
+.modal-content{border:none; border-radius:var(--radius-lg); overflow:hidden;}
+.modal-header{border-bottom:1px solid var(--line); padding:1.3rem 1.5rem;}
+.modal-body{padding:1.5rem;}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{background:#080B21; color:#7D85AC; padding:3.5rem 0 2rem;}
+.site-footer a{color:#A9B1D6; font-size:.94rem;}
+.site-footer a:hover{color:#fff; text-decoration:none;}
+.footer-links{list-style:none; padding:0; margin:0;}
+.footer-links li{margin-bottom:.5rem;}
+.footer-base{
+  border-top:1px solid rgba(255,255,255,.08);
+  margin-top:2.5rem; padding-top:1.5rem; font-size:.88rem;
+}
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+#backToTop{
+  position:fixed; right:20px; bottom:20px; z-index:1030;
+  width:47px; height:47px; border-radius:50%; border:none;
+  background:var(--ink); color:#fff; font-size:1.1rem;
+  display:grid; place-items:center; cursor:pointer;
+  opacity:0; visibility:hidden; transform:translateY(12px);
+  transition:opacity .28s var(--ease), transform .28s var(--ease), visibility .28s;
+  box-shadow:var(--shadow);
+}
+#backToTop.show{opacity:1; visibility:visible; transform:translateY(0);}
+#backToTop:hover{background:var(--utility);}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.reveal{opacity:0; transform:translateY(20px); transition:opacity .6s var(--ease), transform .6s var(--ease);}
+.reveal.visible{opacity:1; transform:none;}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:991.98px){
+  .navbar-collapse{
+    background:var(--white); border:1px solid var(--line);
+    border-radius:var(--radius-md); padding:1rem; margin-top:.8rem;
+    box-shadow:var(--shadow);
+  }
+  .navbar .nav-link{padding:.6rem .8rem;}
+  .tile-cloud{margin-top:3rem;}
+}
+@media (max-width:575.98px){
+  .hero-stats{gap:1.5rem;}
+  .app-card{padding:1.4rem;}
+  .card-actions .btn{flex:1 1 100%; text-align:center;}
+}
+
+/* Respect motion preferences */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  html{scroll-behavior:auto;}
+  .reveal{opacity:1; transform:none;}
+}
+</style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="120" tabindex="0">
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand" href="#home">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      Indian AI
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navMenu" aria-controls="navMenu"
+            aria-expanded="false" aria-label="Toggle navigation menu">
+      <i class="bi bi-list fs-4" aria-hidden="true"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#apps">Apps</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <a class="btn btn-ink btn-sm-pill w-100" href="#apps">Explore Apps</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-6">
+        <span class="hero-tag">
+          <i class="bi bi-google-play" aria-hidden="true"></i>
+          Five apps on Google Play
+        </span>
+
+        <h1>Powerful Apps.<br>Simple Experiences.</h1>
+
+        <p class="hero-sub">
+          Discover useful, creative, entertaining and AI-powered Android apps
+          developed by Indian AI.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-play" style="--app-color:var(--utility)" href="#apps">Explore Apps</a>
+          <a class="btn btn-light-outline" href="#about">About Developer</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>5</strong><span>Android apps</span></div>
+          <div class="hero-stat"><strong>29</strong><span>Tools in one app</span></div>
+          <div class="hero-stat"><strong>Mumbai</strong><span>Built in India</span></div>
+        </div>
+      </div>
+
+      <!-- Floating app tiles -->
+      <div class="col-lg-6">
+        <div class="tile-cloud" role="list" aria-label="Apps by Indian AI">
+          <div class="tile" role="listitem" style="--app-color:var(--paintora)">
+            <span class="tile-icon"><i class="bi bi-brush" aria-hidden="true"></i></span>
+            <span><span class="tile-name">Paintora</span><br><span class="tile-cat">Painting</span></span>
+          </div>
+          <div class="tile" role="listitem" style="--app-color:var(--village)">
+            <span class="tile-icon"><i class="bi bi-dice-5" aria-hidden="true"></i></span>
+            <span><span class="tile-name">Cross Village</span><br><span class="tile-cat">Game</span></span>
+          </div>
+          <div class="tile" role="listitem" style="--app-color:var(--news)">
+            <span class="tile-icon"><i class="bi bi-newspaper" aria-hidden="true"></i></span>
+            <span><span class="tile-name">NewsExpress</span><br><span class="tile-cat">News</span></span>
+          </div>
+          <div class="tile" role="listitem" style="--app-color:var(--utility)">
+            <span class="tile-icon"><i class="bi bi-calculator" aria-hidden="true"></i></span>
+            <span><span class="tile-name">Utility Hub</span><br><span class="tile-cat">29 tools</span></span>
+          </div>
+          <div class="tile" role="listitem" style="--app-color:var(--inshort)">
+            <span class="tile-icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+            <span><span class="tile-name">Inshort AI</span><br><span class="tile-cat">AI answers</span></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     APP SHOWCASE
+     ============================================================ -->
+<section class="section" id="apps">
+  <div class="container">
+
+    <header class="section-head reveal">
+      <h2>Our Apps</h2>
+      <p class="lead-text">A growing collection of useful Android applications.</p>
+    </header>
+
+    <div class="row g-4">
+
+      <!-- ---------- Paintora ---------- -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <article class="app-card" style="--app-color:var(--paintora)">
+          <div class="d-flex align-items-center gap-3 mb-1">
+            <div class="app-icon-wrap">
+              <!-- REPLACE: assets/paintora.png -->
+              <img src="assets/paintora.png" alt="Paintora app icon" loading="lazy" onerror="this.style.display='none'">
+              <span class="icon-fallback"><i class="bi bi-brush" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <h3 class="app-title">Paintora</h3>
+              <span class="app-badge">Painting / Creativity</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            A creative painting and drawing app where users can create beautiful
+            digital artwork directly on their mobile device.
+          </p>
+
+          <ul class="feature-list">
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Digital painting</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Drawing and brush tools</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Full colour palette</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Save and share paintings</li>
+          </ul>
+
+          <div class="card-actions">
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_PAINTORA_PLAY_STORE_URL"
+               target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>View App
+            </a>
+            <button class="btn btn-ghost btn-sm-pill" data-bs-toggle="modal" data-bs-target="#modalPaintora">
+              Learn more
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------- Cross Village ---------- -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <article class="app-card" style="--app-color:var(--village)">
+          <div class="d-flex align-items-center gap-3 mb-1">
+            <div class="app-icon-wrap">
+              <!-- REPLACE: assets/cross-village.png -->
+              <img src="assets/cross-village.png" alt="Cross Village app icon" loading="lazy" onerror="this.style.display='none'">
+              <span class="icon-fallback"><i class="bi bi-dice-5" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <h3 class="app-title">Cross Village</h3>
+              <span class="app-badge">Game</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            A fun village-themed traditional game inspired by the classic Indian
+            game “Changa Antha”.
+          </p>
+
+          <ul class="feature-list">
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Village-style gameplay</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Simple controls</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Fun and casual to play</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Play with friends and family</li>
+          </ul>
+
+          <div class="card-actions">
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_CROSS_VILLAGE_PLAY_STORE_URL"
+               target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Play now
+            </a>
+            <button class="btn btn-ghost btn-sm-pill" data-bs-toggle="modal" data-bs-target="#modalVillage">
+              Learn more
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------- NewsExpress ---------- -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <article class="app-card" style="--app-color:var(--news)">
+          <div class="d-flex align-items-center gap-3 mb-1">
+            <div class="app-icon-wrap">
+              <!-- REPLACE: assets/newsexpress.png -->
+              <img src="assets/newsexpress.png" alt="NewsExpress app icon" loading="lazy" onerror="this.style.display='none'">
+              <span class="icon-fallback"><i class="bi bi-newspaper" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <h3 class="app-title">NewsExpress</h3>
+              <span class="app-badge">News</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            Get the latest news in a quick and easy-to-read format, with important
+            stories explained in around 60 words.
+          </p>
+
+          <ul class="feature-list">
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Latest news</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Short news summaries</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Multiple news categories</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Fast reading experience</li>
+          </ul>
+
+          <div class="card-actions">
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_NEWSEXPRESS_PLAY_STORE_URL"
+               target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Read news
+            </a>
+            <button class="btn btn-ghost btn-sm-pill" data-bs-toggle="modal" data-bs-target="#modalNews">
+              Learn more
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------- Indian Utility Hub ---------- -->
+      <div class="col-md-6 col-lg-6 reveal">
+        <article class="app-card" style="--app-color:var(--utility)">
+          <div class="d-flex align-items-center gap-3 mb-1">
+            <div class="app-icon-wrap">
+              <!-- REPLACE: assets/indian-utility-hub.png -->
+              <img src="assets/indian-utility-hub.png" alt="Indian Utility Hub app icon" loading="lazy" onerror="this.style.display='none'">
+              <span class="icon-fallback"><i class="bi bi-calculator" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <h3 class="app-title">Indian Utility Hub</h3>
+              <span class="app-badge">Utilities / Productivity</span>
+            </div>
+          </div>
+
+          <p class="app-desc">29 useful tools in one powerful utility app.</p>
+
+          <div class="d-flex align-items-baseline gap-2 mb-3">
+            <span class="tool-count">29</span>
+            <span style="font-weight:600;color:var(--ink);">tools</span>
+          </div>
+
+          <ul class="feature-list">
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Basic, SIP, GST and EMI calculators</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Age, date and interest calculators</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>PIN code finder and unit conversion</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Password and random number generators</li>
+          </ul>
+
+          <div class="card-actions">
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_INDIAN_UTILITY_HUB_PLAY_STORE_URL"
+               target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Explore 29 tools
+            </a>
+            <button class="btn btn-ghost btn-sm-pill" data-bs-toggle="modal" data-bs-target="#modalUtility">
+              Learn more
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---------- Inshort AI ---------- -->
+      <div class="col-md-6 col-lg-6 reveal">
+        <article class="app-card" style="--app-color:var(--inshort)">
+          <div class="d-flex align-items-center gap-3 mb-1">
+            <div class="app-icon-wrap">
+              <!-- REPLACE: assets/inshort-ai.png -->
+              <img src="assets/inshort-ai.png" alt="Inshort AI app icon" loading="lazy" onerror="this.style.display='none'">
+              <span class="icon-fallback"><i class="bi bi-stars" aria-hidden="true"></i></span>
+            </div>
+            <div>
+              <h3 class="app-title">Inshort AI</h3>
+              <span class="app-badge">AI / Productivity</span>
+            </div>
+          </div>
+
+          <p class="app-desc">
+            Ask questions and get quick, concise AI answers in around 60 words.
+            Powered by Google Gemini.
+          </p>
+
+          <ul class="feature-list">
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Ask anything, get quick answers</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Around 60-word responses</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Share answers to WhatsApp</li>
+            <li><i class="bi bi-check-lg" aria-hidden="true"></i>Credit-based usage</li>
+          </ul>
+
+          <div class="card-actions">
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_INSHORT_AI_PLAY_STORE_URL"
+               target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Try Inshort AI
+            </a>
+            <button class="btn btn-ghost btn-sm-pill" data-bs-toggle="modal" data-bs-target="#modalInshort">
+              Learn more
+            </button>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURE HIGHLIGHTS
+     ============================================================ -->
+<section class="section pt-0" id="features">
+  <div class="container">
+
+    <header class="section-head reveal">
+      <h2>Why Indian AI Apps?</h2>
+      <p class="lead-text">
+        Every app follows the same simple idea: do one useful thing well, and make
+        it easy on any Android phone.
+      </p>
+    </header>
+
+    <div class="row g-3 g-md-4">
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">⚡</span>
+          <h3>Fast</h3>
+          <p>Simple and convenient experiences.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">🎨</span>
+          <h3>Creative</h3>
+          <p>Tools designed for creativity and productivity.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">🤖</span>
+          <h3>AI powered</h3>
+          <p>Modern AI-powered experiences.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">🛠</span>
+          <h3>Useful</h3>
+          <p>Practical tools for everyday needs.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">📱</span>
+          <h3>Mobile first</h3>
+          <p>Designed specifically for Android users.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 reveal">
+        <div class="why-card">
+          <span class="why-emoji" aria-hidden="true">🔒</span>
+          <h3>Privacy focused</h3>
+          <p>Respecting user privacy and transparency.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     INSHORT AI BANNER
+     ============================================================ -->
+<section class="section pt-0">
+  <div class="container">
+    <div class="banner banner-inshort reveal">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="powered-badge mb-3">
+            <i class="bi bi-stars" aria-hidden="true"></i>Powered by Google Gemini
+          </span>
+          <h2 class="mb-3">Meet Inshort AI</h2>
+          <p style="font-size:1.08rem; max-width:44ch;">
+            Ask any question and get a quick answer in around 60 words.
+          </p>
+          <p class="display-font mb-4" style="color:#fff; font-size:1.15rem; font-weight:600;">
+            Ask Anything. Get a Quick Answer.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="chip">Quick answers</span>
+            <span class="chip">60 words</span>
+            <span class="chip">Share to WhatsApp</span>
+            <span class="chip">AI powered</span>
+          </div>
+
+          <!-- REPLACE: Play Store link -->
+          <a class="btn btn-ink" href="YOUR_INSHORT_AI_PLAY_STORE_URL" target="_blank" rel="noopener">
+            <i class="bi bi-google-play me-2" aria-hidden="true"></i>Try Inshort AI
+          </a>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="shot-frame mx-auto" style="--app-color:var(--inshort); max-width:230px;">
+            <!-- REPLACE: assets/inshort-ai-screen.png -->
+            <img src="assets/inshort-ai-screen.png" alt="Inshort AI app screenshot" loading="lazy" onerror="this.style.display='none'">
+            <span class="shot-fallback">
+              <i class="bi bi-phone" aria-hidden="true"></i>
+              assets/inshort-ai-screen.png
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INDIAN UTILITY HUB BANNER
+     ============================================================ -->
+<section class="section pt-0">
+  <div class="container">
+    <div class="banner banner-utility reveal">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h2 class="mb-3">29 Tools. One App.</h2>
+          <p class="lead-text mb-4">
+            Indian Utility Hub brings useful calculators and everyday utilities
+            together in one convenient Android app.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="chip chip-light">Calculator</span>
+            <span class="chip chip-light">SIP</span>
+            <span class="chip chip-light">GST</span>
+            <span class="chip chip-light">Age</span>
+            <span class="chip chip-light">PIN code</span>
+            <span class="chip chip-light">Interest</span>
+            <span class="chip chip-light">Password</span>
+            <span class="chip chip-light">Random number</span>
+            <span class="chip chip-light">And more</span>
+          </div>
+
+          <!-- REPLACE: Play Store link -->
+          <a class="btn btn-play" style="--app-color:var(--utility)"
+             href="YOUR_INDIAN_UTILITY_HUB_PLAY_STORE_URL" target="_blank" rel="noopener">
+            <i class="bi bi-google-play me-2" aria-hidden="true"></i>Explore Indian Utility Hub
+          </a>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="shot-frame mx-auto" style="--app-color:var(--utility); max-width:230px;">
+            <!-- REPLACE: assets/utility-hub-screen.png -->
+            <img src="assets/utility-hub-screen.png" alt="Indian Utility Hub app screenshot" loading="lazy" onerror="this.style.display='none'">
+            <span class="shot-fallback">
+              <i class="bi bi-phone" aria-hidden="true"></i>
+              assets/utility-hub-screen.png
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section pt-0" id="about">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+
+      <div class="col-lg-6 reveal">
+        <h2 class="mb-3">About Indian AI</h2>
+        <p>
+          Indian AI is an independent Android app development initiative focused on
+          creating useful, creative, entertaining and AI-powered mobile applications
+          for everyday users.
+        </p>
+        <p class="mb-0" style="color:var(--muted);">
+          Every app is built and published under the same developer account, so what
+          you install comes straight from the person who wrote it.
+        </p>
+      </div>
+
+      <div class="col-lg-6 reveal">
+        <div class="about-panel">
+          <h3 class="mb-3">What the portfolio covers</h3>
+          <ul class="about-list mb-4">
+            <li><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>Productivity tools</li>
+            <li><i class="bi bi-tools" aria-hidden="true"></i>Utility apps</li>
+            <li><i class="bi bi-palette-fill" aria-hidden="true"></i>Creative apps</li>
+            <li><i class="bi bi-controller" aria-hidden="true"></i>Games</li>
+            <li><i class="bi bi-newspaper" aria-hidden="true"></i>News applications</li>
+            <li><i class="bi bi-cpu-fill" aria-hidden="true"></i>AI applications</li>
+          </ul>
+
+          <div class="pt-3" style="border-top:1px solid var(--line);">
+            <div class="mb-2">
+              <div style="font-size:.79rem;color:var(--muted);">Developer</div>
+              <div style="font-weight:700;color:var(--ink);">Mohd Rijvan Khan Mogia</div>
+            </div>
+            <div>
+              <div style="font-size:.79rem;color:var(--muted);">Google Play developer</div>
+              <div style="font-weight:700;color:var(--ink);">INDIAN AI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="section section-dark" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <div class="col-lg-5">
+        <h2 class="mb-3">Get in Touch</h2>
+        <p class="lead-text mb-4">
+          Questions about an app, feedback, or a project you'd like built?
+          Reach out directly.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-play" style="--app-color:var(--utility)" href="mailto:rijvankhanmogia@gmail.com">
+            <i class="bi bi-envelope-fill me-2" aria-hidden="true"></i>Email me
+          </a>
+          <a class="btn btn-light-outline" href="tel:+918828117342">
+            <i class="bi bi-telephone-fill me-2" aria-hidden="true"></i>Call
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="contact-row">
+          <span class="contact-ico"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
+          <div>
+            <div class="contact-label">Developer</div>
+            <div class="contact-value">Mohd Rijvan Khan Mogia</div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-ico"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+          <div>
+            <div class="contact-label">Email</div>
+            <a class="contact-value" href="mailto:rijvankhanmogia@gmail.com">rijvankhanmogia@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-ico"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+          <div>
+            <div class="contact-label">Phone</div>
+            <a class="contact-value" href="tel:+918828117342">+91 88281 17342</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <span class="contact-ico"><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Mankhurd, Mumbai, Maharashtra – 400088, India</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-lg-5">
+        <a class="navbar-brand mb-3" href="#home" style="color:#fff;">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          Indian AI
+        </a>
+        <p style="max-width:34ch; font-size:.94rem;">
+          Android apps built in Mumbai — creative tools, everyday utilities,
+          games, news and AI.
+        </p>
+      </div>
+
+      <div class="col-6 col-lg-3 offset-lg-1">
+        <h3 class="h6 mb-3" style="color:#fff;">Explore</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <h3 class="h6 mb-3" style="color:#fff;">Legal</h3>
+        <ul class="footer-links">
+          <!-- These pages are not created yet — links are intentional placeholders -->
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-base d-flex flex-wrap justify-content-between gap-2">
+      <span>© 2026 Indian AI. All rights reserved.</span>
+      <span>Developed by Mohd Rijvan Khan Mogia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop" type="button" aria-label="Back to top">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ============================================================
+     MODALS — "Learn more" for each app
+     ============================================================ -->
+
+<!-- Paintora -->
+<div class="modal fade" id="modalPaintora" tabindex="-1" aria-labelledby="modalPaintoraLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="--app-color:var(--paintora)">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="modalPaintoraLabel">Paintora</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <div class="shot-frame">
+              <!-- REPLACE: assets/paintora-screen.png -->
+              <img src="assets/paintora-screen.png" alt="Paintora app screenshot" loading="lazy" onerror="this.style.display='none'">
+              <span class="shot-fallback"><i class="bi bi-phone" aria-hidden="true"></i>assets/paintora-screen.png</span>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <span class="app-badge mb-3 d-inline-block">Painting / Creativity</span>
+            <p>A creative painting and drawing app where users can create beautiful digital artwork directly on their mobile device.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Digital painting</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Drawing tools</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Colors</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Brush tools</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Creative artwork</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Save and share paintings</li>
+            </ul>
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_PAINTORA_PLAY_STORE_URL" target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cross Village -->
+<div class="modal fade" id="modalVillage" tabindex="-1" aria-labelledby="modalVillageLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="--app-color:var(--village)">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="modalVillageLabel">Cross Village</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <div class="shot-frame">
+              <!-- REPLACE: assets/cross-village-screen.png -->
+              <img src="assets/cross-village-screen.png" alt="Cross Village game screenshot" loading="lazy" onerror="this.style.display='none'">
+              <span class="shot-fallback"><i class="bi bi-phone" aria-hidden="true"></i>assets/cross-village-screen.png</span>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <span class="app-badge mb-3 d-inline-block">Game</span>
+            <p>A fun village-themed traditional game inspired by the classic Indian game “Changa Antha”.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Village-style gameplay</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Simple controls</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Fun and casual gameplay</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Traditional Indian game experience</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Play with friends and family</li>
+            </ul>
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_CROSS_VILLAGE_PLAY_STORE_URL" target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NewsExpress -->
+<div class="modal fade" id="modalNews" tabindex="-1" aria-labelledby="modalNewsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="--app-color:var(--news)">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="modalNewsLabel">NewsExpress</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <div class="shot-frame">
+              <!-- REPLACE: assets/newsexpress-screen.png -->
+              <img src="assets/newsexpress-screen.png" alt="NewsExpress app screenshot" loading="lazy" onerror="this.style.display='none'">
+              <span class="shot-fallback"><i class="bi bi-phone" aria-hidden="true"></i>assets/newsexpress-screen.png</span>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <span class="app-badge mb-3 d-inline-block">News</span>
+            <p>Get the latest news in a quick and easy-to-read format. NewsExpress focuses on concise news summaries, with important stories explained in around 60 words.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Latest news</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Short news summaries</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Easy-to-read format</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Multiple news categories</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Fast reading experience</li>
+            </ul>
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_NEWSEXPRESS_PLAY_STORE_URL" target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Indian Utility Hub -->
+<div class="modal fade" id="modalUtility" tabindex="-1" aria-labelledby="modalUtilityLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="--app-color:var(--utility)">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="modalUtilityLabel">Indian Utility Hub</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <div class="shot-frame">
+              <!-- REPLACE: assets/utility-hub-screen.png -->
+              <img src="assets/utility-hub-screen.png" alt="Indian Utility Hub app screenshot" loading="lazy" onerror="this.style.display='none'">
+              <span class="shot-fallback"><i class="bi bi-phone" aria-hidden="true"></i>assets/utility-hub-screen.png</span>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <span class="app-badge mb-3 d-inline-block">Utilities / Productivity</span>
+            <p>29 useful tools in one powerful utility app.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="chip chip-light">Basic Calculator</span>
+              <span class="chip chip-light">SIP Calculator</span>
+              <span class="chip chip-light">GST Calculator</span>
+              <span class="chip chip-light">Age Calculator</span>
+              <span class="chip chip-light">PIN Code Finder</span>
+              <span class="chip chip-light">Interest Calculator</span>
+              <span class="chip chip-light">Password Generator</span>
+              <span class="chip chip-light">Random Number Generator</span>
+              <span class="chip chip-light">Percentage Calculator</span>
+              <span class="chip chip-light">Discount Calculator</span>
+              <span class="chip chip-light">EMI Calculator</span>
+              <span class="chip chip-light">Unit Conversion</span>
+              <span class="chip chip-light">Date Calculator</span>
+              <span class="chip chip-light">And more</span>
+            </div>
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_INDIAN_UTILITY_HUB_PLAY_STORE_URL" target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inshort AI -->
+<div class="modal fade" id="modalInshort" tabindex="-1" aria-labelledby="modalInshortLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="--app-color:var(--inshort)">
+      <div class="modal-header">
+        <h2 class="modal-title h4" id="modalInshortLabel">Inshort AI</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-sm-5">
+            <div class="shot-frame">
+              <!-- REPLACE: assets/inshort-ai-screen.png -->
+              <img src="assets/inshort-ai-screen.png" alt="Inshort AI app screenshot" loading="lazy" onerror="this.style.display='none'">
+              <span class="shot-fallback"><i class="bi bi-phone" aria-hidden="true"></i>assets/inshort-ai-screen.png</span>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <span class="app-badge mb-3 d-inline-block">AI / Productivity</span>
+            <p><strong style="color:var(--ink);">Ask Anything. Get a Quick Answer.</strong></p>
+            <p>Ask questions and get quick, concise AI answers in around 60 words. Powered by Google Gemini.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Quick answers</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Ask questions</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Around 60-word responses</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Powered by Google Gemini</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Share answers</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Share to WhatsApp</li>
+              <li><i class="bi bi-check-lg" aria-hidden="true"></i>Credit-based usage</li>
+            </ul>
+            <!-- REPLACE: Play Store link -->
+            <a class="btn btn-play btn-sm-pill" href="YOUR_INSHORT_AI_PLAY_STORE_URL" target="_blank" rel="noopener">
+              <i class="bi bi-google-play me-1" aria-hidden="true"></i>Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 1. Navbar background on scroll + back-to-top visibility ---- */
+  var nav      = document.getElementById('mainNav');
+  var topBtn   = document.getElementById('backToTop');
+  var ticking  = false;
+
+  function onScroll() {
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 24);
+    topBtn.classList.toggle('show', y > 600);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+
+  /* ---- 2. Back to top ---- */
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  /* ---- 3. Scroll reveal (IntersectionObserver, no library) ---- */
+  var revealables = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealables.forEach(function (el) { el.classList.add('visible'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealables.forEach(function (el, i) {
+      el.style.transitionDelay = (Math.min(i % 3, 2) * 70) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  /* ---- 4. Close the mobile menu after tapping a link ---- */
+  var menu = document.getElementById('navMenu');
+  document.querySelectorAll('#navMenu .nav-link, #navMenu .btn').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (menu.classList.contains('show') && window.bootstrap) {
+        bootstrap.Collapse.getOrCreateInstance(menu).hide();
+      }
+    });
+  });
+
+  /* ---- 5. Warn in the console if Play Store URLs are still placeholders ---- */
+  window.addEventListener('load', function () {
+    var unset = document.querySelectorAll('a[href^="YOUR_"]');
+    if (unset.length) {
+      console.warn('[Indian AI] ' + unset.length + ' Play Store link(s) are still placeholders. Search index.html for "YOUR_" and replace them.');
+      unset.forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); });
+      });
+    }
+  });
+
+})();
+</script>
+
+<!--
+================================================================================
+  WHAT TO REPLACE BEFORE GOING LIVE
+================================================================================
+
+1. GOOGLE PLAY LINKS  — search the file for  YOUR_  (10 occurrences total:
+   each app appears once in its card and once in its modal, plus the two
+   feature banners).
+
+     YOUR_PAINTORA_PLAY_STORE_URL             -> Paintora card + modal
+     YOUR_CROSS_VILLAGE_PLAY_STORE_URL        -> Cross Village card + modal
+     YOUR_NEWSEXPRESS_PLAY_STORE_URL          -> NewsExpress card + modal
+     YOUR_INDIAN_UTILITY_HUB_PLAY_STORE_URL   -> Utility Hub card + modal + banner
+     YOUR_INSHORT_AI_PLAY_STORE_URL           -> Inshort AI card + modal + banner
+
+   Until they are replaced, these links are click-blocked by JavaScript and a
+   warning is printed to the browser console, so nobody lands on a dead page.
+
+2. APP ICONS — create an /assets folder next to index.html and add:
+
+     assets/paintora.png
+     assets/cross-village.png
+     assets/newsexpress.png
+     assets/indian-utility-hub.png
+     assets/inshort-ai.png
+
+   Recommended: 512x512 PNG. Until a file exists, the card shows a coloured
+   tile with a Bootstrap icon, so the layout never breaks.
+
+3. SCREENSHOTS — used inside the "Learn more" modals and the two banners:
+
+     assets/paintora-screen.png
+     assets/cross-village-screen.png
+     assets/newsexpress-screen.png
+     assets/utility-hub-screen.png
+     assets/inshort-ai-screen.png
+
+   Recommended: 9:16 portrait, around 1080x1920.
+
+4. SOCIAL / FAVICON (optional but recommended for sharing):
+
+     assets/og-cover.png   -> 1200x630, used by Open Graph and Twitter cards
+     assets/favicon.png    -> 32x32 or 48x48
+
+5. LEGAL PAGES — the footer links to privacy-policy.html and terms.html.
+   These files do not exist yet; create them in the same folder. Google Play
+   requires a working privacy policy URL, so do this before submitting.
+
+6. CANONICAL URL — once hosted, add this inside <head>:
+     <link rel="canonical" href="https://your-domain.com/">
+   and change the og:image / twitter:image values to full URLs
+   (https://your-domain.com/assets/og-cover.png) — social platforms will not
+   read relative paths.
+
+--------------------------------------------------------------------------------
+  DEPLOY: this is a static site. Drop index.html plus the assets folder onto
+  Vercel, Netlify or GitHub Pages. No build step, no backend, no API keys.
+================================================================================
+-->
+
+</body>
+</html>
