@@ -1,0 +1,338 @@
+/* ============================================================
+   InshortAI - Responsive CSS
+   Mobile-first media queries for all breakpoints
+   ============================================================ */
+
+/* ---------- Extra Small (<576px) ---------- */
+@media (max-width: 575.98px) {
+
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar-brand i {
+    font-size: 1.3rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    min-height: auto;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    margin: 0 auto 1.8rem;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-icon-wrap {
+    margin-top: 2rem;
+  }
+
+  .hero-icon-box {
+    width: 140px;
+    height: 140px;
+    border-radius: 28px;
+  }
+
+  .hero-icon-box i {
+    font-size: 5rem;
+  }
+
+  /* Section headings */
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  /* Demo */
+  .demo-card-body {
+    padding: 1.2rem;
+  }
+
+  .sample-chips {
+    gap: 0.4rem;
+  }
+
+  .sample-chip {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+  }
+
+  .btn-get-answer {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .answer-card-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  /* Features */
+  .feature-card {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Steps */
+  .step-arrow {
+    display: none;
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+  }
+
+  .page-hero-title {
+    font-size: 1.8rem;
+  }
+
+  /* Legal */
+  .legal-card {
+    padding: 1.5rem;
+  }
+
+  .legal-card h2 {
+    font-size: 1.15rem;
+  }
+
+  /* Contact */
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  /* CTA */
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Scroll to top */
+  #scrollToTop {
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Small (576px - 767px) ---------- */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+  .hero-section {
+    padding: 5.5rem 0 4rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-icon-box {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hero-icon-box i {
+    font-size: 6rem;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-icon-wrap {
+    margin-top: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .page-hero-title {
+    font-size: 2rem;
+  }
+
+  .step-arrow {
+    display: none;
+  }
+
+  .legal-card {
+    padding: 2rem;
+  }
+}
+
+/* ---------- Medium (768px - 991px) ---------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+  .hero-section {
+    padding: 6rem 0 4.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-icon-box {
+    width: 180px;
+    height: 180px;
+    border-radius: 34px;
+  }
+
+  .hero-icon-box i {
+    font-size: 7rem;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+  }
+
+  .page-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .step-arrow {
+    display: none;
+  }
+}
+
+/* ---------- Large (992px - 1199px) ---------- */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- XL+ (≥1200px) ---------- */
+@media (min-width: 1200px) {
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+}
+
+/* ---------- Landscape phones ---------- */
+@media (max-width: 767.98px) and (orientation: landscape) {
+
+  .hero-section {
+    min-height: auto;
+    padding: 5rem 0 3rem;
+  }
+
+  .hero-icon-wrap {
+    display: none;
+  }
+}
+
+/* ---------- Dark mode preference (system) ---------- */
+@media (prefers-color-scheme: dark) {
+
+  /* Only applied if user hasn't toggled manually */
+  body.auto-dark {
+    --background-color: #0f0f1a;
+    --light-background: #1a1030;
+    --text-color: #e2e8f0;
+    --muted-color: #94a3b8;
+    --border-color: #2d2d44;
+  }
+
+  body.auto-dark .navbar {
+    background: rgba(15,15,26,0.95);
+  }
+
+  body.auto-dark .demo-card,
+  body.auto-dark .feature-card,
+  body.auto-dark .contact-card,
+  body.auto-dark .legal-card,
+  body.auto-dark .content-card,
+  body.auto-dark .notice-box {
+    background: #1a1030;
+    border-color: #2d2d44;
+  }
+
+  body.auto-dark .question-input {
+    background: #1a1030;
+    color: #e2e8f0;
+    border-color: #2d2d44;
+  }
+
+  body.auto-dark .answer-card {
+    background: linear-gradient(135deg, #1a1030, #1e1540);
+    border-color: #3730a3;
+  }
+
+  body.auto-dark .answer-text {
+    color: #e2e8f0;
+  }
+}
+
+/* ---------- Print styles ---------- */
+@media print {
+
+  .navbar,
+  .hero-section,
+  .demo-section,
+  .cta-section,
+  #scrollToTop,
+  .footer {
+    display: none !important;
+  }
+
+  .legal-card,
+  .content-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+  }
+}
+
+/* ---------- High DPI / Retina ---------- */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-icon-box {
+    box-shadow: 0 0 40px rgba(124,58,237,0.4);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-icon-box {
+    animation: none;
+  }
+
+  .fade-in-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

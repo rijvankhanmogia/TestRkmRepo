@@ -1,0 +1,298 @@
+/* ============================================
+   IndianUtilityHub - Responsive Stylesheet
+   Mobile-First Media Queries
+   ============================================ */
+
+/* ---- Base Mobile (default, < 576px) ---- */
+.hero-title {
+  font-size: 2rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+}
+
+.hero-icon-wrapper {
+  width: 150px;
+  height: 150px;
+  font-size: 4.5rem;
+  margin-top: 2rem;
+}
+
+.hero-icon-orbit {
+  width: 220px;
+  height: 220px;
+}
+
+.tool-grid {
+  grid-template-columns: 1fr;
+}
+
+.section-title {
+  font-size: 1.6rem;
+}
+
+.page-hero-title {
+  font-size: 1.8rem;
+}
+
+.legal-card {
+  padding: 1.75rem 1.25rem;
+}
+
+.form-card {
+  padding: 1.75rem 1.25rem;
+}
+
+.footer-brand {
+  justify-content: center;
+}
+
+.footer-desc {
+  text-align: center;
+}
+
+.footer-bottom-text {
+  text-align: center;
+}
+
+.hero-stats {
+  justify-content: center;
+}
+
+#scrollToTop {
+  bottom: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+.developer-card {
+  padding: 1.75rem 1.25rem;
+}
+
+/* ---- Small Mobile (>= 400px) ---- */
+@media (min-width: 400px) {
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---- Phablet / Small Tablet (>= 576px) ---- */
+@media (min-width: 576px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-icon-wrapper {
+    width: 170px;
+    height: 170px;
+    font-size: 5.5rem;
+  }
+
+  .hero-icon-orbit {
+    width: 260px;
+    height: 260px;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .page-hero-title {
+    font-size: 2rem;
+  }
+
+  .legal-card {
+    padding: 2.25rem 2rem;
+  }
+
+  .form-card {
+    padding: 2rem 2rem;
+  }
+}
+
+/* ---- Tablet (>= 768px) ---- */
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 7rem 0 6rem;
+  }
+
+  .hero-title {
+    font-size: 2.7rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .hero-icon-wrapper {
+    width: 190px;
+    height: 190px;
+    font-size: 6rem;
+    margin-top: 0;
+  }
+
+  .hero-icon-orbit {
+    width: 290px;
+    height: 290px;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .page-hero {
+    padding: 6rem 0 5rem;
+  }
+
+  .page-hero-title {
+    font-size: 2.25rem;
+  }
+
+  .page-hero-icon {
+    font-size: 4rem;
+  }
+
+  .legal-card {
+    padding: 2.75rem;
+  }
+
+  .form-card {
+    padding: 2.5rem;
+  }
+
+  .legal-meta {
+    flex-direction: row;
+  }
+
+  .footer-bottom-text {
+    text-align: left;
+  }
+
+  .category-label {
+    font-size: 0.82rem;
+  }
+}
+
+/* ---- Small Desktop (>= 992px) ---- */
+@media (min-width: 992px) {
+  .hero-section {
+    padding: 7.5rem 0 6.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.85rem;
+  }
+
+  .hero-icon-wrapper {
+    width: 200px;
+    height: 200px;
+    font-size: 6.5rem;
+  }
+
+  .hero-icon-orbit {
+    width: 310px;
+    height: 310px;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tool-card {
+    padding: 1.5rem 1.35rem;
+  }
+
+  .section-title {
+    font-size: 2.1rem;
+  }
+
+  .page-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+  }
+}
+
+/* ---- Desktop (>= 1200px) ---- */
+@media (min-width: 1200px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-icon-wrapper {
+    width: 220px;
+    height: 220px;
+    font-size: 7rem;
+  }
+
+  .hero-icon-orbit {
+    width: 340px;
+    height: 340px;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.35rem;
+  }
+}
+
+/* ---- Large Desktop (>= 1400px) ---- */
+@media (min-width: 1400px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .tool-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* ---- Print Styles ---- */
+@media print {
+  .navbar,
+  .hero-section .hero-visual,
+  #scrollToTop,
+  .cta-section,
+  .site-footer {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+  }
+
+  .legal-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ---- Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+  }
+}

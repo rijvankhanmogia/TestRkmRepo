@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - IndianUtilityHub</title>
+  <meta name="description" content="Contact the IndianUtilityHub team. Reach out for support, feedback, bug reports or general queries about our 29 offline daily-use tools." />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="contact.html" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="bi bi-tools brand-icon"></i>
+        <span>IndianUtilityHub</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms-and-conditions.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <i class="bi bi-envelope page-hero-icon"></i>
+      <h1 class="page-hero-title">Contact Us</h1>
+      <p class="page-hero-subtitle">Have a question, found a bug, or want to share feedback? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact-section">
+    <div class="container">
+
+      <!-- Contact Info Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-4 animate-fade-up">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-person-fill"></i></div>
+            <p class="contact-info-label">Developer</p>
+            <p class="contact-info-value">Mohd Rijvan Khan Mogia</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 animate-fade-up delay-1">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+            <p class="contact-info-label">Phone</p>
+            <p class="contact-info-value">
+              <a href="tel:+918828117342" style="color:var(--primary-color);font-weight:500;">+91 88281 17342</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 animate-fade-up delay-2">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <p class="contact-info-label">Address</p>
+            <p class="contact-info-value">Maharashtra Nagar, Mankhurd, Mumbai - 400088, Maharashtra, India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form + Info -->
+      <div class="row g-5">
+        <div class="col-lg-7 animate-fade-up">
+          <div class="form-card">
+            <div class="mb-4">
+              <div class="section-tag mb-2"><i class="bi bi-chat-left-text"></i> Message Us</div>
+              <h2 style="font-size:1.6rem;font-weight:700;color:var(--secondary-color);margin-bottom:0.4rem;">Send a Message</h2>
+              <p style="font-size:0.88rem;color:var(--muted-color);margin:0;">Fill in the form below and we'll get back to you as soon as possible.</p>
+            </div>
+
+            <form id="contactForm" novalidate>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="contactName" class="form-label">Full Name <span style="color:#ef4444;">*</span></label>
+                  <input type="text" class="form-control" id="contactName" name="name" placeholder="Your full name" required autocomplete="name" />
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="contactEmail" class="form-label">Email Address <span style="color:#ef4444;">*</span></label>
+                  <input type="email" class="form-control" id="contactEmail" name="email" placeholder="you@example.com" required autocomplete="email" />
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+                <div class="col-12">
+                  <label for="contactSubject" class="form-label">Subject <span style="color:#ef4444;">*</span></label>
+                  <select class="form-select" id="contactSubject" name="subject" required>
+                    <option value="" disabled selected>Select a subject</option>
+                    <option value="bug">Bug Report</option>
+                    <option value="feature">Feature Request</option>
+                    <option value="feedback">General Feedback</option>
+                    <option value="support">Technical Support</option>
+                    <option value="business">Business Inquiry</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a subject.</div>
+                </div>
+                <div class="col-12">
+                  <label for="contactMessage" class="form-label">Message <span style="color:#ef4444;">*</span></label>
+                  <textarea class="form-control" id="contactMessage" name="message" rows="5" placeholder="Describe your question or feedback in detail..." required></textarea>
+                  <div class="invalid-feedback">Please enter your message.</div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-submit">
+                    <i class="bi bi-send"></i>
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5 animate-fade-up delay-2">
+          <div class="section-tag mb-3"><i class="bi bi-info-circle"></i> About the App</div>
+          <h3 style="font-size:1.3rem;font-weight:700;color:var(--secondary-color);margin-bottom:1rem;">IndianUtilityHub</h3>
+          <p style="font-size:0.9rem;color:var(--muted-color);line-height:1.8;margin-bottom:1.25rem;">
+            IndianUtilityHub is a free Android application with 29 offline daily-use tools. Built and maintained
+            by a solo developer — your feedback is invaluable for improvements.
+          </p>
+
+          <div class="mb-4">
+            <h4 style="font-size:1rem;font-weight:600;color:var(--secondary-color);margin-bottom:1rem;">Common Queries</h4>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+                <i class="bi bi-question-circle" style="color:var(--primary-color);font-size:1rem;margin-top:0.15rem;flex-shrink:0;"></i>
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;color:var(--text-color);margin-bottom:0.2rem;">Is the app really free?</p>
+                  <p style="font-size:0.82rem;color:var(--muted-color);margin:0;">Yes, 100% free with no in-app purchases or subscriptions.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+                <i class="bi bi-question-circle" style="color:var(--primary-color);font-size:1rem;margin-top:0.15rem;flex-shrink:0;"></i>
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;color:var(--text-color);margin-bottom:0.2rem;">Does it need internet?</p>
+                  <p style="font-size:0.82rem;color:var(--muted-color);margin:0;">No internet connection required. All tools work fully offline.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+                <i class="bi bi-question-circle" style="color:var(--primary-color);font-size:1rem;margin-top:0.15rem;flex-shrink:0;"></i>
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;color:var(--text-color);margin-bottom:0.2rem;">Will my data be shared?</p>
+                  <p style="font-size:0.82rem;color:var(--muted-color);margin:0;">Never. We don't collect any personal or usage data.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:0.65rem;align-items:flex-start;">
+                <i class="bi bi-question-circle" style="color:var(--primary-color);font-size:1rem;margin-top:0.15rem;flex-shrink:0;"></i>
+                <div>
+                  <p style="font-size:0.88rem;font-weight:600;color:var(--text-color);margin-bottom:0.2rem;">Where can I download it?</p>
+                  <p style="font-size:0.82rem;color:var(--muted-color);margin:0;">Available on the Google Play Store under IndianAI.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--light-background);border-radius:var(--border-radius);padding:1.25rem;border:1px solid var(--border-color);">
+            <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">
+              <i class="bi bi-clock" style="color:var(--primary-color);"></i>
+              &nbsp;Response time: Usually within 24–48 hours on business days.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            <i class="bi bi-tools"></i>
+            IndianUtilityHub
+          </div>
+          <p class="footer-desc">29 offline daily-use tools for everyday India. Free, fast, and private.</p>
+          <div class="footer-contact-item">
+            <i class="bi bi-person-circle"></i>
+            <span>Mohd Rijvan Khan Mogia</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone"></i>
+            <span>+91 88281 17342</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt"></i>
+            <span>Maharashtra Nagar, Mankhurd, Mumbai - 400088</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-2 offset-lg-1">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-house"></i> Home</a></li>
+            <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+            <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+            <li><a href="privacy-policy.html"><i class="bi bi-shield-check"></i> Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html"><i class="bi bi-file-text"></i> Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <h4 class="footer-heading">Top Tools</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">EMI Calculator</a></li>
+            <li><a href="index.html">GST Calculator</a></li>
+            <li><a href="index.html">SIP Calculator</a></li>
+            <li><a href="index.html">Age Calculator</a></li>
+            <li><a href="index.html">BMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h4 class="footer-heading">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="https://play.google.com/store/apps/details?id=rkm.app.indianutilityhub"><i class="bi bi-google-play"></i> Google Play Store</a></li>
+            <li><a href="../index.html"><i class="bi bi-grid"></i> IndianAI Apps</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <p class="footer-bottom-text">
+          &copy; <span class="footer-year"></span> IndianUtilityHub. Developed by Mohd Rijvan Khan Mogia. All rights reserved.
+        </p>
+        <p class="footer-bottom-text">
+          <a href="privacy-policy.html" style="color:inherit;text-decoration:underline;">Privacy</a> &nbsp;|&nbsp;
+          <a href="terms-and-conditions.html" style="color:inherit;text-decoration:underline;">Terms</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCROLL TO TOP ===== -->
+  <button id="scrollToTop" aria-label="Scroll to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

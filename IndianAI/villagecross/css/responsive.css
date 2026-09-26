@@ -1,0 +1,294 @@
+/* ============================================================
+   VillageCross - Responsive CSS (Mobile-First Media Queries)
+   Developer: Mohd Rijvan Khan Mogia
+   ============================================================ */
+
+/* ── Small devices (landscape phones, 576px and up) ── */
+@media (max-width: 575.98px) {
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.15rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .hero-section .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-download,
+  .btn-outline-light-custom {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.92rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  /* Board */
+  .board-cell {
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
+  }
+
+  .game-board {
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .board-wrapper {
+    padding: 18px 14px;
+  }
+
+  .player-token {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  /* Sections */
+  .features-section,
+  .how-to-play,
+  .rules-section,
+  .cta-section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* Page Hero */
+  .page-hero {
+    padding: 60px 0 40px;
+  }
+
+  .page-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  /* Legal */
+  .legal-card {
+    padding: 1.5rem;
+  }
+
+  /* Contact */
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 0 0;
+    text-align: center;
+  }
+
+  .footer-contact-item {
+    justify-content: center;
+  }
+
+  /* CTA */
+  .cta-section h2 {
+    font-size: 1.7rem;
+  }
+
+  /* Scroll to top */
+  #scrollToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  /* Stat cards */
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+/* ── Medium devices (tablets, 576px – 767px) ── */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-section {
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .board-cell {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .page-hero h1 {
+    font-size: 2rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.9rem;
+  }
+}
+
+/* ── Large tablets (768px – 991px) ── */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .board-cell {
+    width: 54px;
+    height: 54px;
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* ── Large devices (desktops, 992px – 1199px) ── */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hero-title {
+    font-size: 2.75rem;
+  }
+}
+
+/* ── Extra large devices (large desktops, 1200px and up) ── */
+@media (min-width: 1200px) {
+  .hero-section {
+    padding: 110px 0 90px;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .board-cell {
+    width: 62px;
+    height: 62px;
+    font-size: 1.75rem;
+  }
+}
+
+/* ── Navbar mobile ── */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 0.75rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+  }
+}
+
+/* ── Hero layout: board right on larger screens ── */
+@media (min-width: 992px) {
+  .hero-content-col {
+    padding-right: 3rem;
+  }
+}
+
+/* ── Board centering on small screens ── */
+@media (max-width: 991.98px) {
+  .hero-board-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+
+  .board-wrapper {
+    display: inline-block;
+  }
+}
+
+/* ── Footer columns on small screens ── */
+@media (max-width: 767.98px) {
+  .footer-col {
+    margin-bottom: 2rem;
+  }
+
+  .footer-links {
+    columns: 2;
+  }
+}
+
+/* ── Step card layout ── */
+@media (max-width: 575.98px) {
+  .step-card {
+    flex-direction: column;
+  }
+
+  .step-number {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ── Print styles ── */
+@media print {
+  .navbar,
+  .cta-section,
+  #scrollToTop,
+  .footer {
+    display: none !important;
+  }
+
+  .legal-card,
+  .contact-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ── Prefers reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,61 @@
+/* =========================================
+   [APP NAME] - Responsive Stylesheet
+   IndianAI Product Template
+   ========================================= */
+
+/* Extra Small (< 576px) */
+@media (max-width: 575.98px) {
+  .navbar-brand { font-size: 1rem; }
+  .hero-section { padding: 3rem 0 2rem; text-align: center; }
+  .hero-title { font-size: 1.75rem; }
+  .hero-description { font-size: 0.9375rem; margin-left: auto; margin-right: auto; }
+  .hero-stats { justify-content: center; gap: 1.25rem; }
+  .section-title { font-size: 1.625rem; }
+  .page-hero { padding: 2.5rem 0; }
+  .page-hero h1 { font-size: 1.75rem; }
+  .contact-form-wrapper { padding: 1.25rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .scroll-to-top { bottom: 1rem; right: 1rem; }
+}
+
+/* Small (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-section { padding: 3.5rem 0 2.5rem; text-align: center; }
+  .hero-title { font-size: 2rem; }
+  .hero-stats { justify-content: center; }
+  .section-title { font-size: 2rem; }
+}
+
+/* Medium (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-section { text-align: center; }
+  .hero-stats { justify-content: center; }
+}
+
+/* Tablet Nav Collapse */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: white; border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 1rem; border-top: 1px solid var(--border-color);
+    margin-top: 0.5rem;
+  }
+  .nav-link { padding: 0.5rem 1rem !important; }
+}
+
+/* Print */
+@media print {
+  .navbar, .footer, .cta-section, .scroll-to-top { display: none !important; }
+  .hero-section { background: white !important; padding: 2rem 0 !important; }
+  body { font-size: 12pt; color: black; }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

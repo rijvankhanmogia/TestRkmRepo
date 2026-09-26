@@ -1,0 +1,457 @@
+/* =====================================================
+   CrickAdda - Responsive Stylesheet
+   Mobile-first media queries
+   Developer: Mohd Rijvan Khan Mogia
+   Year: 2026
+   ===================================================== */
+
+/* =====================================================
+   BASE / MOBILE FIRST (default - up to 575px)
+   ===================================================== */
+.hero-section {
+  padding: 5.5rem 0 3rem;
+  text-align: center;
+}
+
+.hero-stats {
+  justify-content: center;
+}
+
+.hero-visual {
+  margin-top: 2.5rem;
+}
+
+.hero-phone-mockup {
+  max-width: 240px;
+}
+
+.teams-row {
+  gap: 0.5rem;
+}
+
+.team-score {
+  font-size: 1.1rem;
+}
+
+.cricket-field {
+  max-width: 300px;
+}
+
+.player-dot {
+  width: 28px;
+  height: 28px;
+  font-size: 0.55rem;
+}
+
+.player-label {
+  font-size: 0.56rem;
+  max-width: 60px;
+}
+
+.chat-mockup {
+  max-width: 100%;
+}
+
+.footer-bottom {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.legal-card {
+  padding: 1.5rem 1rem;
+}
+
+.contact-card {
+  padding: 1.5rem 1rem;
+}
+
+.page-hero {
+  padding: 5.5rem 0 2.5rem;
+}
+
+/* =====================================================
+   SMALL (≥ 576px)
+   ===================================================== */
+@media (min-width: 576px) {
+  .hero-phone-mockup {
+    max-width: 260px;
+  }
+
+  .cricket-field {
+    max-width: 360px;
+  }
+
+  .player-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.58rem;
+  }
+
+  .player-label {
+    font-size: 0.6rem;
+    max-width: 65px;
+  }
+
+  .legal-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .contact-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* =====================================================
+   MEDIUM (≥ 768px)
+   ===================================================== */
+@media (min-width: 768px) {
+  .hero-section {
+    text-align: left;
+  }
+
+  .hero-stats {
+    justify-content: flex-start;
+  }
+
+  .hero-visual {
+    margin-top: 0;
+  }
+
+  .hero-phone-mockup {
+    max-width: 280px;
+  }
+
+  .cricket-field {
+    max-width: 420px;
+  }
+
+  .player-dot {
+    width: 34px;
+    height: 34px;
+    font-size: 0.6rem;
+  }
+
+  .player-label {
+    font-size: 0.62rem;
+    max-width: 70px;
+  }
+
+  .team-score {
+    font-size: 1.3rem;
+  }
+
+  .legal-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .contact-card {
+    padding: 2rem 1.75rem;
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .about-section,
+  .contact-section,
+  .legal-section {
+    padding: 4.5rem 0;
+  }
+
+  /* Navbar collapse breakpoint adjustments */
+  .navbar-collapse {
+    justify-content: flex-end;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.9rem !important;
+  }
+}
+
+/* =====================================================
+   LARGE (≥ 992px)
+   ===================================================== */
+@media (min-width: 992px) {
+  .hero-section {
+    min-height: 100vh;
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.2rem;
+  }
+
+  .hero-phone-mockup {
+    max-width: 300px;
+  }
+
+  .cricket-field {
+    max-width: 480px;
+  }
+
+  .feature-card {
+    padding: 2.25rem 1.75rem;
+  }
+
+  .section-title {
+    font-size: 2.1rem;
+  }
+
+  .chat-mockup {
+    max-width: 480px;
+  }
+
+  /* Two-column layout helpers */
+  .features-section .col-lg-4 {
+    margin-bottom: 0;
+  }
+
+  .legal-card {
+    padding: 3rem 2.5rem;
+  }
+
+  .page-hero {
+    padding: 7rem 0 4rem;
+  }
+
+  .page-hero-title {
+    font-size: 2.6rem;
+  }
+
+  .contact-info-item {
+    gap: 1.2rem;
+  }
+
+  #scrollToTop {
+    bottom: 2.5rem;
+    right: 2.5rem;
+  }
+}
+
+/* =====================================================
+   EXTRA LARGE (≥ 1200px)
+   ===================================================== */
+@media (min-width: 1200px) {
+  .hero-title {
+    font-size: 3.6rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .cricket-field {
+    max-width: 500px;
+  }
+
+  .section-title {
+    font-size: 2.3rem;
+  }
+
+  .scoreboard-section,
+  .features-section,
+  .fantasy-section,
+  .chat-section,
+  .cta-section {
+    padding: 5.5rem 0;
+  }
+
+  .footer {
+    padding: 5rem 0 2rem;
+  }
+}
+
+/* =====================================================
+   XXL (≥ 1400px)
+   ===================================================== */
+@media (min-width: 1400px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  .live-dot {
+    animation: none;
+  }
+
+  .live-score-badge {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =====================================================
+   DARK MODE (system preference) — minimal overrides
+   ===================================================== */
+@media (prefers-color-scheme: dark) {
+  /* CrickAdda uses green/dark green theme that works well in dark.
+     Below are minor overrides for light surfaces. */
+  body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
+
+  .match-card,
+  .feature-card,
+  .about-card,
+  .contact-card,
+  .legal-card,
+  .chat-mockup {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .feature-card {
+    background: #1e293b;
+  }
+
+  .match-card-body,
+  .chat-input-bar {
+    background: #1e293b;
+  }
+
+  .chat-body {
+    background: #0f172a;
+  }
+
+  .chat-message:not(.own) .chat-bubble {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+  }
+
+  .match-status {
+    border-top-color: #334155;
+  }
+
+  .form-control,
+  .form-select {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    background-color: #1e293b;
+  }
+
+  .chat-input-fake {
+    background: #0f172a;
+    border-color: #334155;
+    color: #94a3b8;
+  }
+
+  .scoreboard-section,
+  .fantasy-section {
+    background: #0f172a;
+  }
+
+  .features-section,
+  .chat-section {
+    background: #0b1120;
+  }
+
+  .legal-toc {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .section-title {
+    color: #f1f5f9;
+  }
+
+  .team-name,
+  .feature-title,
+  .about-card h4,
+  .team-name {
+    color: #f1f5f9;
+  }
+
+  .contact-info-icon,
+  .about-icon-wrap {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .vs-divider {
+    background: #1e293b;
+  }
+
+  .sample-tag {
+    background: #44331a;
+    border-color: #a16207;
+    color: #fcd34d;
+  }
+
+  .demo-notice {
+    background: #44331a;
+    border-color: #a16207;
+    color: #fcd34d;
+  }
+}
+
+/* =====================================================
+   PRINT
+   ===================================================== */
+@media print {
+  .navbar,
+  #scrollToTop,
+  .cta-section,
+  .hero-section,
+  .chat-section,
+  .fantasy-section {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  .legal-card,
+  .contact-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}

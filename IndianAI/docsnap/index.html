@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <title>DocSnap - 21 Document Tools | Image to PDF, Merge PDF & More</title>
+  <meta name="description" content="DocSnap is your all-in-one document toolkit with 21 essential tools. Convert images to PDF, merge PDFs, compress, split, add watermarks, OCR and much more — free on Android." />
+  <meta name="keywords" content="DocSnap, PDF tools, image to PDF, merge PDF, split PDF, compress PDF, PDF to image, OCR, PDF editor, document scanner, Android app" />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://indianai.in/docsnap/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DocSnap - 21 Document Tools" />
+  <meta property="og:description" content="Your complete document solution. 21 tools including Image to PDF, Merge PDF, Compress PDF, OCR and more — free on Android." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://indianai.in/docsnap/" />
+  <meta property="og:site_name" content="IndianAI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DocSnap - 21 Document Tools" />
+  <meta name="twitter:description" content="Your complete document solution with 21 essential PDF and document tools." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ============================================
+       NAVBAR
+  ============================================ -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="bi bi-file-pdf"></i>
+        DocSnap
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms-and-conditions.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO SECTION
+  ============================================ -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="hero-app-icon fade-up">
+            <i class="bi bi-file-pdf"></i>
+          </div>
+          <h1 class="fade-up">DocSnap<br /><span style="color:#93c5fd;">21 Document Tools</span></h1>
+          <p class="lead fade-up">Your Complete Document Solution — convert, merge, compress, secure and manage PDFs with ease. Everything you need in one powerful Android app.</p>
+          <div class="fade-up">
+            <a href="https://play.google.com/store/apps/details?id=rkm.app.docsnap" class="btn-download">
+              <i class="bi bi-google-play"></i> Get it on Google Play
+            </a>
+          </div>
+          <div class="hero-stats fade-up">
+            <span class="hero-badge"><i class="bi bi-tools"></i> 21 Tools</span>
+            <span class="hero-badge"><i class="bi bi-tag"></i> Free</span>
+            <span class="hero-badge"><i class="bi bi-android2"></i> Android</span>
+            <span class="hero-badge"><i class="bi bi-shield-check"></i> Privacy First</span>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center d-none d-lg-block">
+          <div style="font-size:10rem; opacity:0.15; line-height:1; user-select:none;">
+            <i class="bi bi-file-pdf" style="color:#93c5fd;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOOLS SECTION
+  ============================================ -->
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <div class="text-center mb-4 fade-up">
+        <h2 class="section-title">21 Powerful Tools</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">Everything you need to manage, convert and secure your documents</p>
+      </div>
+
+      <!-- Tool Search -->
+      <div class="tool-search-wrapper fade-up">
+        <i class="bi bi-search"></i>
+        <input type="text" id="toolSearch" placeholder="Search tools..." aria-label="Search tools" />
+      </div>
+      <p id="noToolsMsg" style="display:none; text-align:center; color:#64748b; font-size:0.9rem;" class="mt-2">No tools found. Try a different search term.</p>
+
+      <!-- Category: PDF Creation -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-plus-circle"></i>
+          <h3>PDF Creation</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-image"></i>
+            </div>
+            <h5>Image to PDF</h5>
+            <p>Convert any image (JPG, PNG, WEBP) to PDF instantly</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-camera"></i>
+            </div>
+            <h5>Document Scanner</h5>
+            <p>Use your camera to scan documents and save as PDF</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-qr-code"></i>
+            </div>
+            <h5>QR Code to PDF</h5>
+            <p>Scan QR codes and export the content as a PDF</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: PDF Editing -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-pencil-square"></i>
+          <h3>PDF Editing</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-files"></i>
+            </div>
+            <h5>Merge PDFs</h5>
+            <p>Combine multiple PDF files into one document</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-scissors"></i>
+            </div>
+            <h5>Split PDF</h5>
+            <p>Split a PDF into separate pages or sections</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-arrow-clockwise"></i>
+            </div>
+            <h5>Rotate PDF</h5>
+            <p>Rotate pages to landscape or portrait orientation</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-crop"></i>
+            </div>
+            <h5>Crop PDF</h5>
+            <p>Crop page margins and adjust PDF page dimensions</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-sort-numeric-up"></i>
+            </div>
+            <h5>Reorder Pages</h5>
+            <p>Drag and rearrange PDF pages in any order</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-trash"></i>
+            </div>
+            <h5>Remove Pages</h5>
+            <p>Delete unwanted pages from your PDF documents</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: PDF Conversion -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-arrow-left-right"></i>
+          <h3>PDF Conversion</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-images"></i>
+            </div>
+            <h5>PDF to Images</h5>
+            <p>Convert PDF pages to high-quality image files</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-file-text"></i>
+            </div>
+            <h5>PDF to Text (OCR)</h5>
+            <p>Extract text from scanned PDFs using OCR technology</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-file-word"></i>
+            </div>
+            <h5>PDF to Word</h5>
+            <p>Convert PDF documents to editable Word format</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: PDF Optimization -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-speedometer2"></i>
+          <h3>PDF Optimization</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-file-zip"></i>
+            </div>
+            <h5>Compress PDF</h5>
+            <p>Reduce PDF file size while maintaining quality</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-file-minus"></i>
+            </div>
+            <h5>Blank Page Remover</h5>
+            <p>Automatically detect and remove blank pages from PDFs</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: PDF Security -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-shield-lock"></i>
+          <h3>PDF Security</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-lock"></i>
+            </div>
+            <h5>Encrypt PDF</h5>
+            <p>Password-protect your PDF with strong encryption</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-unlock"></i>
+            </div>
+            <h5>Decrypt PDF</h5>
+            <p>Remove password protection from encrypted PDFs</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-droplet"></i>
+            </div>
+            <h5>Add Watermark</h5>
+            <p>Add custom text or image watermarks to your PDFs</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-droplet-slash"></i>
+            </div>
+            <h5>Remove Watermark</h5>
+            <p>Detect and remove watermarks from PDF pages</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: PDF Utilities -->
+      <div class="tool-category fade-up">
+        <div class="tool-category-header">
+          <i class="bi bi-wrench"></i>
+          <h3>PDF Utilities</h3>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-123"></i>
+            </div>
+            <h5>Add Page Numbers</h5>
+            <p>Insert page numbers at any position in your PDF</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <h5>PDF Metadata Editor</h5>
+            <p>Edit title, author, subject and other PDF properties</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon">
+              <i class="bi bi-grid"></i>
+            </div>
+            <h5>PDF Thumbnail Preview</h5>
+            <p>Browse and preview all pages as thumbnail images</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DEMO UPLOAD SECTION
+  ============================================ -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="text-center mb-4 fade-up">
+            <span class="demo-badge">UI Preview</span>
+            <h2 class="section-title">Try the Interface</h2>
+            <div class="section-divider mx-auto"></div>
+            <p class="section-subtitle">See how DocSnap's tools look and feel</p>
+          </div>
+          <div class="demo-card fade-up">
+            <h5 class="mb-1" style="font-weight:600; color:#1e3a5f;">
+              <i class="bi bi-image me-2" style="color:#2563eb;"></i>Image to PDF
+            </h5>
+            <p class="text-muted mb-3" style="font-size:0.85rem;">Convert images to PDF (Demo — Not functional on web)</p>
+
+            <div class="upload-area" role="button" tabindex="0" aria-label="Upload area for Image to PDF demo">
+              <div class="upload-icon">
+                <i class="bi bi-cloud-upload"></i>
+              </div>
+              <h4>Drag files here or click to select</h4>
+              <p>Supports JPG, PNG, WEBP, BMP, HEIC</p>
+              <button type="button" class="btn-select">Select Images</button>
+              <p class="upload-formats">Max 20MB per file &bull; Multiple files supported</p>
+            </div>
+
+            <div class="demo-note">
+              <i class="bi bi-info-circle-fill"></i>
+              <span><strong>UI Preview Only:</strong> This is a frontend demonstration of the interface. The full Image to PDF feature — and all 21 tools — are available in the Android app.</span>
+            </div>
+
+            <div class="text-center">
+              <a href="https://play.google.com/store/apps/details?id=rkm.app.docsnap" class="download-btn">
+                <i class="bi bi-google-play"></i> Download on Google Play
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FEATURES SECTION
+  ============================================ -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="text-center mb-5 fade-up">
+        <h2 class="section-title">Why Choose DocSnap?</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">Built for productivity, designed for everyone</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3 fade-up">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-tools"></i>
+            </div>
+            <h4>21 Tools</h4>
+            <p>A complete suite of PDF and document tools in a single app — no need for multiple apps.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 fade-up">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-tag-fill"></i>
+            </div>
+            <h4>Free to Use</h4>
+            <p>All core features are completely free. No hidden fees, no paywalls, no subscriptions.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 fade-up">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h4>Privacy First</h4>
+            <p>Files are processed locally on your device. Your documents never leave your phone.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 fade-up">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-person-check"></i>
+            </div>
+            <h4>No Registration</h4>
+            <p>No account required. Download, open, and start using immediately — that's it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+  ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="fade-up">
+        <h2>Ready to Simplify Your Documents?</h2>
+        <p>Join thousands of users who rely on DocSnap for all their PDF and document needs.</p>
+        <a href="https://play.google.com/store/apps/details?id=rkm.app.docsnap" class="btn-download">
+          <i class="bi bi-google-play"></i> Download Free on Android
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-brand">
+            <i class="bi bi-file-pdf"></i>
+            DocSnap
+          </div>
+          <p class="footer-desc">Your complete document toolkit — 21 essential PDF and document tools, free on Android. Developed under IndianAI.</p>
+        </div>
+        <div class="col-md-2 col-6">
+          <p class="footer-heading">Pages</p>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i>Home</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right"></i>About</a></li>
+            <li><a href="contact.html"><i class="bi bi-chevron-right"></i>Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <p class="footer-heading">Legal</p>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html"><i class="bi bi-chevron-right"></i>Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html"><i class="bi bi-chevron-right"></i>Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <p class="footer-heading">Developer</p>
+          <ul class="footer-links">
+            <li><a href="https://play.google.com/store/apps/details?id=rkm.app.docsnap"><i class="bi bi-person"></i>Mohd Rijvan Khan Mogia</a></li>
+            <li><a href="tel:+918828117342"><i class="bi bi-telephone"></i>+91 88281 17342</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=rkm.app.docsnap"><i class="bi bi-geo-alt"></i>Maharashtra Nagar, Mumbai - 400088</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="row footer-bottom">
+        <div class="col-md-6">
+          <p class="mb-0">&copy; <span class="footer-year"></span> DocSnap. All rights reserved. Published by <a href="../index.html">IndianAI</a>.</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-2 mt-md-0">
+          <a href="privacy-policy.html" class="me-3">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scrollToTop" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

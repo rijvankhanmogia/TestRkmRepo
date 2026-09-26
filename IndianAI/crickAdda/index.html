@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <title>CrickAdda - Local Cricket Live Scores, Streaming & Fantasy Team Builder</title>
+  <meta name="description" content="CrickAdda is the ultimate cricket companion app. Get live local cricket scores, watch match streaming, join group chats, and build your free fantasy cricket team." />
+  <meta name="keywords" content="cricket app, live cricket scores, local cricket, fantasy cricket, cricket streaming, cricket chat, cricket schedule, player stats, CrickAdda" />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://indianai.in/crickAdda/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CrickAdda - Your Cricket Companion" />
+  <meta property="og:description" content="Live local cricket scores, streaming, group chat and free fantasy team builder. The ultimate cricket companion for fans." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://indianai.in/crickAdda/" />
+  <meta property="og:site_name" content="CrickAdda" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CrickAdda - Your Cricket Companion" />
+  <meta name="twitter:description" content="Live local cricket scores, streaming, group chat and free fantasy team builder." />
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <!-- Google Fonts Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarMain" aria-controls="navbarMain"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-info-circle me-1"></i>About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy-policy.html"><i class="bi bi-shield-check me-1"></i>Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms-and-conditions.html"><i class="bi bi-file-text me-1"></i>Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =====================================================
+       HERO SECTION
+       ===================================================== -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <i class="bi bi-broadcast"></i>
+              Cricket's Home on Your Phone
+            </div>
+            <h1 class="hero-title">
+              <span class="highlight">CrickAdda</span><br />
+              Your Cricket<br />Companion
+            </h1>
+            <p class="hero-tagline">
+              <strong>Live Scores. Community. Fantasy. Free.</strong><br />
+              Local cricket live scores, streaming, group chat and fantasy team builder — all in one app.
+            </p>
+            <a href="https://play.google.com/store/apps/details?id=rkm.app.cricherofantasypro" class="btn-download" aria-label="Download CrickAdda on Google Play">
+              <i class="bi bi-google-play"></i>
+              Get it on Google Play
+            </a>
+            <div class="hero-stats">
+              <span class="stat-badge"><i class="bi bi-activity"></i> Live Scores</span>
+              <span class="stat-badge"><i class="bi bi-chat-dots"></i> Group Chat</span>
+              <span class="stat-badge"><i class="bi bi-people"></i> Fantasy Team</span>
+              <span class="stat-badge"><i class="bi bi-camera-video"></i> Streaming</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-visual">
+            <div class="hero-phone-mockup">
+              <div class="phone-screen-header">
+                <span class="phone-app-name"><i class="bi bi-trophy text-warning me-1"></i>CrickAdda</span>
+                <div class="live-indicator">
+                  <span class="live-dot"></span> LIVE
+                </div>
+              </div>
+              <!-- Mini score preview inside phone mockup -->
+              <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:0.6rem 0.7rem;margin-bottom:0.6rem;">
+                <div style="font-size:0.68rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Sample Match · Demo Data</div>
+                <div style="font-size:0.82rem;color:#fff;font-weight:600;">Mumbai Strikers</div>
+                <div style="font-size:1.1rem;color:#fbbf24;font-weight:700;">145/6 <span style="font-size:0.7rem;color:rgba(255,255,255,0.6);">(18.2)</span></div>
+                <div style="font-size:0.7rem;color:#4ade80;margin-top:0.2rem;"><i class="bi bi-circle-fill" style="font-size:0.5rem;"></i> Live - Over 18.2</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border-radius:8px;padding:0.6rem 0.7rem;">
+                <div style="font-size:0.68rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">vs Delhi Warriors</div>
+                <div style="font-size:0.82rem;color:#fff;font-weight:600;">Delhi Warriors</div>
+                <div style="font-size:1rem;color:rgba(255,255,255,0.75);font-weight:600;">Yet to bat</div>
+              </div>
+              <div style="text-align:center;margin-top:0.7rem;font-size:0.65rem;color:rgba(255,255,255,0.4);font-style:italic;">Demo data for illustration only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SAMPLE SCOREBOARD SECTION
+       ===================================================== -->
+  <section class="scoreboard-section" id="scoreboard">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-tag"><i class="bi bi-activity"></i> Score Updates</span>
+        <h2 class="section-title">Live <span class="accent">Score</span> Experience</h2>
+        <p class="section-subtitle">Stay updated with real-time cricket scores, right in the app.</p>
+        <div class="demo-notice">
+          <i class="bi bi-info-circle-fill"></i>
+          Demo &mdash; Sample Match Data Only. Not real live scores.
+        </div>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+
+        <!-- Sample Match 1 -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="match-card">
+            <div class="match-card-header">
+              <span class="match-tournament"><i class="bi bi-trophy me-1"></i>Mumbai T20 League (Sample)</span>
+              <span class="live-badge live-score-badge"><i class="bi bi-circle-fill" style="font-size:0.5rem;"></i> LIVE</span>
+            </div>
+            <div class="match-card-body">
+              <div class="teams-row">
+                <div class="team-info team-batting">
+                  <div class="team-name"><i class="bi bi-cricket me-1 text-success"></i>Mumbai Strikers</div>
+                  <div class="team-score">145/6</div>
+                  <div class="team-overs">18.2 overs &bull; Batting</div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="team-info text-end">
+                  <div class="team-name">Delhi Warriors <i class="bi bi-cricket ms-1 text-muted"></i></div>
+                  <div class="team-score" style="color:var(--muted-color);">Yet to Bat</div>
+                  <div class="team-overs">T20 Match</div>
+                </div>
+              </div>
+              <div class="match-status">
+                <i class="bi bi-activity me-1"></i>Live &bull; Over 18.2 &bull; Need 4 from 10 balls
+              </div>
+              <div class="text-center"><span class="sample-tag">Sample Data &mdash; Demo Only</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Match 2 -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="match-card">
+            <div class="match-card-header">
+              <span class="match-tournament"><i class="bi bi-trophy me-1"></i>Local Club Championship (Sample)</span>
+              <span class="live-badge live-score-badge"><i class="bi bi-circle-fill" style="font-size:0.5rem;"></i> LIVE</span>
+            </div>
+            <div class="match-card-body">
+              <div class="teams-row">
+                <div class="team-info">
+                  <div class="team-name"><i class="bi bi-cricket me-1 text-muted"></i>Pune Panthers</div>
+                  <div class="team-score" style="color:var(--muted-color);">168/8</div>
+                  <div class="team-overs">20 overs &bull; Done</div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="team-info text-end team-batting">
+                  <div class="team-name">Kolkata Kings <i class="bi bi-cricket ms-1 text-success"></i></div>
+                  <div class="team-score">112/4</div>
+                  <div class="team-overs">14.3 overs &bull; Batting</div>
+                </div>
+              </div>
+              <div class="match-status">
+                <i class="bi bi-activity me-1"></i>Live &bull; Kolkata need 57 from 33 balls
+              </div>
+              <div class="text-center"><span class="sample-tag">Sample Data &mdash; Demo Only</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Match 3 - Upcoming -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="match-card">
+            <div class="match-card-header">
+              <span class="match-tournament"><i class="bi bi-calendar-event me-1"></i>Weekend Warriors Cup (Sample)</span>
+              <span class="upcoming-badge"><i class="bi bi-clock me-1"></i> Upcoming</span>
+            </div>
+            <div class="match-card-body">
+              <div class="teams-row">
+                <div class="team-info">
+                  <div class="team-name"><i class="bi bi-cricket me-1 text-primary"></i>Chennai Challengers</div>
+                  <div class="team-score" style="color:var(--muted-color);font-size:1rem;">- - -</div>
+                  <div class="team-overs">Ready to play</div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="team-info text-end">
+                  <div class="team-name">Bangalore Bulls <i class="bi bi-cricket ms-1 text-primary"></i></div>
+                  <div class="team-score" style="color:var(--muted-color);font-size:1rem;">- - -</div>
+                  <div class="team-overs">Ready to play</div>
+                </div>
+              </div>
+              <div class="match-status" style="color:var(--muted-color);">
+                <i class="bi bi-clock me-1"></i>Starts at 10:00 AM &bull; Tomorrow
+              </div>
+              <div class="text-center"><span class="sample-tag">Sample Data &mdash; Demo Only</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /row -->
+
+      <p class="text-center mt-3" style="font-size:0.8rem;color:var(--muted-color);font-style:italic;">
+        <i class="bi bi-info-circle me-1"></i>
+        All match scores shown above are sample/demo data for illustration purposes only. Real live scores are available within the CrickAdda app.
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FEATURES SECTION
+       ===================================================== -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag"><i class="bi bi-stars"></i> App Features</span>
+        <h2 class="section-title">Everything a Cricket Fan <span class="accent">Needs</span></h2>
+        <p class="section-subtitle">Packed with features to keep you close to the game you love.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-activity"></i></div>
+            <h3 class="feature-title">Live Local Scores</h3>
+            <p class="feature-desc">Follow your neighbourhood and district cricket matches with real-time scorecard updates, ball-by-ball commentary, and over-by-over analysis.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-camera-video"></i></div>
+            <h3 class="feature-title">Match Streaming</h3>
+            <p class="feature-desc">Watch local cricket games live from your phone. Stream matches directly within the app and never miss a boundary or a wicket.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-chat-dots"></i></div>
+            <h3 class="feature-title">Group Chat for Fans</h3>
+            <p class="feature-desc">Join match-specific group chats, share your reactions, debate team selections, and connect with fans supporting the same team.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-people"></i></div>
+            <h3 class="feature-title">Fantasy Team Builder</h3>
+            <p class="feature-desc">Build your dream cricket XI for free! Pick players based on stats, form, and pitch conditions. Compete with friends and local leagues.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-calendar3"></i></div>
+            <h3 class="feature-title">Match Schedules</h3>
+            <p class="feature-desc">View complete fixtures for local tournaments, club matches, and district leagues. Set reminders so you never miss an upcoming game.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll">
+          <div class="feature-card">
+            <div class="feature-icon-wrap"><i class="bi bi-bar-chart-line"></i></div>
+            <h3 class="feature-title">Player Stats</h3>
+            <p class="feature-desc">Dive deep into local player statistics — batting averages, bowling economy, strike rates, and season-by-season performance records.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FANTASY TEAM BUILDER PREVIEW
+       ===================================================== -->
+  <section class="fantasy-section" id="fantasy">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6 animate-on-scroll">
+          <!-- Cricket Field Diagram -->
+          <div class="cricket-field" role="img" aria-label="Sample cricket field diagram showing player positions">
+            <div class="field-inner-circle"></div>
+            <div class="field-pitch"></div>
+
+            <!-- Player Markers (sample/demo) -->
+            <div class="player-marker pos-top-center">
+              <div class="player-dot fielding">F</div>
+              <div class="player-label">A. Sharma</div>
+            </div>
+            <div class="player-marker pos-mid-left">
+              <div class="player-dot fielding">F</div>
+              <div class="player-label">R. Patel</div>
+            </div>
+            <div class="player-marker pos-mid-right">
+              <div class="player-dot fielding">F</div>
+              <div class="player-label">K. Singh</div>
+            </div>
+            <div class="player-marker pos-center-left">
+              <div class="player-dot bowling">B</div>
+              <div class="player-label">M. Khan</div>
+            </div>
+            <div class="player-marker pos-center-right">
+              <div class="player-dot bowling">B</div>
+              <div class="player-label">S. Verma</div>
+            </div>
+            <div class="player-marker pos-bat-crease">
+              <div class="player-dot batting">BAT</div>
+              <div class="player-label">V. Yadav</div>
+            </div>
+            <div class="player-marker pos-bowl-crease">
+              <div class="player-dot batting">BAT</div>
+              <div class="player-label">P. Gupta</div>
+            </div>
+            <div class="player-marker pos-slip">
+              <div class="player-dot wk">WK</div>
+              <div class="player-label">N. Desai</div>
+            </div>
+            <div class="player-marker pos-gully">
+              <div class="player-dot fielding">F</div>
+              <div class="player-label">T. Nair</div>
+            </div>
+            <div class="player-marker pos-fine-leg">
+              <div class="player-dot fielding">F</div>
+              <div class="player-label">H. Iyer</div>
+            </div>
+            <div class="player-marker pos-third-man">
+              <div class="player-dot bowling">B</div>
+              <div class="player-label">J. Pillai</div>
+            </div>
+          </div>
+          <p class="fantasy-demo-label"><i class="bi bi-info-circle me-1"></i>Sample field layout — Demo data. All names are illustrative.</p>
+          <div class="field-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div> Batting</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#2563eb;"></div> Bowling</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#d97706;"></div> Wicket-keeper</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#7c3aed;"></div> Fielding</div>
+          </div>
+        </div>
+        <div class="col-lg-6 animate-on-scroll">
+          <span class="section-tag"><i class="bi bi-people"></i> Fantasy Cricket</span>
+          <h2 class="section-title">Build Your Dream <span class="accent">XI</span></h2>
+          <p class="section-subtitle mb-4">Pick from local players, place them on the field, and compete against friends. CrickAdda's fantasy builder is completely free.</p>
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--light-background);border:2px solid rgba(22,163,74,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="bi bi-check2 text-success fw-bold"></i>
+              </div>
+              <div>
+                <strong style="font-size:0.93rem;">100% Free to Play</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">No hidden fees. Build your team and compete without spending a rupee.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--light-background);border:2px solid rgba(22,163,74,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="bi bi-check2 text-success fw-bold"></i>
+              </div>
+              <div>
+                <strong style="font-size:0.93rem;">Local Player Profiles</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">Choose players from your district and neighbourhood leagues with real form stats.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--light-background);border:2px solid rgba(22,163,74,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="bi bi-check2 text-success fw-bold"></i>
+              </div>
+              <div>
+                <strong style="font-size:0.93rem;">Friend Leaderboards</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">Compete in private leagues with friends and climb the local community rankings.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       GROUP CHAT PREVIEW
+       ===================================================== -->
+  <section class="chat-section" id="chat">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6 animate-on-scroll">
+          <span class="section-tag"><i class="bi bi-chat-dots"></i> Community</span>
+          <h2 class="section-title">Fan <span class="accent">Group Chat</span></h2>
+          <p class="section-subtitle mb-4">Each match gets its own group chat. React, debate, celebrate — together with fans from your city and beyond.</p>
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <i class="bi bi-chat-square-text-fill text-success" style="font-size:1.3rem;flex-shrink:0;margin-top:2px;"></i>
+              <div>
+                <strong style="font-size:0.93rem;">Match Group Chats</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">Auto-created chat rooms for every live match. Join, talk, and cheer.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <i class="bi bi-emoji-smile-fill text-success" style="font-size:1.3rem;flex-shrink:0;margin-top:2px;"></i>
+              <div>
+                <strong style="font-size:0.93rem;">Reactions & Emojis</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">Express your emotions with cricket-themed stickers and quick reactions.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start gap-3 mb-3">
+              <i class="bi bi-shield-check-fill text-success" style="font-size:1.3rem;flex-shrink:0;margin-top:2px;"></i>
+              <div>
+                <strong style="font-size:0.93rem;">Moderated Community</strong>
+                <p style="font-size:0.85rem;color:var(--muted-color);margin:0;">Safe, respectful environment with automated moderation and reporting tools.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 animate-on-scroll">
+          <!-- Chat UI Mockup -->
+          <div class="chat-mockup">
+            <div class="chat-header">
+              <div class="chat-avatar"><i class="bi bi-cricket"></i></div>
+              <div>
+                <div class="chat-group-name">Mumbai vs Delhi &mdash; Match Chat</div>
+                <div class="chat-members"><i class="bi bi-people me-1"></i>248 fans online</div>
+              </div>
+            </div>
+            <div class="chat-body">
+              <!-- Sample messages - clearly demo -->
+              <div class="chat-message">
+                <div class="chat-msg-avatar" style="background:#16a34a;">RS</div>
+                <div>
+                  <div class="chat-sender">Rahul S.</div>
+                  <div class="chat-bubble">What a shot by Vikram! That six was massive! 🏏</div>
+                  <div class="chat-time">2:14 PM</div>
+                </div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-msg-avatar" style="background:#2563eb;">PK</div>
+                <div>
+                  <div class="chat-sender">Priya K.</div>
+                  <div class="chat-bubble">Mumbai need 20 off 12, they can do it! 🔥</div>
+                  <div class="chat-time">2:15 PM</div>
+                </div>
+              </div>
+              <div class="chat-message own">
+                <div class="chat-msg-avatar" style="background:#7c3aed;">Me</div>
+                <div>
+                  <div class="chat-sender">You</div>
+                  <div class="chat-bubble">Go Mumbai Strikers! 💚</div>
+                  <div class="chat-time">2:15 PM</div>
+                </div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-msg-avatar" style="background:#d97706;">AM</div>
+                <div>
+                  <div class="chat-sender">Arjun M.</div>
+                  <div class="chat-bubble">Delhi's fielding has been amazing today tbh</div>
+                  <div class="chat-time">2:16 PM</div>
+                </div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-msg-avatar" style="background:#dc2626;">SN</div>
+                <div>
+                  <div class="chat-sender">Sneha N.</div>
+                  <div class="chat-bubble">WICKET! Oh no, key batsman out 😱</div>
+                  <div class="chat-time">2:17 PM</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-bar">
+              <div class="chat-input-fake">Type a message...</div>
+              <button class="chat-send-btn" aria-label="Send message">
+                <i class="bi bi-send-fill"></i>
+              </button>
+            </div>
+          </div>
+          <p class="chat-demo-notice"><i class="bi bi-info-circle me-1"></i>Demo chat — Sample messages for illustration only. Not real user data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CTA SECTION
+       ===================================================== -->
+  <section class="cta-section" id="download">
+    <div class="container position-relative">
+      <span class="section-tag" style="background:rgba(251,191,36,0.15);border-color:rgba(251,191,36,0.4);color:var(--accent-color);">
+        <i class="bi bi-download"></i> Download Free
+      </span>
+      <h2 class="section-title" style="color:#fff;">Ready to Join the <span style="color:var(--accent-color);">CrickAdda</span> Community?</h2>
+      <p>Download the app for free and experience cricket like never before. Live scores, streaming, chat, and fantasy — all in one place.</p>
+      <a href="https://play.google.com/store/apps/details?id=rkm.app.cricherofantasypro" class="btn-download" style="margin: 0 auto;" aria-label="Download CrickAdda on Google Play">
+        <i class="bi bi-google-play"></i>
+        Download on Google Play &mdash; Free
+      </a>
+      <div class="hero-stats mt-4 justify-content-center">
+        <span class="stat-badge"><i class="bi bi-star-fill"></i> Free to Download</span>
+        <span class="stat-badge"><i class="bi bi-shield-check"></i> Safe & Secure</span>
+        <span class="stat-badge"><i class="bi bi-phone"></i> Android App</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <i class="bi bi-trophy footer-brand-icon"></i>
+            <span class="footer-brand-name">Crick<span>Adda</span></span>
+          </div>
+          <p class="footer-desc">CrickAdda is the ultimate cricket companion for fans. Live local scores, streaming, group chat, and free fantasy team builder — all in one app. Developed under the IndianAI platform.</p>
+          <p class="footer-desc" style="margin-top:0.5rem;">
+            <i class="bi bi-google-play me-1" style="color:var(--accent-color);"></i>
+            Available on Google Play Store
+          </p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right me-1"></i>Home</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right me-1"></i>About</a></li>
+            <li><a href="contact.html"><i class="bi bi-chevron-right me-1"></i>Contact</a></li>
+            <li><a href="privacy-policy.html"><i class="bi bi-chevron-right me-1"></i>Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html"><i class="bi bi-chevron-right me-1"></i>Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Features</h4>
+          <ul class="footer-links">
+            <li><a href="#scoreboard"><i class="bi bi-chevron-right me-1"></i>Live Scores</a></li>
+            <li><a href="#features"><i class="bi bi-chevron-right me-1"></i>Streaming</a></li>
+            <li><a href="#chat"><i class="bi bi-chevron-right me-1"></i>Group Chat</a></li>
+            <li><a href="#fantasy"><i class="bi bi-chevron-right me-1"></i>Fantasy Team</a></li>
+            <li><a href="#features"><i class="bi bi-chevron-right me-1"></i>Player Stats</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-item">
+            <i class="bi bi-person-circle"></i>
+            <span>Mohd Rijvan Khan Mogia</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone"></i>
+            <span>+91 88281 17342</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt"></i>
+            <span>Maharashtra Nagar, Mankhurd,<br />Mumbai &mdash; 400088,<br />Maharashtra, India</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-envelope"></i>
+            <a href="mailto:contact@indianai.in" style="color:rgba(255,255,255,0.65);">contact@indianai.in</a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span class="footer-year"></span> CrickAdda &mdash; Mohd Rijvan Khan Mogia &bull; IndianAI Platform. All rights reserved.
+        </p>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTop" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

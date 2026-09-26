@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VillageCross – 4-Player Strategy Board Game | IndianAI</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="VillageCross is a 4-player strategy board game on a 5x5 grid. Compete with sticks and strategy in this traditional cross placement game. Download now on Google Play." />
+  <meta name="keywords" content="VillageCross, board game, 4-player game, strategy game, 5x5 grid, cross placement game, IndianAI, mobile game" />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://indianai.in/villagecross/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="VillageCross – 4-Player Strategy Board Game" />
+  <meta property="og:description" content="A 4-player board game on a 5x5 grid. Compete with sticks and strategy in this traditional cross placement game." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://indianai.in/villagecross/" />
+  <meta property="og:image" content="https://indianai.in/villagecross/assets/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VillageCross – 4-Player Strategy Board Game" />
+  <meta name="twitter:description" content="A 4-player board game on a 5x5 grid. Compete with sticks and strategy." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <span class="brand-icon"><i class="bi bi-grid-3x3-gap"></i></span>
+        VillageCross
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-4"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms-and-conditions.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <!-- Left: Content -->
+        <div class="col-lg-6 hero-content-col">
+          <div class="hero-badge fade-in-up">
+            <i class="bi bi-controller"></i>
+            Strategy Board Game
+          </div>
+          <h1 class="hero-title fade-in-up delay-1">
+            <span>VillageCross</span><br />
+            4-Player Strategy Game
+          </h1>
+          <p class="hero-subtitle fade-in-up delay-2">
+            A traditional 4-player board game on a 5×5 grid. Place your crosses, block your rivals, and be the last player standing. Easy to learn, hard to master!
+          </p>
+          <div class="d-flex flex-wrap gap-3 fade-in-up delay-3">
+            <a href="https://play.google.com/store/apps/details?id=rkm.villagecross" class="btn-download">
+              <i class="bi bi-google-play"></i>
+              Download on Google Play
+            </a>
+            <a href="#how-to-play" class="btn-outline-light-custom">
+              <i class="bi bi-play-circle"></i>
+              How to Play
+            </a>
+          </div>
+          <!-- Player indicators -->
+          <div class="player-indicators mt-4 fade-in-up delay-4" style="justify-content:flex-start;">
+            <div class="player-token"><span class="player-dot dot-p1"></span> Player 1</div>
+            <div class="player-token"><span class="player-dot dot-p2"></span> Player 2</div>
+            <div class="player-token"><span class="player-dot dot-p3"></span> Player 3</div>
+            <div class="player-token"><span class="player-dot dot-p4"></span> Player 4</div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive 5x5 Board -->
+        <div class="col-lg-6 hero-board-col">
+          <div class="board-wrapper fade-in-right delay-2">
+
+            <!-- 5x5 Game Board -->
+            <div class="game-board" id="demoBoard" role="grid" aria-label="VillageCross interactive 5x5 game board">
+
+              <!-- Row 1 -->
+              <div class="board-cell p1" role="gridcell" aria-label="Player 1"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p3" role="gridcell" aria-label="Player 3"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p2" role="gridcell" aria-label="Player 2"><i class="cross-mark">✕</i></div>
+
+              <!-- Row 2 -->
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p4" role="gridcell" aria-label="Player 4"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p1" role="gridcell" aria-label="Player 1"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p2" role="gridcell" aria-label="Player 2"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+
+              <!-- Row 3 -->
+              <div class="board-cell p2" role="gridcell" aria-label="Player 2"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p1" role="gridcell" aria-label="Player 1"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p4" role="gridcell" aria-label="Player 4"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p3" role="gridcell" aria-label="Player 3"><i class="cross-mark">✕</i></div>
+
+              <!-- Row 4 -->
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p3" role="gridcell" aria-label="Player 3"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p4" role="gridcell" aria-label="Player 4"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p1" role="gridcell" aria-label="Player 1"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+
+              <!-- Row 5 -->
+              <div class="board-cell p4" role="gridcell" aria-label="Player 4"><i class="cross-mark">✕</i></div>
+              <div class="board-cell empty" role="gridcell" aria-label="Empty"></div>
+              <div class="board-cell p2" role="gridcell" aria-label="Player 2"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p3" role="gridcell" aria-label="Player 3"><i class="cross-mark">✕</i></div>
+              <div class="board-cell p1" role="gridcell" aria-label="Player 1"><i class="cross-mark">✕</i></div>
+            </div>
+
+            <!-- Turn indicator -->
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <div class="turn-indicator">
+                <span class="turn-dot" id="turnDot"></span>
+                <span id="turnLabel">Player 1's Turn</span>
+              </div>
+              <button id="resetBoard" class="btn-outline-light-custom" style="padding:6px 14px;font-size:0.78rem;border-width:1px;opacity:0.7;">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+            </div>
+            <p class="board-hint">Click any cell to place a cross · Try the interactive demo!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="text-center fade-in-up">
+        <h2 class="section-title">Game Features</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Everything you need for an exciting strategic showdown</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-1">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-people-fill"></i></div>
+            <h5>4-Player Multiplayer</h5>
+            <p>Challenge three friends in a thrilling multi-player battle of wits and strategy on the same device.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-2">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-lightbulb-fill"></i></div>
+            <h5>Deep Strategy</h5>
+            <p>Every move counts. Block opponents, plan ahead, and outwit rivals to secure your position.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+            <h5>5×5 Grid Board</h5>
+            <p>A perfectly balanced 5×5 grid offering countless strategic possibilities in every game session.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-4">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-clock-fill"></i></div>
+            <h5>Turn-Based Gameplay</h5>
+            <p>Fair and structured turn-based play. Each player gets equal time to think and strategize their moves.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-5">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-wifi-off"></i></div>
+            <h5>Offline Play</h5>
+            <p>No internet required. Play anytime, anywhere — perfect for travel, family gatherings, and more.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 fade-in-up delay-6">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-emoji-smile-fill"></i></div>
+            <h5>Easy to Learn</h5>
+            <p>Simple rules that anyone can learn in minutes, yet the strategy runs deep for experienced players.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO PLAY ===== -->
+  <section class="how-to-play" id="how-to-play">
+    <div class="container">
+      <div class="text-center fade-in-up">
+        <h2 class="section-title">How to Play</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Get started with VillageCross in just a few simple steps</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="step-card fade-in-up delay-1">
+            <div class="step-number">1</div>
+            <div>
+              <h5>Set Up the Board</h5>
+              <p>Open VillageCross. Four players each choose a unique color — green, red, blue, or orange. The 5×5 grid starts completely empty.</p>
+            </div>
+          </div>
+          <div class="step-card fade-in-up delay-2">
+            <div class="step-number">2</div>
+            <div>
+              <h5>Take Your Turn</h5>
+              <p>Players take turns clockwise. On your turn, tap any empty cell on the board to place your colored cross (✕) mark in that position.</p>
+            </div>
+          </div>
+          <div class="step-card fade-in-up delay-3">
+            <div class="step-number">3</div>
+            <div>
+              <h5>Form a Line to Win</h5>
+              <p>Try to form a complete line with your crosses — horizontally, vertically, or diagonally. Block your opponents from completing their lines!</p>
+            </div>
+          </div>
+          <div class="step-card fade-in-up delay-4">
+            <div class="step-number">4</div>
+            <div>
+              <h5>Last Player Wins</h5>
+              <p>When a player can no longer make valid moves or when all cells are filled, the player with the most strategic lines — or the last one with valid moves — wins!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GAME RULES ===== -->
+  <section class="rules-section" id="rules">
+    <div class="container">
+      <div class="text-center fade-in-up">
+        <h2 class="section-title">Game Rules</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Master the rules and dominate the board</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 fade-in-up delay-1">
+          <div class="rules-card">
+            <h5><i class="bi bi-flag-fill text-primary-custom"></i> Basic Rules</h5>
+            <ul class="rules-list">
+              <li><i class="bi bi-check-circle-fill"></i> Exactly 4 players per game</li>
+              <li><i class="bi bi-check-circle-fill"></i> Game is played on a 5×5 grid (25 cells)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Each player has a unique color: Green, Red, Blue, Orange</li>
+              <li><i class="bi bi-check-circle-fill"></i> Players take turns in a fixed clockwise order</li>
+              <li><i class="bi bi-check-circle-fill"></i> One cross placed per turn — no skipping allowed</li>
+              <li><i class="bi bi-check-circle-fill"></i> Only empty cells may be selected</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 fade-in-up delay-2">
+          <div class="rules-card">
+            <h5><i class="bi bi-trophy-fill text-primary-custom"></i> Winning Conditions</h5>
+            <ul class="rules-list">
+              <li><i class="bi bi-check-circle-fill"></i> Form a complete row of 5 with your color</li>
+              <li><i class="bi bi-check-circle-fill"></i> Form a complete column of 5 with your color</li>
+              <li><i class="bi bi-check-circle-fill"></i> Form a diagonal line of 5 with your color</li>
+              <li><i class="bi bi-check-circle-fill"></i> Last player with valid moves remaining wins</li>
+              <li><i class="bi bi-check-circle-fill"></i> Block opponents to outlast them strategically</li>
+              <li><i class="bi bi-check-circle-fill"></i> Most cells occupied can determine tiebreakers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 fade-in-up delay-3">
+          <div class="rules-card">
+            <h5><i class="bi bi-shield-fill-check text-primary-custom"></i> Strategy Tips</h5>
+            <ul class="rules-list">
+              <li><i class="bi bi-check-circle-fill"></i> Control the center — it opens diagonal opportunities</li>
+              <li><i class="bi bi-check-circle-fill"></i> Block opponents who are close to completing a line</li>
+              <li><i class="bi bi-check-circle-fill"></i> Build multiple lines simultaneously to force choices</li>
+              <li><i class="bi bi-check-circle-fill"></i> Watch all 4 players, not just the one ahead of you</li>
+              <li><i class="bi bi-check-circle-fill"></i> Corner cells are powerful — use them wisely</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 fade-in-up delay-4">
+          <div class="rules-card">
+            <h5><i class="bi bi-info-circle-fill text-primary-custom"></i> Game Details</h5>
+            <ul class="rules-list">
+              <li><i class="bi bi-check-circle-fill"></i> Players: 4 (required, no AI bots)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Board: 5×5 grid (25 cells total)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Gameplay: Turn-based, offline local multiplayer</li>
+              <li><i class="bi bi-check-circle-fill"></i> Average game time: 5–15 minutes</li>
+              <li><i class="bi bi-check-circle-fill"></i> Age rating: 4+ (family friendly)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Platform: Android (Google Play)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="fade-in-up">
+        <h2>Ready to Play VillageCross?</h2>
+        <p>Gather your friends and family — the board is set, the battle begins!</p>
+        <a href="https://play.google.com/store/apps/details?id=rkm.villagecross" class="btn-download">
+          <i class="bi bi-google-play"></i>
+          Download Free on Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 footer-col">
+          <div class="footer-brand">
+            <span class="brand-icon" style="background:rgba(255,255,255,0.1);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <i class="bi bi-grid-3x3-gap"></i>
+            </span>
+            VillageCross
+          </div>
+          <p class="footer-desc">
+            A traditional 4-player board game on a 5×5 grid. Compete with sticks and strategy in this classic cross placement game for friends and families.
+          </p>
+          <div class="footer-contact-item">
+            <i class="bi bi-person-fill"></i>
+            <span>Mohd Rijvan Khan Mogia</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <span>+91 88281 17342</span>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-2 footer-col">
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right me-1"></i>Home</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right me-1"></i>About</a></li>
+            <li><a href="contact.html"><i class="bi bi-chevron-right me-1"></i>Contact</a></li>
+            <li><a href="privacy-policy.html"><i class="bi bi-chevron-right me-1"></i>Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html"><i class="bi bi-chevron-right me-1"></i>Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-6 col-lg-2 footer-col">
+          <div class="footer-heading">Game Info</div>
+          <ul class="footer-links">
+            <li><a href="#features"><i class="bi bi-chevron-right me-1"></i>Features</a></li>
+            <li><a href="#how-to-play"><i class="bi bi-chevron-right me-1"></i>How to Play</a></li>
+            <li><a href="#rules"><i class="bi bi-chevron-right me-1"></i>Game Rules</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=rkm.villagecross"><i class="bi bi-chevron-right me-1"></i>Google Play</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 footer-col">
+          <div class="footer-heading">Developer Info</div>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Maharashtra Nagar, Mankhurd,<br />Mumbai – 400088, Maharashtra, India</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <span>mohdr.mogia@ril.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-building"></i>
+            <span>IndianAI – Google Play Console Account</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <span>&copy; <span class="footer-year">2026</span> VillageCross – IndianAI. All rights reserved.</span>
+        <span>Designed &amp; Developed by <a href="about.html" style="color:var(--primary-color);">Mohd Rijvan Khan Mogia</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTop" aria-label="Scroll to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

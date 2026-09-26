@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <title>Paintora - Create. Paint. Express. | Digital Art &amp; Painting App</title>
+  <meta name="description" content="Paintora is your ultimate digital painting and craft app. Express yourself with professional brush tools, a rich color palette, layered canvas, and powerful creative tools. Available on Google Play." />
+  <meta name="keywords" content="Paintora, painting app, digital art, drawing app, brush tool, color palette, canvas app, creativity app, artwork, mobile painting, Android art app, IndianAI" />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://indianai.in/paintora/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Paintora - Create. Paint. Express." />
+  <meta property="og:description" content="Express yourself with professional painting and craft tools. Create beautiful artwork and share your creativity with the world." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://indianai.in/paintora/" />
+  <meta property="og:image" content="https://indianai.in/paintora/assets/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Paintora - Create. Paint. Express." />
+  <meta name="twitter:description" content="Express yourself with professional painting and craft tools. Create beautiful artwork." />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar navbar-paintora navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand-paintora" href="../index.html">
+        <div class="brand-icon"><i class="bi bi-palette"></i></div>
+        Paintora
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-4" style="color: var(--secondary-color);"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms-and-conditions.html">Terms</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn-primary-custom" href="https://play.google.com/store/apps/details?id=rkm.app.paintora&amp;pli=1" style="font-size: 0.88rem; padding: 10px 22px;">
+              <i class="bi bi-google-play"></i> Get App
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section class="hero-section">
+    <!-- Floating bg shapes -->
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="hero-shape hero-shape-3"></div>
+
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <!-- Left: Text Content -->
+        <div class="col-lg-6 hero-content">
+          <div class="hero-badge fade-in-up">
+            <i class="bi bi-palette"></i>
+            <span>Digital Art &amp; Creativity App</span>
+          </div>
+          <h1 class="hero-title fade-in-up delay-1">
+            Create. Paint.<br /><span class="highlight">Express.</span>
+          </h1>
+          <p class="hero-description fade-in-up delay-2">
+            Paintora puts a professional art studio in your hands. Paint with expressive brushes, mix colors freely, work in layers, and share your masterpieces with the world.
+          </p>
+          <div class="hero-buttons fade-in-up delay-3">
+            <a href="https://play.google.com/store/apps/details?id=rkm.app.paintora&amp;pli=1" class="btn-playstore">
+              <i class="bi bi-google-play store-icon"></i>
+              <div class="store-text">
+                <small>Get it on</small>
+                <span>Google Play</span>
+              </div>
+            </a>
+            <a href="about.html" class="btn-secondary-custom" style="color:#fff; border-color: rgba(255,255,255,0.5);">
+              <i class="bi bi-info-circle"></i> Learn More
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: CSS Art Visual -->
+        <div class="col-lg-6 hero-art">
+          <div class="palette-visual scale-in delay-2">
+            <div class="palette-bg">
+              <div class="palette-hole"></div>
+              <div class="color-blob blob-1"></div>
+              <div class="color-blob blob-2"></div>
+              <div class="color-blob blob-3"></div>
+              <div class="color-blob blob-4"></div>
+              <div class="color-blob blob-5"></div>
+              <div class="color-blob blob-6"></div>
+            </div>
+            <div class="brush-visual">
+              <div class="brush-handle"></div>
+              <div class="brush-ferrule"></div>
+              <div class="brush-bristles"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES SECTION
+       ============================================================ -->
+  <section class="features-section section-padding" id="features">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Everything You Need to <span class="text-gradient">Create</span></h2>
+        <p class="section-subtitle">Professional-grade tools designed for artists of all skill levels</p>
+      </div>
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="0">
+            <div class="feature-icon"><i class="bi bi-brush"></i></div>
+            <h4>Expressive Brush Tools</h4>
+            <p>Paint with pencil, pen, brush, eraser, and more. Each tool is fine-tuned for natural, expressive strokes that feel authentic.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="80">
+            <div class="feature-icon"><i class="bi bi-palette2"></i></div>
+            <h4>Unlimited Color Palette</h4>
+            <p>Choose from thousands of preset colors or mix your own custom shades. The advanced color wheel gives you complete control.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="160">
+            <div class="feature-icon"><i class="bi bi-layers"></i></div>
+            <h4>Multiple Layers</h4>
+            <p>Work non-destructively with a full layer system. Add, reorder, merge, and manage layers just like professional desktop software.</p>
+          </div>
+        </div>
+        <!-- Feature 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="240">
+            <div class="feature-icon"><i class="bi bi-camera"></i></div>
+            <h4>Save to Gallery</h4>
+            <p>Export your artwork in high resolution directly to your device gallery. Your masterpieces are always ready to share or print.</p>
+          </div>
+        </div>
+        <!-- Feature 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="320">
+            <div class="feature-icon"><i class="bi bi-share"></i></div>
+            <h4>Share Creations</h4>
+            <p>Share your artwork instantly to social media, messaging apps, or any platform. Inspire others with your creativity and talent.</p>
+          </div>
+        </div>
+        <!-- Feature 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card animate-card" data-delay="400">
+            <div class="feature-icon"><i class="bi bi-arrow-counterclockwise"></i></div>
+            <h4>Undo &amp; Redo</h4>
+            <p>Never worry about mistakes. Paintora's multi-step undo and redo lets you experiment freely and step back whenever you need.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CREATIVE TOOLS SHOWCASE
+       ============================================================ -->
+  <section class="tools-section section-padding">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <h2 class="section-title">A Full <span class="text-gradient">Artist's Toolkit</span></h2>
+          <p class="section-subtitle mb-4">Every tool you need, crafted to perfection. Paintora gives you the complete creative toolkit to bring your vision to life — from rough sketches to polished masterpieces.</p>
+          <ul style="list-style: none; padding: 0;">
+            <li class="d-flex align-items-center gap-3 mb-3">
+              <span style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 0.9rem;"><i class="bi bi-check2"></i></span>
+              <span style="color: var(--muted-color); font-size: 0.95rem;">Adjustable brush size &amp; opacity</span>
+            </li>
+            <li class="d-flex align-items-center gap-3 mb-3">
+              <span style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 0.9rem;"><i class="bi bi-check2"></i></span>
+              <span style="color: var(--muted-color); font-size: 0.95rem;">Custom canvas sizes for any project</span>
+            </li>
+            <li class="d-flex align-items-center gap-3 mb-3">
+              <span style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 0.9rem;"><i class="bi bi-check2"></i></span>
+              <span style="color: var(--muted-color); font-size: 0.95rem;">Smart fill bucket with color tolerance</span>
+            </li>
+            <li class="d-flex align-items-center gap-3 mb-3">
+              <span style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 0.9rem;"><i class="bi bi-check2"></i></span>
+              <span style="color: var(--muted-color); font-size: 0.95rem;">Text tool with font customisation</span>
+            </li>
+            <li class="d-flex align-items-center gap-3">
+              <span style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 0.9rem;"><i class="bi bi-check2"></i></span>
+              <span style="color: var(--muted-color); font-size: 0.95rem;">Shape tools: circles, rectangles &amp; more</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <div class="tool-grid">
+            <div class="tool-item">
+              <i class="bi bi-pencil tool-icon"></i>
+              <span class="tool-name">Pencil</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-pen tool-icon"></i>
+              <span class="tool-name">Pen</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-brush tool-icon"></i>
+              <span class="tool-name">Brush</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-eraser tool-icon"></i>
+              <span class="tool-name">Eraser</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-paint-bucket tool-icon"></i>
+              <span class="tool-name">Fill Bucket</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-fonts tool-icon"></i>
+              <span class="tool-name">Text Tool</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-eyedropper tool-icon"></i>
+              <span class="tool-name">Color Picker</span>
+            </div>
+            <div class="tool-item">
+              <i class="bi bi-shapes tool-icon"></i>
+              <span class="tool-name">Shapes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COLOR PALETTE DISPLAY
+       ============================================================ -->
+  <section class="palette-section section-padding">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">A World of <span class="text-gradient">Color</span></h2>
+        <p class="section-subtitle">Thousands of colors at your fingertips. Click a swatch to select it.</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="palette-container">
+            <!-- Active color preview -->
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <div id="activeColorDisplay" style="width: 48px; height: 48px; border-radius: 12px; background: #a855f7; box-shadow: var(--shadow-lg); border: 3px solid var(--border-color); transition: background 0.3s ease;"></div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--muted-color); font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Selected Color</div>
+                <div id="activeColorLabel" style="font-size: 0.95rem; font-weight: 600; color: var(--secondary-color);">Purple</div>
+              </div>
+            </div>
+
+            <!-- Warm Colors -->
+            <div class="palette-group">
+              <div class="palette-group-label">Warm Tones</div>
+              <div class="swatches-row">
+                <div class="swatch" style="background: #fef3c7;" data-color="#fef3c7" data-name="Cream" title="Cream"></div>
+                <div class="swatch" style="background: #fde68a;" data-color="#fde68a" data-name="Light Yellow" title="Light Yellow"></div>
+                <div class="swatch" style="background: #fbbf24;" data-color="#fbbf24" data-name="Amber" title="Amber"></div>
+                <div class="swatch" style="background: #f59e0b;" data-color="#f59e0b" data-name="Golden" title="Golden"></div>
+                <div class="swatch" style="background: #d97706;" data-color="#d97706" data-name="Dark Amber" title="Dark Amber"></div>
+                <div class="swatch" style="background: #fed7aa;" data-color="#fed7aa" data-name="Peach" title="Peach"></div>
+                <div class="swatch" style="background: #fb923c;" data-color="#fb923c" data-name="Orange" title="Orange"></div>
+                <div class="swatch" style="background: #ea580c;" data-color="#ea580c" data-name="Dark Orange" title="Dark Orange"></div>
+                <div class="swatch" style="background: #fecaca;" data-color="#fecaca" data-name="Light Red" title="Light Red"></div>
+                <div class="swatch" style="background: #f87171;" data-color="#f87171" data-name="Coral" title="Coral"></div>
+                <div class="swatch" style="background: #ef4444;" data-color="#ef4444" data-name="Red" title="Red"></div>
+                <div class="swatch" style="background: #b91c1c;" data-color="#b91c1c" data-name="Dark Red" title="Dark Red"></div>
+              </div>
+            </div>
+
+            <!-- Cool Colors -->
+            <div class="palette-group">
+              <div class="palette-group-label">Cool Tones</div>
+              <div class="swatches-row">
+                <div class="swatch" style="background: #e0f2fe;" data-color="#e0f2fe" data-name="Sky Blue Light" title="Sky Blue Light"></div>
+                <div class="swatch" style="background: #38bdf8;" data-color="#38bdf8" data-name="Sky Blue" title="Sky Blue"></div>
+                <div class="swatch" style="background: #0284c7;" data-color="#0284c7" data-name="Blue" title="Blue"></div>
+                <div class="swatch" style="background: #1e40af;" data-color="#1e40af" data-name="Dark Blue" title="Dark Blue"></div>
+                <div class="swatch" style="background: #d1fae5;" data-color="#d1fae5" data-name="Mint" title="Mint"></div>
+                <div class="swatch" style="background: #34d399;" data-color="#34d399" data-name="Emerald" title="Emerald"></div>
+                <div class="swatch" style="background: #10b981;" data-color="#10b981" data-name="Green" title="Green"></div>
+                <div class="swatch" style="background: #065f46;" data-color="#065f46" data-name="Dark Green" title="Dark Green"></div>
+                <div class="swatch" style="background: #a5f3fc;" data-color="#a5f3fc" data-name="Cyan Light" title="Cyan Light"></div>
+                <div class="swatch" style="background: #06b6d4;" data-color="#06b6d4" data-name="Cyan" title="Cyan"></div>
+                <div class="swatch" style="background: #0e7490;" data-color="#0e7490" data-name="Teal" title="Teal"></div>
+                <div class="swatch" style="background: #164e63;" data-color="#164e63" data-name="Dark Teal" title="Dark Teal"></div>
+              </div>
+            </div>
+
+            <!-- Pastels -->
+            <div class="palette-group">
+              <div class="palette-group-label">Soft Pastels</div>
+              <div class="swatches-row">
+                <div class="swatch" style="background: #fce7f3;" data-color="#fce7f3" data-name="Baby Pink" title="Baby Pink"></div>
+                <div class="swatch" style="background: #fbcfe8;" data-color="#fbcfe8" data-name="Blush" title="Blush"></div>
+                <div class="swatch" style="background: #f9a8d4;" data-color="#f9a8d4" data-name="Pastel Pink" title="Pastel Pink"></div>
+                <div class="swatch" style="background: #ede9fe;" data-color="#ede9fe" data-name="Lavender" title="Lavender"></div>
+                <div class="swatch" style="background: #ddd6fe;" data-color="#ddd6fe" data-name="Light Violet" title="Light Violet"></div>
+                <div class="swatch" style="background: #c4b5fd;" data-color="#c4b5fd" data-name="Pastel Purple" title="Pastel Purple"></div>
+                <div class="swatch" style="background: #cffafe;" data-color="#cffafe" data-name="Pastel Cyan" title="Pastel Cyan"></div>
+                <div class="swatch" style="background: #d1fae5;" data-color="#d1fae5" data-name="Pastel Mint" title="Pastel Mint"></div>
+                <div class="swatch" style="background: #fef9c3;" data-color="#fef9c3" data-name="Pastel Yellow" title="Pastel Yellow"></div>
+                <div class="swatch" style="background: #fee2e2;" data-color="#fee2e2" data-name="Pastel Red" title="Pastel Red"></div>
+                <div class="swatch" style="background: #ffedd5;" data-color="#ffedd5" data-name="Pastel Orange" title="Pastel Orange"></div>
+                <div class="swatch" style="background: #f0fdf4;" data-color="#f0fdf4" data-name="Pastel Green" title="Pastel Green"></div>
+              </div>
+            </div>
+
+            <!-- Vibrant -->
+            <div class="palette-group">
+              <div class="palette-group-label">Vibrant &amp; Bold</div>
+              <div class="swatches-row">
+                <div class="swatch active" style="background: #a855f7;" data-color="#a855f7" data-name="Purple" title="Purple"></div>
+                <div class="swatch" style="background: #ec4899;" data-color="#ec4899" data-name="Pink" title="Pink"></div>
+                <div class="swatch" style="background: #8b5cf6;" data-color="#8b5cf6" data-name="Violet" title="Violet"></div>
+                <div class="swatch" style="background: #6d28d9;" data-color="#6d28d9" data-name="Deep Purple" title="Deep Purple"></div>
+                <div class="swatch" style="background: #db2777;" data-color="#db2777" data-name="Hot Pink" title="Hot Pink"></div>
+                <div class="swatch" style="background: #e11d48;" data-color="#e11d48" data-name="Rose" title="Rose"></div>
+                <div class="swatch" style="background: #16a34a;" data-color="#16a34a" data-name="Vivid Green" title="Vivid Green"></div>
+                <div class="swatch" style="background: #2563eb;" data-color="#2563eb" data-name="Vivid Blue" title="Vivid Blue"></div>
+                <div class="swatch" style="background: #d97706;" data-color="#d97706" data-name="Vivid Amber" title="Vivid Amber"></div>
+                <div class="swatch" style="background: #000000;" data-color="#000000" data-name="Black" title="Black"></div>
+                <div class="swatch" style="background: #6b7280;" data-color="#6b7280" data-name="Grey" title="Grey"></div>
+                <div class="swatch" style="background: #ffffff; border: 2px solid var(--border-color);" data-color="#ffffff" data-name="White" title="White"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY PREVIEW
+       ============================================================ -->
+  <section class="gallery-section section-padding">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Artwork <span class="text-gradient">Gallery</span></h2>
+        <p class="section-subtitle">See what you can create with Paintora. From abstract art to vivid landscapes.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="gallery-card animate-card" data-delay="0">
+            <div class="gallery-canvas gallery-canvas-1">
+              <div class="gallery-canvas-icon"><i class="bi bi-palette"></i></div>
+            </div>
+            <div class="gallery-body">
+              <h5>Abstract Sunset</h5>
+              <p>Warm gradients &amp; layered brush strokes</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-card animate-card" data-delay="100">
+            <div class="gallery-canvas gallery-canvas-2">
+              <div class="gallery-canvas-icon"><i class="bi bi-stars"></i></div>
+            </div>
+            <div class="gallery-body">
+              <h5>Cosmic Dreams</h5>
+              <p>Deep space art with vibrant nebula colors</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-card animate-card" data-delay="200">
+            <div class="gallery-canvas gallery-canvas-3">
+              <div class="gallery-canvas-icon"><i class="bi bi-tree"></i></div>
+            </div>
+            <div class="gallery-body">
+              <h5>Tropical Vibes</h5>
+              <p>Lush greens &amp; golden tropical tones</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="https://play.google.com/store/apps/details?id=rkm.app.paintora&amp;pli=1" class="btn-primary-custom">
+          <i class="bi bi-google-play"></i> Download &amp; Start Creating
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA SECTION
+       ============================================================ -->
+  <section class="cta-section section-padding">
+    <div class="container">
+      <div class="cta-content text-center">
+        <h2 class="mb-3">Ready to Unleash Your <span style="color: #fbbf24;">Creativity?</span></h2>
+        <p class="mb-4 mx-auto" style="max-width: 520px;">Join thousands of artists who already use Paintora to create stunning digital artwork. Download free on Google Play today.</p>
+        <a href="https://play.google.com/store/apps/details?id=rkm.app.paintora&amp;pli=1" class="btn-playstore d-inline-flex mx-auto">
+          <i class="bi bi-google-play store-icon"></i>
+          <div class="store-text">
+            <small>Get it on</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer-paintora">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Brand -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <div class="footer-brand-icon"><i class="bi bi-palette"></i></div>
+            <span class="footer-brand-name">Paintora</span>
+          </div>
+          <p class="footer-description">Express yourself with professional painting and craft tools. Create beautiful artwork and share your creativity with the world. Available on Google Play.</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <span class="footer-badge"><i class="bi bi-star-fill" style="color: #fbbf24;"></i> Creativity App</span>
+            <span class="footer-badge"><i class="bi bi-google-play"></i> Google Play</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right"></i> About</a></li>
+            <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+            <li><a href="privacy-policy.html"><i class="bi bi-chevron-right"></i> Privacy Policy</a></li>
+            <li><a href="terms-and-conditions.html"><i class="bi bi-chevron-right"></i> Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Features -->
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-heading">App Features</h6>
+          <ul class="footer-links">
+            <li><a href="#features"><i class="bi bi-brush"></i> Brush Tools</a></li>
+            <li><a href="#features"><i class="bi bi-palette2"></i> Color Palette</a></li>
+            <li><a href="#features"><i class="bi bi-layers"></i> Layer Support</a></li>
+            <li><a href="#features"><i class="bi bi-paint-bucket"></i> Fill Bucket</a></li>
+            <li><a href="#features"><i class="bi bi-share"></i> Share Artwork</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-heading">Contact Info</h6>
+          <div class="footer-contact-item">
+            <i class="bi bi-person-circle"></i>
+            <span>Mohd Rijvan Khan Mogia</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone"></i>
+            <span>+91 88281 17342</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt"></i>
+            <span>Maharashtra Nagar, Mankhurd,<br />Mumbai - 400088,<br />Maharashtra, India</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-google-play"></i>
+            <span>IndianAI (Google Play Console)</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider" />
+
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="footer-copyright mb-0">
+            &copy; <span class="footer-year"></span> Paintora by IndianAI. All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="footer-badges">
+            <span class="footer-badge"><i class="bi bi-shield-check"></i> Privacy Protected</span>
+            <span class="footer-badge"><i class="bi bi-palette"></i> Creative App</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scrollToTop" title="Back to top" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

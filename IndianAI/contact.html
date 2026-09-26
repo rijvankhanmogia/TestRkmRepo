@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact IndianAI - Get in touch with us for support, feedback, or inquiries about our apps." />
+  <meta name="author" content="Mohd Rijvan Khan Mogia" />
+  <title>Contact Us - IndianAI</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+        IndianAI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list" style="font-size:1.5rem;"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="aboutus.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Contact</li>
+        </ol>
+      </nav>
+      <h1>Get in Touch</h1>
+      <p>Have a question, suggestion, or found a bug? We would love to hear from you.</p>
+    </div>
+  </div>
+
+  <!-- Contact Info Cards -->
+  <section style="background: var(--light-background);">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-person-fill"></i></div>
+            <h5 style="font-weight:700; margin-bottom:0.5rem;">Developer</h5>
+            <p style="color:var(--muted-color); margin-bottom:0.5rem; font-size:0.9375rem;">Mohd Rijvan Khan Mogia</p>
+            <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">IndianAI Platform</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+            <h5 style="font-weight:700; margin-bottom:0.5rem;">Phone</h5>
+            <p style="color:var(--muted-color); margin-bottom:0.5rem; font-size:0.9375rem;">+91 88281 17342</p>
+            <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Available on working days</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info-card">
+            <div class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <h5 style="font-weight:700; margin-bottom:0.5rem;">Address</h5>
+            <p style="color:var(--muted-color); margin-bottom:0.5rem; font-size:0.9375rem;">Maharashtra Nagar, Mankhurd</p>
+            <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Mumbai - 400088, Maharashtra, India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form & Info -->
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <div class="contact-form-wrapper">
+            <h3 style="font-weight:700; margin-bottom:0.5rem;">Send a Message</h3>
+            <p style="color:var(--muted-color); margin-bottom:2rem; font-size:0.9375rem;">Fill out the form below and we will get back to you as soon as possible.</p>
+
+            <!-- Success Alert -->
+            <div id="formSuccess" class="alert alert-success d-flex align-items-center gap-2" style="display:none !important;">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>Thank you! Your message has been received. We will get back to you soon.</span>
+            </div>
+
+            <form id="contactForm" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="name">Full Name *</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required />
+                  <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="email">Email Address *</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required />
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="subject">Subject</label>
+                  <select class="form-select" id="subject" name="subject">
+                    <option value="">Select a subject</option>
+                    <option>General Inquiry</option>
+                    <option>App Support - NewsExpress</option>
+                    <option>App Support - Paintora</option>
+                    <option>App Support - VillageCross</option>
+                    <option>App Support - IndianUtilityHub</option>
+                    <option>App Support - CrickAdda</option>
+                    <option>App Support - DocSnap</option>
+                    <option>App Support - InshortAI</option>
+                    <option>Bug Report</option>
+                    <option>Feature Request</option>
+                    <option>Business Inquiry</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="message">Message *</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Describe your query, feedback, or issue in detail..." required></textarea>
+                  <div class="invalid-feedback">Please enter your message (at least 10 characters).</div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-primary-custom">
+                    <i class="bi bi-send-fill"></i>
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div style="background:white; border-radius:var(--border-radius-xl); padding:2rem; border:1px solid var(--border-color); height:100%;">
+            <h4 style="font-weight:700; margin-bottom:1.5rem;">Developer Information</h4>
+
+            <div style="margin-bottom:1.5rem;">
+              <div style="display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:1rem;">
+                <i class="bi bi-person-circle" style="color:var(--primary-color); font-size:1.25rem; flex-shrink:0; margin-top:2px;"></i>
+                <div>
+                  <strong>Mohd Rijvan Khan Mogia</strong>
+                  <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Developer &amp; Founder, IndianAI</p>
+                </div>
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:1rem;">
+                <i class="bi bi-telephone-fill" style="color:var(--primary-color); font-size:1.25rem; flex-shrink:0; margin-top:2px;"></i>
+                <div>
+                  <strong>+91 88281 17342</strong>
+                  <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Phone / WhatsApp</p>
+                </div>
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:1rem;">
+                <i class="bi bi-geo-alt-fill" style="color:var(--primary-color); font-size:1.25rem; flex-shrink:0; margin-top:2px;"></i>
+                <div>
+                  <strong>Mumbai, Maharashtra</strong>
+                  <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Maharashtra Nagar, Mankhurd, Mumbai - 400088, Maharashtra, India</p>
+                </div>
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+                <i class="bi bi-google-play" style="color:var(--primary-color); font-size:1.25rem; flex-shrink:0; margin-top:2px;"></i>
+                <div>
+                  <strong>Google Play Console</strong>
+                  <p style="color:var(--muted-color); font-size:0.875rem; margin:0;">Published under IndianAI account</p>
+                </div>
+              </div>
+            </div>
+
+            <hr style="border-color:var(--border-color);" />
+
+            <h5 style="font-weight:700; margin-bottom:1rem;">Our Apps</h5>
+            <div class="row g-2">
+              <div class="col-6">
+                <a href="newsexpress/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-newspaper" style="color:#ef4444;"></i> NewsExpress
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="paintora/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-palette" style="color:#a855f7;"></i> Paintora
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="villagecross/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-grid-3x3-gap" style="color:#22c55e;"></i> VillageCross
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="indianutilityhub/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-tools" style="color:#0ea5e9;"></i> UtilityHub
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="crickAdda/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-trophy" style="color:#16a34a;"></i> CrickAdda
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="docsnap/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-file-pdf" style="color:#2563eb;"></i> DocSnap
+                </a>
+              </div>
+              <div class="col-12">
+                <a href="InshortAI/index.html" style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border-radius:8px; background:var(--light-background); text-decoration:none; color:var(--text-color); font-size:0.8125rem; font-weight:500;">
+                  <i class="bi bi-robot" style="color:#7c3aed;"></i> InshortAI
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="footer-brand">
+            <div class="footer-brand-icon"><i class="bi bi-cpu-fill"></i></div>
+            <span class="footer-brand-name">IndianAI</span>
+          </div>
+          <p class="footer-description">Building useful digital experiences for everyday India. 7 apps that solve real problems, free for all Indians.</p>
+          <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span>Maharashtra Nagar, Mankhurd, Mumbai - 400088, Maharashtra, India</span></div>
+          <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><span>+91 88281 17342</span></div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <h6 class="footer-heading">Company</h6>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+            <li><a href="aboutus.html"><i class="bi bi-chevron-right"></i> About Us</a></li>
+            <li><a href="services.html"><i class="bi bi-chevron-right"></i> Services</a></li>
+            <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-6">
+          <h6 class="footer-heading">Our Apps</h6>
+          <ul class="footer-links">
+            <li><a href="newsexpress/index.html"><i class="bi bi-newspaper"></i> NewsExpress</a></li>
+            <li><a href="paintora/index.html"><i class="bi bi-palette"></i> Paintora</a></li>
+            <li><a href="villagecross/index.html"><i class="bi bi-grid-3x3-gap"></i> VillageCross</a></li>
+            <li><a href="indianutilityhub/index.html"><i class="bi bi-tools"></i> IndianUtilityHub</a></li>
+            <li><a href="crickAdda/index.html"><i class="bi bi-trophy"></i> CrickAdda</a></li>
+            <li><a href="docsnap/index.html"><i class="bi bi-file-pdf"></i> DocSnap</a></li>
+            <li><a href="InshortAI/index.html"><i class="bi bi-robot"></i> InshortAI</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>&copy; <span class="footer-year"></span> IndianAI. All rights reserved. Developed by Mohd Rijvan Khan Mogia.</p>
+        <p>Made with <i class="bi bi-heart-fill" style="color:#ef4444;"></i> in Mumbai, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

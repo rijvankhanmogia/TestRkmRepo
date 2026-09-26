@@ -1,0 +1,433 @@
+/* ============================================================
+   NewsExpress - Responsive CSS (Mobile-First)
+   Developer: Mohd Rijvan Khan Mogia
+   ============================================================ */
+
+/* ---------- Extra Small: < 576px ---------- */
+@media (max-width: 575.98px) {
+  /* Base */
+  body {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar-brand .brand-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .navbar-collapse {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 14px !important;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .hero-description p {
+    font-size: 0.95rem;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat .stat-value {
+    font-size: 1.3rem;
+  }
+
+  .btn-play-store {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* App Mockup */
+  .app-mockup-wrapper {
+    margin-top: 40px;
+  }
+
+  .app-mockup {
+    width: 240px;
+    padding: 18px 16px;
+  }
+
+  .mockup-float {
+    display: none;
+  }
+
+  /* Features */
+  .feature-card {
+    padding: 24px 20px;
+  }
+
+  .feature-icon {
+    width: 54px;
+    height: 54px;
+    font-size: 1.4rem;
+  }
+
+  /* Categories */
+  .category-pill {
+    font-size: 0.85rem;
+    padding: 10px 18px;
+  }
+
+  /* News Cards */
+  .news-card-body {
+    padding: 14px 16px;
+  }
+
+  .news-headline {
+    font-size: 0.95rem;
+  }
+
+  /* Step Cards */
+  .step-connector {
+    display: none;
+  }
+
+  /* CTA */
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-section p {
+    font-size: 0.95rem;
+  }
+
+  /* Page Hero */
+  .page-hero {
+    padding: 100px 0 60px;
+  }
+
+  .page-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .page-hero p {
+    font-size: 0.95rem;
+  }
+
+  .page-hero-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+  }
+
+  /* Legal */
+  .legal-card {
+    padding: 24px 20px;
+  }
+
+  .legal-card h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Form */
+  .form-card {
+    padding: 24px 20px;
+  }
+
+  /* Developer Card */
+  .developer-card {
+    padding: 28px 22px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 50px 0 0;
+    text-align: center;
+  }
+
+  .footer-brand {
+    justify-content: center;
+  }
+
+  .footer-contact li {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .footer-links a {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  /* Scroll to top */
+  #scrollToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Small: 576px – 767.98px ---------- */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 110px;
+    padding-bottom: 60px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.2rem;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .btn-play-store {
+    padding: 13px 26px;
+  }
+
+  /* App Mockup */
+  .app-mockup-wrapper {
+    margin-top: 40px;
+  }
+
+  .mockup-float {
+    display: none;
+  }
+
+  /* Step connector hidden on small */
+  .step-connector {
+    display: none;
+  }
+
+  /* Navbar Collapse */
+  .navbar-collapse {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* Page Hero */
+  .page-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  /* Legal */
+  .legal-card {
+    padding: 32px 28px;
+  }
+
+  /* Footer */
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ---------- Medium: 768px – 991.98px ---------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  section {
+    padding: 70px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 110px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  /* App Mockup */
+  .app-mockup {
+    width: 255px;
+  }
+
+  .mockup-float-left {
+    left: -40px;
+  }
+
+  .mockup-float-right {
+    right: -40px;
+  }
+
+  /* Step connector hidden on md */
+  .step-connector {
+    display: none;
+  }
+
+  /* Navbar */
+  .navbar-collapse {
+    background: transparent;
+  }
+
+  /* Page Hero */
+  .page-hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* ---------- Large: 992px – 1199.98px ---------- */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .app-mockup {
+    width: 265px;
+  }
+
+  .mockup-float-left {
+    left: -50px;
+  }
+
+  .mockup-float-right {
+    right: -48px;
+  }
+}
+
+/* ---------- Extra Large: >= 1200px ---------- */
+@media (min-width: 1200px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .app-mockup {
+    width: 280px;
+  }
+}
+
+/* ---------- Touch / Hover override ---------- */
+@media (hover: none) {
+  .feature-card:hover,
+  .news-card:hover,
+  .contact-card:hover,
+  .category-pill:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+
+  .btn-play-store:hover {
+    transform: none;
+  }
+
+  .btn-submit:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .mockup-float {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .navbar,
+  .hero-section,
+  .cta-section,
+  .footer,
+  #scrollToTop {
+    display: none !important;
+  }
+
+  .legal-card,
+  .form-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+  }
+}

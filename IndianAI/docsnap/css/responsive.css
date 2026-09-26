@@ -1,0 +1,256 @@
+/* ============================================
+   DocSnap - Responsive CSS (Mobile-First)
+   Developer: Mohd Rijvan Khan Mogia
+   ============================================ */
+
+/* ============================================
+   Base (Mobile-first: < 480px)
+   ============================================ */
+.tool-grid {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.hero-section h1 {
+  font-size: 1.8rem;
+}
+
+.hero-section .lead {
+  font-size: 0.95rem;
+}
+
+.hero-app-icon {
+  width: 72px;
+  height: 72px;
+}
+
+.hero-app-icon i {
+  font-size: 2.2rem;
+}
+
+.hero-stats {
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+}
+
+.cta-section h2 {
+  font-size: 1.5rem;
+}
+
+.page-hero h1 {
+  font-size: 1.7rem;
+}
+
+.demo-card {
+  padding: 1.5rem;
+}
+
+.upload-area {
+  padding: 2rem 1rem;
+}
+
+.form-wrapper {
+  padding: 1.5rem;
+}
+
+.developer-card {
+  padding: 1.8rem 1.5rem;
+}
+
+.footer .col-md-4,
+.footer .col-md-2 {
+  margin-bottom: 2rem;
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+/* ============================================
+   Small Mobile (>= 480px)
+   ============================================ */
+@media (min-width: 480px) {
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   Tablet (>= 768px)
+   ============================================ */
+@media (min-width: 768px) {
+  .tool-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hero-section {
+    padding: 6rem 0 5rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1.05rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .page-hero h1 {
+    font-size: 2rem;
+  }
+
+  .page-hero {
+    padding: 5rem 0 3.5rem;
+  }
+
+  .demo-card {
+    padding: 2rem;
+  }
+
+  .form-wrapper {
+    padding: 2rem;
+  }
+
+  .developer-card {
+    padding: 2.2rem;
+  }
+
+  .footer-bottom {
+    text-align: left;
+  }
+}
+
+/* ============================================
+   Desktop (>= 992px)
+   ============================================ */
+@media (min-width: 992px) {
+  .tool-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.8rem;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+
+  .page-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .demo-card {
+    padding: 2.5rem;
+  }
+
+  .form-wrapper {
+    padding: 2.5rem;
+  }
+
+  .developer-card {
+    padding: 2.5rem;
+  }
+}
+
+/* ============================================
+   Large Desktop (>= 1200px)
+   ============================================ */
+@media (min-width: 1200px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+
+  .tool-grid {
+    gap: 1.1rem;
+  }
+}
+
+/* ============================================
+   Navbar Responsive
+   ============================================ */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 0.5rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.8rem !important;
+  }
+}
+
+/* ============================================
+   Touch device adjustments
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .tool-card:hover {
+    transform: none;
+  }
+
+  .feature-card:hover {
+    transform: none;
+  }
+
+  .btn-download:hover {
+    transform: none;
+  }
+
+  .btn-submit:hover {
+    transform: none;
+  }
+
+  .download-btn:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Print styles
+   ============================================ */
+@media print {
+  .navbar,
+  .hero-section .btn-download,
+  .cta-section,
+  #scrollToTop,
+  .footer {
+    display: none !important;
+  }
+
+  .legal-content {
+    padding: 1rem 0;
+  }
+
+  body {
+    font-size: 12pt;
+  }
+}

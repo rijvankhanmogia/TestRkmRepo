@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Main Website Pages
+Allow: /index.html
+Allow: /aboutus.html
+Allow: /contact.html
+Allow: /services.html
+
+# Product Pages
+Allow: /newsexpress/
+Allow: /paintora/
+Allow: /villagecross/
+Allow: /indianutilityhub/
+Allow: /crickAdda/
+Allow: /docsnap/
+Allow: /InshortAI/
+
+# Disallow template folder
+Disallow: /_product-template/
+
+# Sitemap
+Sitemap: https://indianai.in/sitemap.xml
