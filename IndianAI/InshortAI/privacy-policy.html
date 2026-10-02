@@ -70,12 +70,12 @@
 
           <div class="legal-last-updated">
             <i class="bi bi-calendar-check" style="color:var(--primary-color);"></i>
-            <strong>Last Updated:</strong> September 2026
+            <strong>Last Updated:</strong> October 2026
           </div>
 
           <div class="highlight-box">
             <i class="bi bi-info-circle-fill"></i>
-            <strong>Summary:</strong> InshortAI does not collect, store, or share your questions, answers, or personal information on our servers. Your questions are sent directly to the Google Gemini API, which is governed by Google's own privacy policy. Your question history is stored only on your device.
+            <strong>Summary:</strong> InshortAI uses Google Gemini AI to answer your questions — your queries are sent to Google. The app also uses Google AdMob for advertising, which collects the Android Advertising ID. An anonymous device identifier (Android ID) is used to manage app functionality via Firebase. Your question history is stored only on your device.
           </div>
 
           <!-- Section 1 -->
@@ -104,20 +104,37 @@
             <li><strong>Google Gemini API Key:</strong> If you provide an API key, it is stored locally on your device using Android's encrypted SharedPreferences. It is never transmitted to our servers.</li>
           </ul>
 
-          <h3>2.2 Automatically Collected Information</h3>
-          <p>We do <strong>not</strong> automatically collect:</p>
+          <h3>2.2 Automatically Collected — Device or Other IDs</h3>
+          <p>
+            InshortAI reads your device's <strong>Android ID</strong> (<code>Settings.Secure.ANDROID_ID</code>) to create an anonymous user identifier. This identifier is transmitted to and stored in <strong>Firebase Realtime Database</strong> (a Google service) for app functionality purposes such as managing usage credits or session data. This Android ID is:
+          </p>
           <ul>
-            <li>Device identifiers (IMEI, Android ID, etc.)</li>
-            <li>Location data</li>
-            <li>Usage analytics or crash reports (unless noted below)</li>
-            <li>Advertising identifiers</li>
+            <li><strong>Collected:</strong> Yes — read from your device automatically when the app starts.</li>
+            <li><strong>Shared:</strong> Yes — transmitted to Firebase Realtime Database (Google) as the user key.</li>
+            <li><strong>Purpose:</strong> App functionality (user identity / session management).</li>
+            <li><strong>Not linked to your name, email, or other personal identity.</strong></li>
           </ul>
           <p>
-            If a future version of the app integrates crash-reporting tools (e.g., Firebase Crashlytics),
-            this policy will be updated and users will be notified.
+            This data type is declared in our Google Play Data Safety declaration as: <em>"Device or other IDs — Collected and Shared — App functionality"</em>.
           </p>
 
-          <h3>2.3 Local Storage on Your Device</h3>
+          <h3>2.3 Automatically Collected — Advertising ID</h3>
+          <p>
+            InshortAI displays advertisements via <strong>Google AdMob</strong> (Google LLC). The AdMob SDK automatically collects your device's <strong>Android Advertising ID</strong> for ad personalisation and measurement. This Advertising ID is:
+          </p>
+          <ul>
+            <li><strong>Collected:</strong> Yes — automatically by the AdMob SDK.</li>
+            <li><strong>Shared:</strong> Yes — with Google's advertising network for ad targeting and measurement.</li>
+            <li><strong>Purpose:</strong> Advertising or marketing.</li>
+          </ul>
+          <p>
+            This data type is declared in our Google Play Data Safety declaration as: <em>"Device or other IDs — Advertising ID — Collected and Shared — Advertising or marketing"</em>.
+          </p>
+          <p>
+            You can opt out of personalised ads at any time: go to <strong>Android Settings → Google → Ads → Opt out of Ads Personalisation</strong>. You can also reset your Advertising ID from the same menu.
+          </p>
+
+          <h3>2.4 Local Storage on Your Device</h3>
           <p>
             InshortAI stores the following <strong>locally on your device only</strong>:
           </p>
@@ -184,14 +201,16 @@
           <!-- Section 5 -->
           <h2><i class="bi bi-shield-x"></i> 5. What We Do NOT Do</h2>
           <ul>
-            <li>We do <strong>not</strong> sell your personal data to any third party.</li>
-            <li>We do <strong>not</strong> display third-party advertisements in the app.</li>
+            <li>We do <strong>not</strong> sell your personal data to any third party for their independent use.</li>
             <li>We do <strong>not</strong> track your location.</li>
-            <li>We do <strong>not</strong> access your contacts, photos, files, or other device data.</li>
-            <li>We do <strong>not</strong> create user profiles or engage in behavioral tracking.</li>
-            <li>We do <strong>not</strong> store your questions or answers on our servers.</li>
-            <li>We do <strong>not</strong> generate images, videos, or documents. InshortAI is strictly a question-and-answer application that provides concise text responses of approximately 60 words. It does not provide image generation, video generation, or document creation functionality.</li>
+            <li>We do <strong>not</strong> access your contacts, photos, files, calendar, or other device data.</li>
+            <li>We do <strong>not</strong> create personal profiles beyond anonymous session management.</li>
+            <li>We do <strong>not</strong> store your questions or answers on our own servers.</li>
+            <li>We do <strong>not</strong> generate images, videos, or documents. InshortAI is strictly a question-and-answer application providing concise text responses of approximately 60 words.</li>
           </ul>
+          <p style="font-size:0.9rem;color:var(--muted-color);margin-top:0.5rem;">
+            <strong>Note:</strong> InshortAI does display advertisements via Google AdMob and does transmit an anonymous device identifier to Firebase. See Sections 2.2, 2.3, and 7 for full details.
+          </p>
 
           <!-- Section 6 -->
           <h2><i class="bi bi-child"></i> 6. Children's Privacy</h2>
@@ -206,13 +225,23 @@
           </p>
 
           <!-- Section 7 -->
-          <h2><i class="bi bi-link-45deg"></i> 7. Third-Party Links and Services</h2>
-          <p>
-            The app may display links to external websites or services (e.g., Google AI Studio for
-            obtaining an API key). These external sites have their own privacy policies, and we are
-            not responsible for their content or privacy practices. We encourage you to review the
-            privacy policy of any site you visit.
-          </p>
+          <h2><i class="bi bi-link-45deg"></i> 7. Third-Party Services</h2>
+          <p>InshortAI integrates the following third-party services. Each has its own privacy policy governing how they handle data:</p>
+
+          <h3>7.1 Google Gemini API</h3>
+          <p>Used to generate AI answers. Your question text is sent to Google's servers. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://ai.google.dev/terms" target="_blank" rel="noopener">Gemini API Terms</a>.</p>
+
+          <h3>7.2 Firebase Realtime Database (Google)</h3>
+          <p>Used for app functionality. The app transmits your device's Android ID to Firebase Realtime Database as an anonymous user key. Firebase is operated by Google LLC. Governed by <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy Policy</a>.</p>
+
+          <h3>7.3 Google AdMob</h3>
+          <p>Used to display advertisements within the app. AdMob collects your Android Advertising ID and may use it for ad personalisation and measurement. You can opt out of personalised ads in <strong>Android Settings → Google → Ads</strong>. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">AdMob policies</a>.</p>
+
+          <h3>7.4 Google Play Services</h3>
+          <p>Required for distributing and running the app on Android devices. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
+
+          <h3>7.5 External Links</h3>
+          <p>The app may display links to external websites (e.g., Google AI Studio). These external sites have their own privacy policies. We are not responsible for their content or privacy practices.</p>
 
           <!-- Section 8 -->
           <h2><i class="bi bi-lock-fill"></i> 8. Data Security</h2>
@@ -235,10 +264,12 @@
           <h2><i class="bi bi-person-check-fill"></i> 9. Your Rights and Choices</h2>
           <p>You have the following rights with respect to your data:</p>
           <ul>
-            <li><strong>Delete local data:</strong> You can clear your question history and app settings by clearing the app's data in your device's Application Manager, or by uninstalling the app.</li>
-            <li><strong>Revoke permissions:</strong> You can revoke microphone access at any time through your device settings.</li>
-            <li><strong>Remove API key:</strong> You can delete your stored Gemini API key from within the app's settings at any time.</li>
-            <li><strong>Google data:</strong> For questions about how Google handles data sent to the Gemini API, please contact Google or review their privacy policy directly.</li>
+            <li><strong>Delete local data:</strong> Clear your question history and app settings via <em>Android Settings → Apps → InshortAI → Clear Data</em>, or by uninstalling the app.</li>
+            <li><strong>Revoke microphone permission:</strong> Revoke at any time via <em>Android Settings → Apps → InshortAI → Permissions</em>. Text input continues to work normally.</li>
+            <li><strong>Remove API key:</strong> Delete your stored Gemini API key from within the app's settings at any time.</li>
+            <li><strong>Opt out of personalised ads:</strong> Go to <em>Android Settings → Google → Ads → Opt out of Ads Personalisation</em>. You can also reset your Advertising ID from the same screen.</li>
+            <li><strong>Firebase / Android ID:</strong> The Android ID is used as an anonymous identifier. You cannot change Android ID without a factory reset, but you can contact us to request deletion of your record from Firebase.</li>
+            <li><strong>Google Gemini data:</strong> For questions about how Google handles queries sent to the Gemini API, refer to Google's privacy policy or contact Google directly.</li>
           </ul>
 
           <!-- Section 10 -->
