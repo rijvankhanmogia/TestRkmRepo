@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Auction — CrickAdda</title>
+  <meta name="description" content="Watch the live cricket player auction on CrickAdda." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/tournament.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <span id="navTName" class="text-white fw-600 d-none d-md-inline" style="font-size:0.88rem;"></span>
+        <span id="auctionStatusBadge" class="status-badge status-not-started">...</span>
+        <a href="tournament-view.html?t=" id="viewTournBtn" class="btn btn-sm btn-outline-light">
+          <i class="bi bi-arrow-left me-1"></i>Tournament
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="padding-top:70px;min-height:100vh;background:#f0fdf4;">
+    <div id="errorView" class="container py-5 text-center" style="display:none;">
+      <i class="bi bi-exclamation-triangle text-danger" style="font-size:3rem;"></i>
+      <h3 class="mt-3 text-danger">Tournament Not Found</h3>
+      <a href="tournament.html" class="btn btn-success mt-2">Browse Tournaments</a>
+    </div>
+
+    <!-- NOT STARTED -->
+    <div id="notStartedView" class="container py-5 text-center" style="display:none;">
+      <i class="bi bi-clock" style="font-size:3rem;color:var(--primary-color);"></i>
+      <h3 class="mt-3" style="font-weight:700;color:var(--secondary-color);">Auction Not Started Yet</h3>
+      <p class="text-muted" id="nsTitle">The auction hasn't started. Come back on auction day!</p>
+      <div id="auctionCountdown" class="countdown-section mt-4" style="max-width:480px;margin:0 auto;display:none;">
+        <div class="countdown-label"><i class="bi bi-clock me-1"></i>Auction Starts In</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit"><span class="countdown-number" id="cdDays">00</span><div class="countdown-unit-label">Days</div></div>
+          <div class="countdown-unit"><span class="countdown-number" id="cdHours">00</span><div class="countdown-unit-label">Hours</div></div>
+          <div class="countdown-unit"><span class="countdown-number" id="cdMins">00</span><div class="countdown-unit-label">Mins</div></div>
+          <div class="countdown-unit"><span class="countdown-number" id="cdSecs">00</span><div class="countdown-unit-label">Secs</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENDED -->
+    <div id="endedView" class="container py-5 text-center" style="display:none;">
+      <i class="bi bi-trophy-fill" style="font-size:3rem;color:var(--accent-color);"></i>
+      <h3 class="mt-3" style="font-weight:700;color:var(--secondary-color);">Auction Completed!</h3>
+      <p class="text-muted">The player auction has ended. Check the tournament page for results.</p>
+      <a href="tournament-view.html?t=" id="endedViewLink" class="btn btn-success mt-2">View Tournament Results</a>
+    </div>
+
+    <!-- PAUSED -->
+    <div id="pausedOverlay" class="container py-3" style="display:none;">
+      <div class="auction-paused-overlay">
+        <h3><i class="bi bi-pause-circle-fill me-2"></i>Auction Paused</h3>
+        <p id="pauseReasonText">Taking a short break. Please wait.</p>
+      </div>
+    </div>
+
+    <!-- LIVE -->
+    <div id="liveView" class="container py-3" style="display:none;">
+      <div class="auction-page-layout mb-3">
+
+        <!-- Current Player Card -->
+        <div class="auction-current-player-card">
+          <div class="auction-player-header">
+            <div class="auction-player-photo" id="livePlayerPhoto">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <div>
+              <div class="auction-player-name" id="livePlayerName">—</div>
+              <div class="auction-player-meta" id="livePlayerMeta"></div>
+            </div>
+          </div>
+          <div class="auction-player-body">
+            <div class="auction-stat-row" id="livePlayerStats"></div>
+          </div>
+        </div>
+
+        <!-- Current Bid Card -->
+        <div class="auction-live-bid-card">
+          <div class="live-bid-label"><i class="bi bi-hammer me-1"></i>Current Bid</div>
+          <div class="live-bid-amount" id="liveBidAmount">₹0</div>
+          <div class="live-bid-team-name" id="liveBidTeam">No bids yet</div>
+          <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.2);">
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">Base Price</div>
+            <div style="font-size:1.2rem;font-weight:700;color:rgba(255,255,255,0.9);" id="liveBasePrice">₹0</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Teams & Bid History row -->
+      <div class="row g-3 mb-3">
+        <!-- Teams Purse Table -->
+        <div class="col-lg-7">
+          <div class="config-card" style="padding:1rem;">
+            <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:0.75rem;font-size:0.95rem;"><i class="bi bi-people-fill me-1"></i>Teams & Remaining Purse</h5>
+            <div class="table-responsive">
+              <table class="table table-sm mb-0" style="font-size:0.82rem;">
+                <thead>
+                  <tr style="background:var(--light-background);">
+                    <th style="font-weight:700;color:var(--secondary-color);">Team</th>
+                    <th style="font-weight:700;color:var(--secondary-color);">Players</th>
+                    <th style="font-weight:700;color:var(--secondary-color);">Purse Left</th>
+                  </tr>
+                </thead>
+                <tbody id="teamsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bid History -->
+        <div class="col-lg-5">
+          <div class="config-card" style="padding:1rem;max-height:350px;overflow-y:auto;">
+            <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:0.75rem;font-size:0.95rem;"><i class="bi bi-clock-history me-1"></i>Bid History</h5>
+            <ul class="bid-history-list" id="bidHistoryList">
+              <li class="bid-history-item text-muted" style="font-size:0.82rem;">No bids yet.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auction History -->
+      <div class="config-card" style="padding:1rem;">
+        <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:0.75rem;font-size:0.95rem;"><i class="bi bi-list-check me-1"></i>Auction Results</h5>
+        <div class="table-responsive">
+          <table class="table table-sm mb-0" style="font-size:0.82rem;">
+            <thead>
+              <tr style="background:var(--light-background);">
+                <th style="font-weight:700;color:var(--secondary-color);">Player</th>
+                <th style="font-weight:700;color:var(--secondary-color);">Cat</th>
+                <th style="font-weight:700;color:var(--secondary-color);">Base</th>
+                <th style="font-weight:700;color:var(--secondary-color);">Sold For</th>
+                <th style="font-weight:700;color:var(--secondary-color);">Team</th>
+                <th style="font-weight:700;color:var(--secondary-color);">Status</th>
+              </tr>
+            </thead>
+            <tbody id="auctionResultsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="footer-year"></span> CrickAdda. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toastContainer"></div>
+  <div id="loadingOverlay"><div class="spinner-border" role="status"></div><div class="loading-message" id="loadingMessage">Loading...</div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/tournament-firebase.js"></script>
+  <script src="js/tournament-utils.js"></script>
+  <script src="js/tournament-auth.js"></script>
+  <script>
+  (function () {
+    const U = window.TournamentUtils;
+    const F = window.TournamentFirebase;
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    const params = new URLSearchParams(window.location.search);
+    const tid = params.get('t');
+    let tData = null;
+    let countdownId = null;
+    let auctionUnsub = null;
+    let teamsUnsub = null;
+    let historyUnsub = null;
+    let prevBidState = null;
+    let bidLog = [];
+
+    if (!tid) { document.getElementById('errorView').style.display = 'block'; return; }
+
+    document.getElementById('viewTournBtn').href = 'tournament-view.html?t=' + tid;
+    document.getElementById('endedViewLink').href = 'tournament-view.html?t=' + tid;
+
+    async function init() {
+      U.showLoading('Loading auction...');
+      try {
+        tData = await F.get(tid);
+        if (!tData) { U.hideLoading(); document.getElementById('errorView').style.display = 'block'; return; }
+        document.getElementById('navTName').textContent = tData.name || '';
+        document.title = (tData.name || 'Auction') + ' — Live Auction — CrickAdda';
+        renderState(tData.auction || {});
+        U.hideLoading();
+        startListeners();
+      } catch (e) {
+        U.hideLoading();
+        document.getElementById('errorView').style.display = 'block';
+      }
+    }
+
+    function renderState(auction) {
+      const status = auction.status || 'NOT_STARTED';
+
+      // Update badge
+      const badge = document.getElementById('auctionStatusBadge');
+      const statusMap = { LIVE: ['status-live', 'LIVE'], NOT_STARTED: ['status-not-started', 'NOT STARTED'], PAUSED: ['status-paused', 'PAUSED'], ENDED: ['status-ended', 'ENDED'] };
+      const [cls, lbl] = statusMap[status] || ['status-not-started', status];
+      badge.className = 'status-badge ' + cls;
+      badge.textContent = lbl;
+
+      // Hide all views
+      ['notStartedView', 'liveView', 'endedView', 'pausedOverlay'].forEach(id => document.getElementById(id).style.display = 'none');
+
+      if (status === 'NOT_STARTED') {
+        document.getElementById('notStartedView').style.display = 'block';
+        document.getElementById('nsTitle').textContent = 'Auction on ' + U.formatDateTime(tData.auction ? tData.auction.date : '', tData.auction ? tData.auction.time : '');
+        if (tData.auction && tData.auction.date) {
+          document.getElementById('auctionCountdown').style.display = 'block';
+          if (countdownId) clearInterval(countdownId);
+          countdownId = U.countdown(tData.auction.date, tData.auction.time, function (t) {
+            document.getElementById('cdDays').textContent = String(t.days).padStart(2, '0');
+            document.getElementById('cdHours').textContent = String(t.hours).padStart(2, '0');
+            document.getElementById('cdMins').textContent = String(t.minutes).padStart(2, '0');
+            document.getElementById('cdSecs').textContent = String(t.seconds).padStart(2, '0');
+          });
+        }
+        return;
+      }
+
+      if (status === 'ENDED') {
+        document.getElementById('endedView').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('liveView').style.display = 'block';
+
+      if (status === 'PAUSED') {
+        document.getElementById('pausedOverlay').style.display = 'block';
+        document.getElementById('pauseReasonText').textContent = 'Reason: ' + (auction.pauseReason || 'Short Break') + '. Please wait.';
+      }
+
+      // Current player
+      const pid = auction.currentPlayerId;
+      if (pid && tData.playerList && tData.playerList[pid]) {
+        const p = tData.playerList[pid];
+        // Track bid changes
+        const bidKey = pid + '_' + (auction.currentBid || 0) + '_' + (auction.currentTeamId || '');
+        if (bidKey !== prevBidState) {
+          if (prevBidState !== null && auction.currentBid) {
+            const teamName = (auction.currentTeamId && tData.teams && tData.teams[auction.currentTeamId]) ? tData.teams[auction.currentTeamId].name : 'Unknown';
+            bidLog.unshift({ team: teamName, amount: auction.currentBid, time: new Date().toLocaleTimeString() });
+            if (bidLog.length > 20) bidLog.pop();
+          }
+          prevBidState = bidKey;
+        }
+        renderCurrentPlayer(p, auction);
+        renderBidHistory();
+      } else {
+        document.getElementById('livePlayerName').textContent = 'Selecting next player...';
+        document.getElementById('livePlayerMeta').innerHTML = '';
+        document.getElementById('livePlayerStats').innerHTML = '';
+        document.getElementById('liveBidAmount').textContent = '—';
+        document.getElementById('liveBidTeam').textContent = 'Waiting';
+        document.getElementById('liveBasePrice').textContent = '—';
+        document.getElementById('livePlayerPhoto').innerHTML = '<i class="bi bi-person-fill"></i>';
+        prevBidState = null;
+      }
+
+      // Teams
+      renderTeamsTable();
+
+      // Results
+      renderAuctionResults();
+    }
+
+    function renderCurrentPlayer(p, auction) {
+      if (p.photo) {
+        document.getElementById('livePlayerPhoto').innerHTML = '<img src="' + p.photo + '">';
+      } else {
+        document.getElementById('livePlayerPhoto').innerHTML = '<i class="bi bi-person-fill"></i>';
+      }
+      document.getElementById('livePlayerName').textContent = p.name || '—';
+
+      const catClass = { A: 'cat-a', B: 'cat-b', C: 'cat-c', D: 'cat-d' }[p.category] || '';
+      document.getElementById('livePlayerMeta').innerHTML = '<span class="cat-badge ' + catClass + '">' + (p.category || '') + '</span>'
+        + '<span>' + escHtml(p.role || '') + '</span>'
+        + '<span>' + escHtml(p.battingStyle || '') + '</span>'
+        + (p.wicketKeeper ? '<span><i class="bi bi-shield-fill me-1"></i>WK</span>' : '');
+
+      document.getElementById('livePlayerStats').innerHTML = ''
+        + statItem('Age', p.age || '—')
+        + statItem('Bowling', p.bowlingStyle || '—')
+        + statItem('Base Price', U.formatINR(p.basePrice));
+
+      document.getElementById('liveBasePrice').textContent = U.formatINR(p.basePrice);
+
+      const currentBid = auction.currentBid || p.basePrice || 0;
+      document.getElementById('liveBidAmount').textContent = U.formatINR(currentBid);
+
+      if (auction.currentTeamId && tData.teams && tData.teams[auction.currentTeamId]) {
+        document.getElementById('liveBidTeam').textContent = 'Highest: ' + tData.teams[auction.currentTeamId].name;
+      } else {
+        document.getElementById('liveBidTeam').textContent = 'No bids yet — Base: ' + U.formatINR(p.basePrice);
+      }
+    }
+
+    function statItem(label, value) {
+      return '<div class="auction-stat-item"><div class="astat-label">' + label + '</div><div class="astat-value" style="font-size:0.85rem;">' + escHtml(value) + '</div></div>';
+    }
+
+    function renderTeamsTable() {
+      const teams = tData.teams ? Object.values(tData.teams) : [];
+      const tbody = document.getElementById('teamsTable');
+      if (!teams.length) { tbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted">No teams</td></tr>'; return; }
+      const auction = tData.auction || {};
+      tbody.innerHTML = teams.map(t => {
+        const playerCount = t.players ? Object.keys(t.players).length : 0;
+        const isHighest = t.teamId === auction.currentTeamId;
+        return '<tr' + (isHighest ? ' style="background:var(--light-background);font-weight:700;"' : '') + '>'
+          + '<td>' + escHtml(t.name) + (isHighest ? ' <i class="bi bi-crown-fill text-warning" style="font-size:0.65rem;"></i>' : '') + '</td>'
+          + '<td>' + playerCount + '</td>'
+          + '<td style="color:var(--primary-color);font-weight:700;">' + U.formatINR(t.remainingPurse) + '</td>'
+          + '</tr>';
+      }).join('');
+    }
+
+    function renderBidHistory() {
+      const list = document.getElementById('bidHistoryList');
+      if (!bidLog.length) {
+        list.innerHTML = '<li class="bid-history-item text-muted" style="font-size:0.82rem;">No bids yet.</li>';
+        return;
+      }
+      list.innerHTML = bidLog.map(b => '<li class="bid-history-item">'
+        + '<div class="bid-dot"></div>'
+        + '<div class="bid-history-info">'
+        + '<span class="bid-history-team">' + escHtml(b.team) + '</span>'
+        + ' — <span class="bid-history-amount">' + U.formatINR(b.amount) + '</span>'
+        + '<div class="bid-history-time">' + escHtml(b.time) + '</div>'
+        + '</div></li>').join('');
+    }
+
+    function renderAuctionResults() {
+      const history = tData.auctionHistory ? Object.values(tData.auctionHistory) : [];
+      const tbody = document.getElementById('auctionResultsTable');
+      if (!history.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-2">No results yet.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = history.sort((a, b) => (b.soldAt || '').localeCompare(a.soldAt || '')).map(h => {
+        const catClass = { A: 'cat-a', B: 'cat-b', C: 'cat-c', D: 'cat-d' }[h.category] || '';
+        const statusClass = h.status === 'SOLD' ? 'status-sold' : 'status-unsold';
+        return '<tr>'
+          + '<td>' + escHtml(h.playerName || h.playerId) + '</td>'
+          + '<td><span class="cat-badge ' + catClass + '">' + (h.category || '—') + '</span></td>'
+          + '<td>' + U.formatINR(h.basePrice) + '</td>'
+          + '<td style="font-weight:600;color:var(--primary-color);">' + (h.soldPrice ? U.formatINR(h.soldPrice) : '—') + '</td>'
+          + '<td>' + escHtml(h.teamName || '—') + '</td>'
+          + '<td><span class="status-badge ' + statusClass + '">' + (h.status || '—') + '</span></td>'
+          + '</tr>';
+      }).join('');
+    }
+
+    function startListeners() {
+      auctionUnsub = F.listen(tid + '/auction', function (auction) {
+        if (auction && tData) {
+          tData.auction = auction;
+          renderState(auction);
+        }
+      });
+      teamsUnsub = F.listen(tid + '/teams', function (teams) {
+        if (teams && tData) {
+          tData.teams = teams;
+          renderTeamsTable();
+        }
+      });
+      historyUnsub = F.listen(tid + '/auctionHistory', function (history) {
+        if (tData) {
+          tData.auctionHistory = history || {};
+          renderAuctionResults();
+        }
+      });
+    }
+
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = String(str || '');
+      return d.innerHTML;
+    }
+
+    init();
+  })();
+  </script>
+</body>
+</html>

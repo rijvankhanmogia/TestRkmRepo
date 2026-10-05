@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — CrickAdda</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/tournament.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" style="z-index:300;">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <span id="navTName" class="text-white fw-600 d-none d-md-inline" style="font-size:0.88rem;"></span>
+        <span id="navTId" class="text-warning" style="font-size:0.8rem;font-family:monospace;"></span>
+        <a href="tournament-view.html?t=" id="viewPublicBtn" class="btn btn-sm btn-outline-light ms-2" target="_blank">
+          <i class="bi bi-eye me-1"></i>Public View
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ADMIN LAYOUT -->
+  <div class="admin-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="admin-sidebar-title">Tournament Admin</div>
+        <div class="admin-t-name" id="sidebarTName">Loading...</div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-nav-item active" data-tab="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</button>
+        <button class="sidebar-nav-item" data-tab="teams"><i class="bi bi-people-fill"></i> Teams</button>
+        <button class="sidebar-nav-item" data-tab="players"><i class="bi bi-person-lines-fill"></i> Players</button>
+        <button class="sidebar-nav-item" data-tab="auction"><i class="bi bi-hammer"></i> Auction</button>
+        <button class="sidebar-nav-item" data-tab="history"><i class="bi bi-clock-history"></i> Auction History</button>
+        <button class="sidebar-nav-item" data-tab="settings"><i class="bi bi-gear-fill"></i> Settings</button>
+        <button class="sidebar-nav-item" data-tab="share"><i class="bi bi-share-fill"></i> Share</button>
+        <button class="sidebar-nav-item logout-btn" id="logoutBtnSidebar"><i class="bi bi-box-arrow-right"></i> Logout</button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- DASHBOARD TAB -->
+      <div class="admin-tab-pane active" id="tab-dashboard">
+        <div class="admin-section-title"><i class="bi bi-speedometer2"></i> Dashboard</div>
+        <div id="dashBannerWrap" class="mb-3"></div>
+        <div class="row g-3 mb-4" id="dashStats">
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon green"><i class="bi bi-people-fill"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsTotalTeams">0</div><div class="stat-lbl">Total Teams</div></div></div></div>
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon blue"><i class="bi bi-person-fill"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsTotalPlayers">0</div><div class="stat-lbl">Players</div></div></div></div>
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon green"><i class="bi bi-circle-fill"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsAvailable">0</div><div class="stat-lbl">Available</div></div></div></div>
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon blue"><i class="bi bi-check-circle-fill"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsSold">0</div><div class="stat-lbl">Sold</div></div></div></div>
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon red"><i class="bi bi-x-circle-fill"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsUnsold">0</div><div class="stat-lbl">Unsold</div></div></div></div>
+          <div class="col-6 col-md-4 col-lg-2"><div class="dash-stat-card"><div class="dash-stat-icon teal"><i class="bi bi-currency-rupee"></i></div><div class="dash-stat-info"><div class="stat-val" id="dsPurseSpent" style="font-size:1rem;">₹0</div><div class="stat-lbl">Purse Spent</div></div></div></div>
+        </div>
+        <div class="config-card" id="dashTInfo">
+          <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:1rem;"><i class="bi bi-info-circle me-1"></i>Tournament Info</h5>
+          <div id="dashInfoContent"></div>
+        </div>
+      </div>
+
+      <!-- TEAMS TAB -->
+      <div class="admin-tab-pane" id="tab-teams">
+        <div class="admin-section-title"><i class="bi bi-people-fill"></i> Teams</div>
+        <div id="teamsTabContent">
+          <div class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div>Loading...</div>
+        </div>
+      </div>
+
+      <!-- PLAYERS TAB -->
+      <div class="admin-tab-pane" id="tab-players">
+        <div class="admin-section-title"><i class="bi bi-person-lines-fill"></i> Players</div>
+        <div class="filter-bar mb-3">
+          <div class="filter-search">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" id="playerSearch" placeholder="Search by name or contact..." oninput="filterPlayers()" />
+          </div>
+          <select class="form-select" id="filterCat" style="max-width:140px;" onchange="filterPlayers()">
+            <option value="">All Categories</option>
+            <option value="A">Category A</option>
+            <option value="B">Category B</option>
+            <option value="C">Category C</option>
+            <option value="D">Category D</option>
+          </select>
+          <select class="form-select" id="filterRole" style="max-width:160px;" onchange="filterPlayers()">
+            <option value="">All Roles</option>
+            <option value="Batsman">Batsman</option>
+            <option value="Bowler">Bowler</option>
+            <option value="All-Rounder">All-Rounder</option>
+            <option value="Wicket-Keeper">Wicket-Keeper</option>
+            <option value="Wicket-Keeper Batsman">WK Batsman</option>
+          </select>
+          <select class="form-select" id="filterStatus" style="max-width:140px;" onchange="filterPlayers()">
+            <option value="">All Status</option>
+            <option value="AVAILABLE">Available</option>
+            <option value="SOLD">Sold</option>
+            <option value="UNSOLD">Unsold</option>
+            <option value="IN_AUCTION">In Auction</option>
+          </select>
+        </div>
+        <div class="player-table">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Cat</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Sold Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="playersTableBody">
+                <tr><td colspan="8" class="text-center py-3 text-muted">Loading players...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUCTION TAB -->
+      <div class="admin-tab-pane" id="tab-auction">
+        <div class="admin-section-title"><i class="bi bi-hammer"></i> Auction Control</div>
+        <div id="auctionTabContent"></div>
+      </div>
+
+      <!-- HISTORY TAB -->
+      <div class="admin-tab-pane" id="tab-history">
+        <div class="admin-section-title"><i class="bi bi-clock-history"></i> Auction History</div>
+        <div class="ah-card">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr style="background:var(--light-background);">
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Player</th>
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Cat</th>
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Base Price</th>
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Sold Price</th>
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Team</th>
+                  <th style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);">Status</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr><td colspan="6" class="text-center py-3 text-muted">No auction history yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div class="admin-tab-pane" id="tab-settings">
+        <div class="admin-section-title"><i class="bi bi-gear-fill"></i> Settings</div>
+        <div class="config-card" style="max-width:600px;">
+          <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:1rem;">Edit Tournament Details</h5>
+          <div class="row g-3">
+            <div class="col-12"><label class="form-label">Tournament Name</label><input type="text" class="form-control" id="setName" /></div>
+            <div class="col-md-6"><label class="form-label">Start Date</label><input type="date" class="form-control" id="setStartDate" /></div>
+            <div class="col-md-6"><label class="form-label">End Date</label><input type="date" class="form-control" id="setEndDate" /></div>
+            <div class="col-md-6"><label class="form-label">Auction Date</label><input type="date" class="form-control" id="setAuctionDate" /></div>
+            <div class="col-md-6"><label class="form-label">Auction Time</label><input type="time" class="form-control" id="setAuctionTime" /></div>
+            <div class="col-md-6"><label class="form-label">Reg. Last Date</label><input type="date" class="form-control" id="setRegLast" /></div>
+            <div class="col-md-6"><label class="form-label">Max Purse (₹)</label><input type="number" class="form-control" id="setMaxPurse" min="1000" step="1000" /></div>
+            <div class="col-12">
+              <button class="btn btn-success" onclick="saveSettings()"><i class="bi bi-save me-1"></i> Save Settings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHARE TAB -->
+      <div class="admin-tab-pane" id="tab-share">
+        <div class="admin-section-title"><i class="bi bi-share-fill"></i> Share</div>
+        <div class="config-card" style="max-width:560px;">
+          <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:1rem;">Share Links</h5>
+          <div class="mb-4">
+            <p class="text-muted" style="font-size:0.88rem;font-weight:600;margin-bottom:0.5rem;">Tournament Public Page</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn-share-copy" id="copyViewLink"><i class="bi bi-link-45deg me-1"></i>Copy Link</button>
+              <a href="#" id="waViewLink" class="btn-share-wa" target="_blank"><i class="bi bi-whatsapp me-1"></i>Share on WhatsApp</a>
+            </div>
+          </div>
+          <div class="mb-4">
+            <p class="text-muted" style="font-size:0.88rem;font-weight:600;margin-bottom:0.5rem;">Player Registration</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn-share-copy" id="copyRegLink"><i class="bi bi-link-45deg me-1"></i>Copy Link</button>
+              <a href="#" id="waRegLink" class="btn-share-wa" target="_blank"><i class="bi bi-whatsapp me-1"></i>Share on WhatsApp</a>
+            </div>
+          </div>
+          <div>
+            <p class="text-muted" style="font-size:0.88rem;font-weight:600;margin-bottom:0.5rem;">Live Auction Page</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn-share-copy" id="copyAuctionLink"><i class="bi bi-link-45deg me-1"></i>Copy Link</button>
+              <a href="#" id="waAuctionLink" class="btn-share-wa" target="_blank"><i class="bi bi-whatsapp me-1"></i>Share on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="admin-mobile-nav">
+    <div class="admin-mobile-nav-inner">
+      <button class="mobile-nav-item active" data-tab="dashboard"><i class="bi bi-speedometer2"></i><span>Home</span></button>
+      <button class="mobile-nav-item" data-tab="teams"><i class="bi bi-people-fill"></i><span>Teams</span></button>
+      <button class="mobile-nav-item" data-tab="players"><i class="bi bi-person-fill"></i><span>Players</span></button>
+      <button class="mobile-nav-item" data-tab="auction"><i class="bi bi-hammer"></i><span>Auction</span></button>
+      <button class="mobile-nav-item" data-tab="history"><i class="bi bi-clock-history"></i><span>History</span></button>
+      <button class="mobile-nav-item" data-tab="settings"><i class="bi bi-gear-fill"></i><span>Settings</span></button>
+      <button class="mobile-nav-item" data-tab="share"><i class="bi bi-share-fill"></i><span>Share</span></button>
+      <button class="mobile-nav-item" id="logoutBtnMobile"><i class="bi bi-box-arrow-right"></i><span>Logout</span></button>
+    </div>
+  </div>
+
+  <!-- Edit Player Modal -->
+  <div class="modal fade" id="editPlayerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background:var(--light-background);">
+          <h5 class="modal-title fw-700"><i class="bi bi-pencil me-2"></i>Edit Player</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editPlayerId" />
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Category</label>
+              <select class="form-select" id="editCat">
+                <option value="A">A</option><option value="B">B</option>
+                <option value="C">C</option><option value="D">D</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Role</label>
+              <select class="form-select" id="editRole">
+                <option value="Batsman">Batsman</option>
+                <option value="Bowler">Bowler</option>
+                <option value="All-Rounder">All-Rounder</option>
+                <option value="Wicket-Keeper">Wicket-Keeper</option>
+                <option value="Wicket-Keeper Batsman">WK Batsman</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Batting Style</label>
+              <select class="form-select" id="editBatStyle">
+                <option value="Right Hand">Right Hand</option>
+                <option value="Left Hand">Left Hand</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Bowling Style</label>
+              <select class="form-select" id="editBowlStyle">
+                <option value="Right Arm Fast">Right Arm Fast</option>
+                <option value="Right Arm Medium Fast">Right Arm Medium Fast</option>
+                <option value="Right Arm Medium">Right Arm Medium</option>
+                <option value="Right Arm Off Spin">Right Arm Off Spin</option>
+                <option value="Left Arm Fast">Left Arm Fast</option>
+                <option value="Left Arm Medium">Left Arm Medium</option>
+                <option value="Left Arm Spin (Orthodox)">Left Arm Spin</option>
+                <option value="Left Arm Wrist Spin (Chinaman)">Left Arm Wrist Spin</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="editWK" />
+                <label class="form-check-label">Wicket Keeper</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Replace Photo (optional)</label>
+              <input type="file" class="form-control" id="editPhoto" accept="image/*" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" onclick="savePlayerEdit()"><i class="bi bi-save me-1"></i>Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause Modal -->
+  <div class="modal fade" id="pauseModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background:rgba(251,191,36,0.1);">
+          <h5 class="modal-title fw-700"><i class="bi bi-pause-circle me-2 text-warning"></i>Pause Auction</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label">Reason for Pause</label>
+          <select class="form-select" id="pauseReason">
+            <option value="Tea Break">Tea Break</option>
+            <option value="Lunch Break">Lunch Break</option>
+            <option value="Technical Issue">Technical Issue</option>
+            <option value="Prayer Break">Prayer Break</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" class="form-control mt-2" id="pauseReasonCustom" placeholder="Custom reason (if Other)" style="display:none;" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-warning" onclick="confirmPause()"><i class="bi bi-pause-fill me-1"></i>Pause Auction</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+  <div id="loadingOverlay"><div class="spinner-border" role="status"></div><div class="loading-message" id="loadingMessage">Loading...</div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/tournament-firebase.js"></script>
+  <script src="js/tournament-utils.js"></script>
+  <script src="js/tournament-auth.js"></script>
+  <script>
+  (function () {
+    const U = window.TournamentUtils;
+    const F = window.TournamentFirebase;
+
+    const params = new URLSearchParams(window.location.search);
+    const tid = params.get('t');
+
+    if (!tid) { window.location.href = 'tournament.html?view=login'; return; }
+    if (!TournamentAuth.requireAdminAuth(tid)) return;
+
+    let tData = null;
+    let allPlayers = {};
+    let auctionUnsub = null;
+    let editPhotoBase64 = null;
+    let opLock = false;
+
+    // Nav tabs
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        if (this.id === 'logoutBtnSidebar' || this.id === 'logoutBtnMobile') { doLogout(); return; }
+        switchTab(this.dataset.tab);
+      });
+    });
+
+    document.getElementById('logoutBtnSidebar').addEventListener('click', doLogout);
+    document.getElementById('logoutBtnMobile').addEventListener('click', doLogout);
+
+    document.getElementById('pauseReason').addEventListener('change', function () {
+      document.getElementById('pauseReasonCustom').style.display = this.value === 'Other' ? 'block' : 'none';
+    });
+
+    document.getElementById('editPhoto').addEventListener('change', async function (e) {
+      if (!e.target.files[0]) return;
+      editPhotoBase64 = await U.compressImageToLimit(e.target.files[0], 80, 300, 300);
+    });
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.admin-tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-tab="' + tabName + '"]').forEach(b => b.classList.add('active'));
+      document.getElementById('tab-' + tabName).classList.add('active');
+      if (tabName === 'players') renderPlayersTable();
+      if (tabName === 'teams') renderTeamsTab();
+      if (tabName === 'auction') renderAuctionTab();
+      if (tabName === 'history') renderHistoryTab();
+    }
+
+    function doLogout() {
+      U.showConfirm('Are you sure you want to logout?', () => {
+        U.clearAdminSession();
+        window.location.href = 'tournament.html?view=login';
+      });
+    }
+
+    async function init() {
+      U.showLoading('Loading admin dashboard...');
+      try {
+        tData = await F.get(tid);
+        if (!tData) { U.hideLoading(); window.location.href = 'tournament.html?view=login'; return; }
+
+        // Verify stored session hash matches
+        const session = U.getAdminSession();
+        if (session && tData.auth && session.passwordHash !== tData.auth.passwordHash) {
+          U.clearAdminSession();
+          window.location.href = 'tournament.html?view=login';
+          return;
+        }
+
+        allPlayers = tData.playerList || {};
+        renderDashboard();
+        setupShareLinks();
+        populateSettings();
+        setupPublicViewBtn();
+
+        U.hideLoading();
+
+        // Start real-time listener
+        auctionUnsub = F.listen(tid + '/auction', function (aData) {
+          if (aData && tData) {
+            tData.auction = aData;
+            if (document.getElementById('tab-auction').classList.contains('active')) renderAuctionTab();
+          }
+        });
+
+        // Poll full data every 10s for player/team updates
+        setInterval(async () => {
+          try {
+            const fresh = await F.get(tid);
+            if (fresh) {
+              tData = fresh;
+              allPlayers = fresh.playerList || {};
+              updateDashStats();
+              if (document.getElementById('tab-players').classList.contains('active')) renderPlayersTable();
+              if (document.getElementById('tab-teams').classList.contains('active')) renderTeamsTab();
+            }
+          } catch (e) {}
+        }, 10000);
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to load tournament data.', 'error');
+      }
+    }
+
+    function setupPublicViewBtn() {
+      document.getElementById('viewPublicBtn').href = 'tournament-view.html?t=' + tid;
+      document.getElementById('navTName').textContent = tData.name || '';
+      document.getElementById('navTId').textContent = '(' + tid + ')';
+      document.getElementById('sidebarTName').textContent = tData.name || tid;
+    }
+
+    function renderDashboard() {
+      if (tData.banner) {
+        document.getElementById('dashBannerWrap').innerHTML = '<img src="' + tData.banner + '" style="width:100%;max-height:200px;object-fit:cover;border-radius:var(--border-radius);margin-bottom:1rem;">';
+      }
+      updateDashStats();
+      document.getElementById('dashInfoContent').innerHTML = ''
+        + reviewRow('Tournament ID', tid)
+        + reviewRow('Tournament Dates', U.formatDate(tData.startDate) + ' to ' + U.formatDate(tData.endDate))
+        + reviewRow('Auction', U.formatDateTime(tData.auction ? tData.auction.date : '', tData.auction ? tData.auction.time : ''))
+        + reviewRow('Reg. Last Date', U.formatDate(tData.playerRegistrationLastDate))
+        + reviewRow('Max Purse', U.formatINR(tData.maxPurseAmountForTeam))
+        + reviewRow('Total Teams', tData.totalTeams);
+    }
+
+    function updateDashStats() {
+      const players = Object.values(allPlayers);
+      const teams = tData.teams ? Object.values(tData.teams) : [];
+      const sold = players.filter(p => p.status === 'SOLD');
+      const totalSpent = sold.reduce((s, p) => s + (p.soldPrice || 0), 0);
+      document.getElementById('dsTotalTeams').textContent = tData.totalTeams || 0;
+      document.getElementById('dsTotalPlayers').textContent = players.length;
+      document.getElementById('dsAvailable').textContent = players.filter(p => p.status === 'AVAILABLE').length;
+      document.getElementById('dsSold').textContent = sold.length;
+      document.getElementById('dsUnsold').textContent = players.filter(p => p.status === 'UNSOLD').length;
+      document.getElementById('dsPurseSpent').textContent = U.formatINR(totalSpent);
+    }
+
+    function reviewRow(label, value) {
+      return '<div class="review-row"><span class="review-label">' + label + '</span><span class="review-value">' + escHtml(value) + '</span></div>';
+    }
+
+    // ---- PLAYERS TAB ----
+    function renderPlayersTable() {
+      const search = (document.getElementById('playerSearch').value || '').toLowerCase();
+      const catF = document.getElementById('filterCat').value;
+      const roleF = document.getElementById('filterRole').value;
+      const statusF = document.getElementById('filterStatus').value;
+
+      let players = Object.entries(allPlayers).map(([id, p]) => ({ id, ...p }));
+      if (search) players = players.filter(p => (p.name || '').toLowerCase().includes(search) || (p.contact || '').includes(search));
+      if (catF) players = players.filter(p => p.category === catF);
+      if (roleF) players = players.filter(p => p.role === roleF);
+      if (statusF) players = players.filter(p => p.status === statusF);
+
+      const tbody = document.getElementById('playersTableBody');
+      if (!players.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-muted">No players found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = players.map(p => {
+        const statusClass = { AVAILABLE: 'status-available', SOLD: 'status-sold', UNSOLD: 'status-unsold', IN_AUCTION: 'status-in-auction' }[p.status] || 'status-not-started';
+        const catClass = { A: 'cat-a', B: 'cat-b', C: 'cat-c', D: 'cat-d' }[p.category] || '';
+        const photoHtml = p.photo
+          ? '<img src="' + p.photo + '" class="player-photo-thumb">'
+          : '<div class="player-photo-placeholder"><i class="bi bi-person-fill"></i></div>';
+        const teamName = (p.team && tData.teams && tData.teams[p.team]) ? tData.teams[p.team].name : '';
+        return '<tr>'
+          + '<td>' + photoHtml + '</td>'
+          + '<td><div style="font-weight:600;font-size:0.88rem;">' + escHtml(p.name) + '</div><div style="font-size:0.75rem;color:var(--muted-color);">' + escHtml(p.contact || p.id) + '</div></td>'
+          + '<td style="font-size:0.85rem;">' + (p.age || '—') + '</td>'
+          + '<td><span class="cat-badge ' + catClass + '">' + (p.category || '—') + '</span></td>'
+          + '<td style="font-size:0.82rem;">' + escHtml(p.role || '—') + '</td>'
+          + '<td><span class="status-badge ' + statusClass + '">' + (p.status || '—') + '</span>'
+          + (teamName ? '<div style="font-size:0.72rem;color:var(--muted-color);margin-top:3px;">' + escHtml(teamName) + '</div>' : '') + '</td>'
+          + '<td style="font-size:0.85rem;font-weight:600;color:var(--primary-color);">' + (p.soldPrice ? U.formatINR(p.soldPrice) : '—') + '</td>'
+          + '<td><div class="d-flex gap-1">'
+          + '<button class="btn btn-sm btn-outline-primary" onclick="openEditPlayer(\'' + p.id + '\')" title="Edit"><i class="bi bi-pencil"></i></button>'
+          + '<button class="btn btn-sm btn-outline-danger" onclick="deletePlayer(\'' + p.id + '\')" title="Delete"><i class="bi bi-trash"></i></button>'
+          + '</div></td>'
+          + '</tr>';
+      }).join('');
+    }
+
+    window.filterPlayers = function () { renderPlayersTable(); };
+
+    window.openEditPlayer = function (playerId) {
+      const p = allPlayers[playerId];
+      if (!p) return;
+      document.getElementById('editPlayerId').value = playerId;
+      document.getElementById('editCat').value = p.category || 'A';
+      document.getElementById('editRole').value = p.role || 'Batsman';
+      document.getElementById('editBatStyle').value = p.battingStyle || 'Right Hand';
+      document.getElementById('editBowlStyle').value = p.bowlingStyle || 'Right Arm Medium';
+      document.getElementById('editWK').checked = !!p.wicketKeeper;
+      document.getElementById('editPhoto').value = '';
+      editPhotoBase64 = null;
+      new bootstrap.Modal(document.getElementById('editPlayerModal')).show();
+    };
+
+    window.savePlayerEdit = async function () {
+      const playerId = document.getElementById('editPlayerId').value;
+      const updates = {
+        category: document.getElementById('editCat').value,
+        role: document.getElementById('editRole').value,
+        battingStyle: document.getElementById('editBatStyle').value,
+        bowlingStyle: document.getElementById('editBowlStyle').value,
+        wicketKeeper: document.getElementById('editWK').checked,
+        basePrice: U.getPlayerBasePriceByCategory(document.getElementById('editCat').value)
+      };
+      if (editPhotoBase64) updates.photo = editPhotoBase64;
+      U.showLoading('Saving changes...');
+      try {
+        await F.patch(tid + '/playerList/' + playerId, updates);
+        allPlayers[playerId] = { ...allPlayers[playerId], ...updates };
+        bootstrap.Modal.getInstance(document.getElementById('editPlayerModal')).hide();
+        renderPlayersTable();
+        U.hideLoading();
+        U.showToast('Player updated.', 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to save changes.', 'error');
+      }
+    };
+
+    window.deletePlayer = function (playerId) {
+      const p = allPlayers[playerId];
+      U.showConfirm('Delete player "' + (p ? p.name : playerId) + '"? This cannot be undone.', async () => {
+        U.showLoading('Deleting player...');
+        try {
+          await F.delete(tid + '/playerList/' + playerId);
+          delete allPlayers[playerId];
+          renderPlayersTable();
+          updateDashStats();
+          U.hideLoading();
+          U.showToast('Player deleted.', 'success');
+        } catch (e) {
+          U.hideLoading();
+          U.showToast('Failed to delete player.', 'error');
+        }
+      });
+    };
+
+    // ---- TEAMS TAB ----
+    function renderTeamsTab() {
+      const teams = tData.teams ? Object.values(tData.teams) : [];
+      const container = document.getElementById('teamsTabContent');
+      if (!teams.length) {
+        container.innerHTML = '<div class="empty-state"><i class="bi bi-people"></i><h5>No teams</h5></div>';
+        return;
+      }
+      container.innerHTML = '<div class="row g-3">' + teams.map(t => {
+        const playerCount = t.players ? Object.keys(t.players).length : 0;
+        const logoHtml = t.logo
+          ? '<img src="' + t.logo + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">'
+          : '<i class="bi bi-people-fill"></i>';
+        const teamPlayers = t.players ? Object.keys(t.players).map(pid => allPlayers[pid]).filter(Boolean) : [];
+        const playersHtml = teamPlayers.length ? '<div class="mt-2 pt-2" style="border-top:1px solid var(--border-color);">'
+          + teamPlayers.map(p => '<span class="me-2" style="font-size:0.78rem;"><i class="bi bi-person me-1"></i>' + escHtml(p.name) + ' <span style="color:var(--primary-color);">(' + U.formatINR(p.soldPrice) + ')</span></span>').join('')
+          + '</div>' : '';
+        return '<div class="col-sm-6 col-lg-4"><div class="team-card">'
+          + '<div class="team-card-header"><div class="team-logo">' + logoHtml + '</div>'
+          + '<div><p class="team-card-name">' + escHtml(t.name) + '</p>'
+          + '<div style="font-size:0.72rem;color:rgba(255,255,255,0.7);">Captain: ' + escHtml(t.captainName || '—') + '</div></div></div>'
+          + '<div class="team-card-body">'
+          + '<div class="team-info-row"><span class="team-info-label">Remaining Purse</span><span class="team-info-value purse-remaining">' + U.formatINR(t.remainingPurse) + '</span></div>'
+          + '<div class="team-info-row"><span class="team-info-label">Players Bought</span><span class="team-info-value">' + playerCount + '</span></div>'
+          + '<div class="team-info-row"><span class="team-info-label">Owner</span><span class="team-info-value" style="font-size:0.78rem;">' + escHtml(t.ownerName || '—') + '</span></div>'
+          + '<div class="team-info-row"><span class="team-info-label">Sponsor</span><span class="team-info-value" style="font-size:0.78rem;">' + escHtml(t.sponsorName || '—') + '</span></div>'
+          + playersHtml
+          + '</div></div></div>';
+      }).join('') + '</div>';
+    }
+
+    // ---- AUCTION TAB ----
+    function renderAuctionTab() {
+      const auction = tData.auction || {};
+      const status = auction.status || 'NOT_STARTED';
+      const container = document.getElementById('auctionTabContent');
+
+      if (status === 'NOT_STARTED') {
+        container.innerHTML = '<div class="text-center py-4">'
+          + '<div class="status-badge status-not-started mb-3" style="font-size:0.9rem;padding:0.5rem 1.2rem;">NOT STARTED</div>'
+          + '<h4 style="font-weight:700;color:var(--secondary-color);">Ready to Start Auction?</h4>'
+          + '<p class="text-muted">Make sure all players are registered before starting.</p>'
+          + '<button class="btn btn-success btn-lg px-4 mt-2" onclick="startAuction()"><i class="bi bi-play-fill me-1"></i> Start Auction</button>'
+          + '</div>';
+        return;
+      }
+
+      if (status === 'ENDED') {
+        const history = tData.auctionHistory ? Object.values(tData.auctionHistory) : [];
+        const sold = history.filter(h => h.status === 'SOLD').length;
+        const unsold = history.filter(h => h.status === 'UNSOLD').length;
+        container.innerHTML = '<div class="text-center py-4">'
+          + '<div class="status-badge status-ended mb-3" style="font-size:0.9rem;padding:0.5rem 1.2rem;">AUCTION ENDED</div>'
+          + '<h4 style="font-weight:700;">Auction Completed</h4>'
+          + '<p class="text-muted">' + sold + ' sold, ' + unsold + ' unsold.</p>'
+          + '<a href="tournament-auction.html?t=' + tid + '" class="btn btn-outline-success mt-2" target="_blank">View Public Page</a>'
+          + '</div>';
+        return;
+      }
+
+      if (status === 'PAUSED') {
+        const reason = auction.pauseReason || 'Paused';
+        container.innerHTML = '<div class="auction-paused-overlay mb-3">'
+          + '<h3><i class="bi bi-pause-circle-fill me-2"></i>Auction Paused</h3>'
+          + '<p>Reason: <strong>' + escHtml(reason) + '</strong></p>'
+          + '<button class="btn btn-success mt-2" onclick="resumeAuction()"><i class="bi bi-play-fill me-1"></i> Resume Auction</button>'
+          + '</div>'
+          + auctionLiveLayout(auction, true);
+        return;
+      }
+
+      // LIVE
+      container.innerHTML = auctionLiveLayout(auction, false);
+    }
+
+    function auctionLiveLayout(auction, paused) {
+      const currentPlayerId = auction.currentPlayerId;
+      const teams = tData.teams ? Object.values(tData.teams) : [];
+
+      if (!currentPlayerId) {
+        // No current player - show selection UI
+        const availablePlayers = Object.entries(allPlayers)
+          .filter(([, p]) => p.status === 'AVAILABLE')
+          .map(([id, p]) => ({ id, ...p }));
+        const catCounts = { A: 0, B: 0, C: 0, D: 0 };
+        availablePlayers.forEach(p => { if (catCounts[p.category] !== undefined) catCounts[p.category]++; });
+        const playerOptions = availablePlayers.map(p => '<option value="' + p.id + '">' + escHtml(p.name) + ' (' + p.category + ') — ' + U.formatINR(p.basePrice) + '</option>').join('');
+
+        return '<div class="player-select-panel">'
+          + '<h5><i class="bi bi-person-plus me-1"></i>Select Next Player for Auction</h5>'
+          + '<p class="text-muted" style="font-size:0.85rem;">Available: ' + availablePlayers.length + ' players</p>'
+          + '<div class="d-flex gap-2 flex-wrap mb-3">'
+          + '<button class="btn btn-success" onclick="selectRandomPlayer()"><i class="bi bi-shuffle me-1"></i>Random Player</button>'
+          + '</div>'
+          + '<div class="mb-3">'
+          + '<label class="form-label" style="font-size:0.85rem;font-weight:600;">Manual Select</label>'
+          + '<div class="d-flex gap-2">'
+          + '<select class="form-select" id="manualPlayerSelect">' + playerOptions + '</select>'
+          + '<button class="btn btn-outline-success" onclick="selectManualPlayer()">Select</button>'
+          + '</div></div>'
+          + '<div class="category-btns">'
+          + '<span style="font-size:0.82rem;font-weight:600;color:var(--muted-color);align-self:center;">By Category:</span>'
+          + '<button class="btn-cat-select cat-a-btn" onclick="selectByCategory(\'A\')" ' + (catCounts.A === 0 ? 'disabled' : '') + '>Cat A (' + catCounts.A + ')</button>'
+          + '<button class="btn-cat-select cat-b-btn" onclick="selectByCategory(\'B\')" ' + (catCounts.B === 0 ? 'disabled' : '') + '>Cat B (' + catCounts.B + ')</button>'
+          + '<button class="btn-cat-select cat-c-btn" onclick="selectByCategory(\'C\')" ' + (catCounts.C === 0 ? 'disabled' : '') + '>Cat C (' + catCounts.C + ')</button>'
+          + '<button class="btn-cat-select cat-d-btn" onclick="selectByCategory(\'D\')" ' + (catCounts.D === 0 ? 'disabled' : '') + '>Cat D (' + catCounts.D + ')</button>'
+          + '</div>'
+          + (!paused ? '<div class="mt-3 pt-3" style="border-top:1px solid var(--border-color);"><button class="btn btn-outline-danger btn-sm" onclick="endAuction()"><i class="bi bi-stop-fill me-1"></i>End Auction</button></div>' : '')
+          + '</div>';
+      }
+
+      // Player IN_AUCTION
+      const player = allPlayers[currentPlayerId] || {};
+      const currentBid = auction.currentBid || player.basePrice || 0;
+      const currentTeamId = auction.currentTeamId;
+      const currentTeamName = (currentTeamId && tData.teams && tData.teams[currentTeamId]) ? tData.teams[currentTeamId].name : '—';
+      const nextBid = currentBid + 500;
+
+      const catClass = { A: 'cat-a', B: 'cat-b', C: 'cat-c', D: 'cat-d' }[player.category] || '';
+      const photoHtml = player.photo
+        ? '<img src="' + player.photo + '">'
+        : '<i class="bi bi-person-fill"></i>';
+
+      const teamsHtml = teams.map(t => {
+        const canAfford = t.remainingPurse >= nextBid;
+        const isHighest = t.teamId === currentTeamId;
+        return '<div class="team-bid-row' + (isHighest ? ' highest-bidder' : '') + ((!canAfford) ? ' cant-afford' : '') + '">'
+          + '<div class="team-bid-name">' + escHtml(t.name) + (isHighest ? ' <i class="bi bi-crown-fill text-warning" style="font-size:0.7rem;"></i>' : '') + '</div>'
+          + '<div class="team-bid-purse">' + U.formatINR(t.remainingPurse) + '</div>'
+          + '<button class="btn-bid" onclick="placeBid(\'' + t.teamId + '\')" ' + ((!canAfford || paused) ? 'disabled' : '') + '>+₹500</button>'
+          + '</div>';
+      }).join('');
+
+      return '<div class="auction-layout">'
+        + '<div class="auction-player-panel">'
+        + '<div class="auction-player-header">'
+        + '<div class="auction-player-photo">' + photoHtml + '</div>'
+        + '<div>'
+        + '<div class="auction-player-name">' + escHtml(player.name || '—') + '</div>'
+        + '<div class="auction-player-meta">'
+        + '<span class="cat-badge ' + catClass + '">' + (player.category || '') + '</span>'
+        + '<span>' + escHtml(player.role || '') + '</span>'
+        + '<span>' + escHtml(player.battingStyle || '') + '</span>'
+        + '</div>'
+        + '</div></div>'
+        + '<div class="auction-player-body">'
+        + '<div class="auction-stat-row">'
+        + '<div class="auction-stat-item"><div class="astat-label">Age</div><div class="astat-value">' + (player.age || '—') + '</div></div>'
+        + '<div class="auction-stat-item"><div class="astat-label">Bowling</div><div class="astat-value" style="font-size:0.82rem;">' + escHtml(player.bowlingStyle || '—') + '</div></div>'
+        + '<div class="auction-stat-item"><div class="astat-label">Base Price</div><div class="astat-value">' + U.formatINR(player.basePrice) + '</div></div>'
+        + '<div class="auction-stat-item"><div class="astat-label">WK</div><div class="astat-value">' + (player.wicketKeeper ? 'Yes' : 'No') + '</div></div>'
+        + '</div></div></div>'
+
+        + '<div class="auction-bid-panel">'
+        + '<div class="bid-panel-header"><h4><i class="bi bi-hammer me-1"></i>Live Bidding</h4></div>'
+        + '<div class="current-bid-display">'
+        + '<div class="current-bid-label">Current Bid</div>'
+        + '<div class="current-bid-amount">' + U.formatINR(currentBid) + '</div>'
+        + '<div class="current-bid-team">Highest: <strong>' + escHtml(currentTeamName) + '</strong></div>'
+        + '</div>'
+        + '<div class="teams-bid-grid">' + teamsHtml + '</div>'
+        + '<div class="auction-actions">'
+        + '<button class="btn-sell" onclick="sellPlayer()" ' + (!currentTeamId || paused ? 'disabled' : '') + '><i class="bi bi-hammer me-1"></i>Sell to ' + escHtml(currentTeamName) + '</button>'
+        + '<button class="btn-unsold" onclick="markUnsold()" ' + (paused ? 'disabled' : '') + '><i class="bi bi-x-lg me-1"></i>Mark UNSOLD</button>'
+        + (!paused ? '<button class="btn-pause-auction" onclick="showPauseModal()"><i class="bi bi-pause-fill me-1"></i>Pause Auction</button>'
+          : '<button class="btn btn-success" onclick="resumeAuction()"><i class="bi bi-play-fill me-1"></i>Resume</button>')
+        + '</div></div></div>';
+    }
+
+    // ---- AUCTION ACTIONS ----
+    window.startAuction = function () {
+      U.showConfirm('Start the auction? Make sure all teams are ready.', async () => {
+        U.showLoading('Starting auction...');
+        try {
+          await F.patch(tid + '/auction', { status: 'LIVE', startedAt: new Date().toISOString() });
+          tData.auction.status = 'LIVE';
+          tData.auction.startedAt = new Date().toISOString();
+          renderAuctionTab();
+          U.hideLoading();
+          U.showToast('Auction started!', 'success');
+        } catch (e) { U.hideLoading(); U.showToast('Failed to start auction.', 'error'); }
+      });
+    };
+
+    window.selectRandomPlayer = function () {
+      const available = Object.entries(allPlayers).filter(([, p]) => p.status === 'AVAILABLE');
+      if (!available.length) { U.showToast('No available players.', 'warning'); return; }
+      const [pid] = available[Math.floor(Math.random() * available.length)];
+      putPlayerInAuction(pid);
+    };
+
+    window.selectManualPlayer = function () {
+      const pid = document.getElementById('manualPlayerSelect').value;
+      if (!pid) { U.showToast('Please select a player.', 'warning'); return; }
+      putPlayerInAuction(pid);
+    };
+
+    window.selectByCategory = function (cat) {
+      const available = Object.entries(allPlayers).filter(([, p]) => p.status === 'AVAILABLE' && p.category === cat);
+      if (!available.length) { U.showToast('No available players in category ' + cat + '.', 'warning'); return; }
+      const [pid] = available[Math.floor(Math.random() * available.length)];
+      putPlayerInAuction(pid);
+    };
+
+    async function putPlayerInAuction(pid) {
+      if (opLock) return;
+      opLock = true;
+      U.showLoading('Loading player...');
+      try {
+        const player = allPlayers[pid];
+        await F.patch(tid + '/auction', {
+          currentPlayerId: pid,
+          currentBid: player.basePrice || 500,
+          currentTeamId: null
+        });
+        await F.patch(tid + '/playerList/' + pid, { status: 'IN_AUCTION' });
+        allPlayers[pid] = { ...allPlayers[pid], status: 'IN_AUCTION' };
+        tData.auction.currentPlayerId = pid;
+        tData.auction.currentBid = player.basePrice || 500;
+        tData.auction.currentTeamId = null;
+        renderAuctionTab();
+        U.hideLoading();
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to select player.', 'error');
+      }
+      opLock = false;
+    }
+
+    window.placeBid = async function (teamId) {
+      if (opLock) return;
+      const auction = tData.auction || {};
+      const currentBid = auction.currentBid || 0;
+      const nextBid = currentBid + 500;
+      const team = tData.teams && tData.teams[teamId];
+      if (!team || team.remainingPurse < nextBid) { U.showToast('Team cannot afford this bid.', 'warning'); return; }
+      opLock = true;
+      try {
+        await F.patch(tid + '/auction', { currentBid: nextBid, currentTeamId: teamId });
+        tData.auction.currentBid = nextBid;
+        tData.auction.currentTeamId = teamId;
+        renderAuctionTab();
+      } catch (e) {
+        U.showToast('Failed to place bid.', 'error');
+      }
+      opLock = false;
+    };
+
+    window.sellPlayer = function () {
+      if (opLock) return;
+      const auction = tData.auction || {};
+      const pid = auction.currentPlayerId;
+      const teamId = auction.currentTeamId;
+      if (!pid || !teamId) { U.showToast('No player or team selected.', 'warning'); return; }
+      const team = tData.teams && tData.teams[teamId];
+      const player = allPlayers[pid];
+      const soldPrice = auction.currentBid || player.basePrice;
+      U.showConfirm('Sell ' + (player ? player.name : pid) + ' to ' + (team ? team.name : teamId) + ' for ' + U.formatINR(soldPrice) + '?', async () => {
+        opLock = true;
+        U.showLoading('Processing sale...');
+        try {
+          const newPurse = (team.remainingPurse || 0) - soldPrice;
+          const ahId = 'AH_' + Date.now();
+          // Step 1: mark player SOLD
+          await F.patch(tid + '/playerList/' + pid, { status: 'SOLD', team: teamId, soldPrice });
+          // Step 2: update team purse and players
+          await F.patch(tid + '/teams/' + teamId, {
+            remainingPurse: newPurse,
+            ['players/' + pid]: { soldPrice }
+          });
+          // Step 3: clear auction state
+          await F.patch(tid + '/auction', {
+            currentPlayerId: null, currentBid: null, currentTeamId: null
+          });
+          // Step 4: add to history
+          await F.patch(tid + '/auctionHistory/' + ahId, {
+            playerId: pid, playerName: player ? player.name : pid,
+            category: player ? player.category : '',
+            basePrice: player ? player.basePrice : 0,
+            soldPrice, teamId, teamName: team ? team.name : teamId,
+            status: 'SOLD', soldAt: new Date().toISOString()
+          });
+          // Step 5: update updatedAt
+          await F.patch(tid, { updatedAt: new Date().toISOString() });
+
+          // Local update
+          allPlayers[pid] = { ...allPlayers[pid], status: 'SOLD', team: teamId, soldPrice };
+          if (tData.teams[teamId]) {
+            tData.teams[teamId].remainingPurse = newPurse;
+            if (!tData.teams[teamId].players) tData.teams[teamId].players = {};
+            tData.teams[teamId].players[pid] = { soldPrice };
+          }
+          tData.auction.currentPlayerId = null;
+          tData.auction.currentBid = null;
+          tData.auction.currentTeamId = null;
+          if (!tData.auctionHistory) tData.auctionHistory = {};
+          tData.auctionHistory[ahId] = { playerId: pid, playerName: player ? player.name : pid, category: player ? player.category : '', basePrice: player ? player.basePrice : 0, soldPrice, teamId, teamName: team ? team.name : teamId, status: 'SOLD' };
+
+          renderAuctionTab();
+          updateDashStats();
+          U.hideLoading();
+          U.showToast('Player sold to ' + (team ? team.name : teamId) + '!', 'success');
+        } catch (e) {
+          U.hideLoading();
+          U.showToast('Sale failed. Please check connection.', 'error');
+        }
+        opLock = false;
+      });
+    };
+
+    window.markUnsold = function () {
+      if (opLock) return;
+      const auction = tData.auction || {};
+      const pid = auction.currentPlayerId;
+      if (!pid) { U.showToast('No player in auction.', 'warning'); return; }
+      const player = allPlayers[pid];
+      U.showConfirm('Mark ' + (player ? player.name : pid) + ' as UNSOLD?', async () => {
+        opLock = true;
+        U.showLoading('Processing...');
+        try {
+          const ahId = 'AH_' + Date.now();
+          await F.patch(tid + '/playerList/' + pid, { status: 'UNSOLD' });
+          await F.patch(tid + '/auction', { currentPlayerId: null, currentBid: null, currentTeamId: null });
+          await F.patch(tid + '/auctionHistory/' + ahId, {
+            playerId: pid, playerName: player ? player.name : pid,
+            category: player ? player.category : '', basePrice: player ? player.basePrice : 0,
+            soldPrice: null, teamId: null, teamName: null, status: 'UNSOLD', soldAt: new Date().toISOString()
+          });
+          allPlayers[pid] = { ...allPlayers[pid], status: 'UNSOLD' };
+          tData.auction.currentPlayerId = null;
+          tData.auction.currentBid = null;
+          tData.auction.currentTeamId = null;
+          renderAuctionTab();
+          updateDashStats();
+          U.hideLoading();
+          U.showToast('Player marked as UNSOLD.', 'info');
+        } catch (e) {
+          U.hideLoading();
+          U.showToast('Failed to mark unsold.', 'error');
+        }
+        opLock = false;
+      });
+    };
+
+    window.showPauseModal = function () {
+      new bootstrap.Modal(document.getElementById('pauseModal')).show();
+    };
+
+    window.confirmPause = async function () {
+      let reason = document.getElementById('pauseReason').value;
+      if (reason === 'Other') reason = document.getElementById('pauseReasonCustom').value || 'Paused';
+      bootstrap.Modal.getInstance(document.getElementById('pauseModal')).hide();
+      U.showLoading('Pausing auction...');
+      try {
+        await F.patch(tid + '/auction', { status: 'PAUSED', paused: true, pauseReason: reason });
+        tData.auction.status = 'PAUSED';
+        tData.auction.paused = true;
+        tData.auction.pauseReason = reason;
+        renderAuctionTab();
+        U.hideLoading();
+        U.showToast('Auction paused: ' + reason, 'warning');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to pause.', 'error');
+      }
+    };
+
+    window.resumeAuction = async function () {
+      U.showLoading('Resuming auction...');
+      try {
+        await F.patch(tid + '/auction', { status: 'LIVE', paused: false, pauseReason: null });
+        tData.auction.status = 'LIVE';
+        tData.auction.paused = false;
+        tData.auction.pauseReason = null;
+        renderAuctionTab();
+        U.hideLoading();
+        U.showToast('Auction resumed!', 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to resume.', 'error');
+      }
+    };
+
+    window.endAuction = function () {
+      U.showConfirm('End the auction? This cannot be undone.', async () => {
+        U.showLoading('Ending auction...');
+        try {
+          await F.patch(tid + '/auction', { status: 'ENDED', endedAt: new Date().toISOString() });
+          tData.auction.status = 'ENDED';
+          renderAuctionTab();
+          U.hideLoading();
+          U.showToast('Auction ended.', 'info');
+        } catch (e) {
+          U.hideLoading();
+          U.showToast('Failed to end auction.', 'error');
+        }
+      });
+    };
+
+    // ---- HISTORY TAB ----
+    function renderHistoryTab() {
+      const history = tData.auctionHistory ? Object.values(tData.auctionHistory) : [];
+      const tbody = document.getElementById('historyTableBody');
+      if (!history.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No auction history yet.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = history.sort((a, b) => (b.soldAt || '').localeCompare(a.soldAt || '')).map(h => {
+        const catClass = { A: 'cat-a', B: 'cat-b', C: 'cat-c', D: 'cat-d' }[h.category] || '';
+        const statusClass = h.status === 'SOLD' ? 'status-sold' : 'status-unsold';
+        return '<tr>'
+          + '<td style="font-weight:600;font-size:0.85rem;">' + escHtml(h.playerName || h.playerId) + '</td>'
+          + '<td><span class="cat-badge ' + catClass + '">' + (h.category || '—') + '</span></td>'
+          + '<td style="font-size:0.85rem;">' + U.formatINR(h.basePrice) + '</td>'
+          + '<td style="font-size:0.85rem;font-weight:600;color:var(--primary-color);">' + (h.soldPrice ? U.formatINR(h.soldPrice) : '—') + '</td>'
+          + '<td style="font-size:0.82rem;">' + escHtml(h.teamName || '—') + '</td>'
+          + '<td><span class="status-badge ' + statusClass + '">' + (h.status || '—') + '</span></td>'
+          + '</tr>';
+      }).join('');
+    }
+
+    // ---- SETTINGS ----
+    function populateSettings() {
+      document.getElementById('setName').value = tData.name || '';
+      document.getElementById('setStartDate').value = tData.startDate || '';
+      document.getElementById('setEndDate').value = tData.endDate || '';
+      document.getElementById('setAuctionDate').value = tData.auction ? tData.auction.date : '';
+      document.getElementById('setAuctionTime').value = tData.auction ? tData.auction.time : '';
+      document.getElementById('setRegLast').value = tData.playerRegistrationLastDate || '';
+      document.getElementById('setMaxPurse').value = tData.maxPurseAmountForTeam || 100000;
+    }
+
+    window.saveSettings = async function () {
+      U.showLoading('Saving settings...');
+      try {
+        const updates = {
+          name: document.getElementById('setName').value.trim(),
+          startDate: document.getElementById('setStartDate').value,
+          endDate: document.getElementById('setEndDate').value,
+          playerRegistrationLastDate: document.getElementById('setRegLast').value,
+          maxPurseAmountForTeam: parseInt(document.getElementById('setMaxPurse').value, 10),
+          updatedAt: new Date().toISOString()
+        };
+        const aDate = document.getElementById('setAuctionDate').value;
+        const aTime = document.getElementById('setAuctionTime').value;
+        await F.patch(tid, updates);
+        await F.patch(tid + '/auction', { date: aDate, time: aTime });
+        Object.assign(tData, updates);
+        tData.auction.date = aDate;
+        tData.auction.time = aTime;
+        renderDashboard();
+        U.hideLoading();
+        U.showToast('Settings saved!', 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to save settings.', 'error');
+      }
+    };
+
+    // ---- SHARE ----
+    function setupShareLinks() {
+      const base = window.location.origin + window.location.pathname.replace('tournament-admin.html', '');
+      const viewUrl = base + 'tournament-view.html?t=' + tid;
+      const regUrl = base + 'tournament-register.html?t=' + tid;
+      const auctionUrl = base + 'tournament-auction.html?t=' + tid;
+      const tName = tData.name || 'CrickAdda Tournament';
+
+      setupShareBtn('copyViewLink', 'waViewLink', viewUrl, tName + ' - View Tournament');
+      setupShareBtn('copyRegLink', 'waRegLink', regUrl, tName + ' - Register as Player');
+      setupShareBtn('copyAuctionLink', 'waAuctionLink', auctionUrl, tName + ' - Live Auction');
+    }
+
+    function setupShareBtn(copyId, waId, url, msg) {
+      document.getElementById(copyId).onclick = function () {
+        navigator.clipboard.writeText(url).then(() => {
+          this.innerHTML = '<i class="bi bi-check2 me-1"></i>Copied!';
+          this.classList.add('copied');
+          setTimeout(() => { this.innerHTML = '<i class="bi bi-link-45deg me-1"></i>Copy Link'; this.classList.remove('copied'); }, 2000);
+        });
+      };
+      document.getElementById(waId).href = 'https://wa.me/?text=' + encodeURIComponent(msg + '\n' + url);
+    }
+
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = String(str || '');
+      return d.innerHTML;
+    }
+
+    init();
+  })();
+  </script>
+</body>
+</html>

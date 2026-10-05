@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin — CrickAdda</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/tournament.css" />
+</head>
+<body style="background:#f0f2f5;">
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <div class="ms-auto d-flex gap-2 align-items-center">
+        <span class="text-white" style="font-size:0.85rem;opacity:0.8;" id="superAdminLabel" style="display:none;">Super Admin</span>
+        <a href="tournament.html" class="btn btn-sm btn-outline-light">Tournament Hub</a>
+        <button id="logoutSuperBtn" class="btn btn-sm btn-outline-danger" style="display:none;" onclick="logoutSuper()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="super-admin-wrapper">
+
+    <!-- LOGIN VIEW -->
+    <div id="loginView">
+      <div class="super-admin-header">
+        <div class="container">
+          <h2><i class="bi bi-person-badge-fill me-2"></i>Super Admin Panel</h2>
+          <p style="margin:0;font-size:0.88rem;color:rgba(255,255,255,0.8);">Platform-level management for CrickAdda Tournament system</p>
+        </div>
+      </div>
+      <div class="container py-5">
+        <div class="login-card" style="max-width:420px;border-top:4px solid #6366f1;">
+          <div class="login-header">
+            <div class="login-icon" style="background:rgba(99,102,241,0.1);color:#6366f1;border-color:rgba(99,102,241,0.3);">
+              <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <h3 style="font-weight:700;">Super Admin Login</h3>
+            <p style="font-size:0.85rem;color:var(--muted-color);">First-time login sets the password. Subsequent logins verify it.</p>
+          </div>
+          <div id="loginError" class="alert alert-danger py-2" style="display:none;font-size:0.85rem;"></div>
+          <div class="mb-4">
+            <label class="form-label">Super Admin Password</label>
+            <div class="position-relative">
+              <input type="password" class="form-control" id="superPassInput" placeholder="Enter password" />
+              <button type="button" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted-color);cursor:pointer;" onclick="toggleSuperPass()">
+                <i class="bi bi-eye" id="superPassEye"></i>
+              </button>
+            </div>
+          </div>
+          <button class="btn btn-primary w-100 py-2 fw-700" onclick="doSuperLogin()" style="font-weight:700;background:#6366f1;border-color:#6366f1;">
+            <i class="bi bi-shield-lock me-1"></i>Login as Super Admin
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD VIEW -->
+    <div id="adminView" style="display:none;">
+      <div class="super-admin-header">
+        <div class="container">
+          <h2><i class="bi bi-person-badge-fill me-2"></i>Super Admin Dashboard</h2>
+        </div>
+      </div>
+
+      <div class="container py-4">
+        <!-- Tab Nav -->
+        <ul class="nav nav-tabs mb-4" id="superTabs">
+          <li class="nav-item"><button class="nav-link active" data-stab="tournaments" onclick="switchSuperTab('tournaments')"><i class="bi bi-list-ul me-1"></i>All Tournaments</button></li>
+          <li class="nav-item"><button class="nav-link" data-stab="config" onclick="switchSuperTab('config')"><i class="bi bi-gear me-1"></i>Configuration</button></li>
+        </ul>
+
+        <!-- Tournaments Tab -->
+        <div id="stab-tournaments">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 style="font-weight:700;margin:0;color:var(--secondary-color);">All Tournaments</h5>
+            <span class="text-muted" style="font-size:0.85rem;" id="tournamentsCount"></span>
+          </div>
+          <div id="tournamentsContainer">
+            <div class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div>Loading...</div>
+          </div>
+        </div>
+
+        <!-- Config Tab -->
+        <div id="stab-config" style="display:none;">
+          <div class="config-card" style="max-width:560px;">
+            <h5 style="font-weight:700;color:var(--secondary-color);margin-bottom:1rem;"><i class="bi bi-gear me-1"></i>Platform Configuration</h5>
+            <div id="configError" class="alert alert-danger py-2" style="display:none;font-size:0.85rem;"></div>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label">Account Create Flag</label>
+                <select class="form-select" id="cfgCreateFlag">
+                  <option value="true">true — Allow tournament creation</option>
+                  <option value="false">false — Block tournament creation</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Max Number of Teams</label>
+                <input type="number" class="form-control" id="cfgMaxTeams" min="2" max="64" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Max Number of Players</label>
+                <input type="number" class="form-control" id="cfgMaxPlayers" min="10" max="10000" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message (shown when creation is blocked)</label>
+                <textarea class="form-control" id="cfgMessage" rows="3" placeholder="Tournament creation is currently disabled."></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-success" onclick="saveConfig()"><i class="bi bi-save me-1"></i>Save Configuration</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Edit Tournament Modal -->
+  <div class="modal fade" id="editTournamentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-700"><i class="bi bi-pencil me-2"></i>Edit Tournament</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editTId" />
+          <div class="row g-3">
+            <div class="col-12"><label class="form-label">Tournament Name</label><input type="text" class="form-control" id="etName" /></div>
+            <div class="col-md-6"><label class="form-label">Start Date</label><input type="date" class="form-control" id="etStartDate" /></div>
+            <div class="col-md-6"><label class="form-label">End Date</label><input type="date" class="form-control" id="etEndDate" /></div>
+            <div class="col-md-6"><label class="form-label">Auction Date</label><input type="date" class="form-control" id="etAuctionDate" /></div>
+            <div class="col-md-6"><label class="form-label">Auction Time</label><input type="time" class="form-control" id="etAuctionTime" /></div>
+            <div class="col-md-6"><label class="form-label">Reg. Last Date</label><input type="date" class="form-control" id="etRegLast" /></div>
+            <div class="col-md-6"><label class="form-label">Max Purse</label><input type="number" class="form-control" id="etMaxPurse" /></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" onclick="saveEditTournament()"><i class="bi bi-save me-1"></i>Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="footer-year"></span> CrickAdda. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toastContainer"></div>
+  <div id="loadingOverlay"><div class="spinner-border" role="status"></div><div class="loading-message" id="loadingMessage">Loading...</div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/tournament-firebase.js"></script>
+  <script src="js/tournament-utils.js"></script>
+  <script src="js/tournament-auth.js"></script>
+  <script>
+  (function () {
+    const U = window.TournamentUtils;
+    const F = window.TournamentFirebase;
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    // Check if already logged in
+    if (U.isSuperAdmin()) {
+      showAdminView();
+    }
+
+    window.toggleSuperPass = function () {
+      const inp = document.getElementById('superPassInput');
+      const eye = document.getElementById('superPassEye');
+      if (inp.type === 'password') { inp.type = 'text'; eye.className = 'bi bi-eye-slash'; }
+      else { inp.type = 'password'; eye.className = 'bi bi-eye'; }
+    };
+
+    window.doSuperLogin = async function () {
+      const pass = document.getElementById('superPassInput').value.trim();
+      const errEl = document.getElementById('loginError');
+      errEl.style.display = 'none';
+      if (!pass || pass.length < 4) { errEl.textContent = 'Please enter a valid password (min 4 characters).'; errEl.style.display = 'block'; return; }
+      U.showLoading('Verifying...');
+      const result = await TournamentAuth.loginSuperAdmin(pass);
+      U.hideLoading();
+      if (result.success) {
+        if (result.firstSetup) {
+          U.showToast('Super admin password set! You are now logged in.', 'success');
+        }
+        showAdminView();
+      } else {
+        errEl.textContent = result.error || 'Login failed.';
+        errEl.style.display = 'block';
+      }
+    };
+
+    document.getElementById('superPassInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') window.doSuperLogin();
+    });
+
+    function showAdminView() {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('adminView').style.display = 'block';
+      document.getElementById('superAdminLabel').style.display = 'inline';
+      document.getElementById('logoutSuperBtn').style.display = 'inline-block';
+      loadAllData();
+    }
+
+    window.logoutSuper = function () {
+      U.clearSuperAdminSession();
+      window.location.reload();
+    };
+
+    window.switchSuperTab = function (tab) {
+      document.querySelectorAll('[data-stab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-stab="' + tab + '"]').forEach(b => b.classList.add('active'));
+      document.getElementById('stab-tournaments').style.display = tab === 'tournaments' ? 'block' : 'none';
+      document.getElementById('stab-config').style.display = tab === 'config' ? 'block' : 'none';
+    };
+
+    let allTournaments = {};
+
+    async function loadAllData() {
+      await Promise.all([loadTournaments(), loadConfig()]);
+    }
+
+    async function loadTournaments() {
+      const container = document.getElementById('tournamentsContainer');
+      try {
+        const data = await F.get('');
+        allTournaments = {};
+        if (!data) {
+          container.innerHTML = '<div class="empty-state"><i class="bi bi-trophy"></i><h5>No tournaments yet</h5></div>';
+          document.getElementById('tournamentsCount').textContent = '0 tournaments';
+          return;
+        }
+        Object.keys(data).forEach(key => {
+          if (key !== 'configuration' && key !== 'superAdmin') {
+            allTournaments[key] = data[key];
+          }
+        });
+        const items = Object.values(allTournaments).filter(t => t && t.tournamentId).sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+        document.getElementById('tournamentsCount').textContent = items.length + ' tournaments';
+        if (!items.length) {
+          container.innerHTML = '<div class="empty-state"><i class="bi bi-trophy"></i><h5>No tournaments yet</h5></div>';
+          return;
+        }
+        container.innerHTML = items.map(t => renderTournamentCard(t)).join('');
+      } catch (e) {
+        container.innerHTML = '<div class="alert alert-danger">Failed to load tournaments.</div>';
+      }
+    }
+
+    function renderTournamentCard(t) {
+      const aStatus = t.auction ? t.auction.status : 'NOT_STARTED';
+      const statusMap = { LIVE: 'status-live', NOT_STARTED: 'status-not-started', PAUSED: 'status-paused', ENDED: 'status-ended' };
+      const badgeClass = statusMap[aStatus] || 'status-not-started';
+      const players = t.playerList ? Object.keys(t.playerList).length : 0;
+      return '<div class="tournament-admin-card">'
+        + '<div class="tournament-admin-card-header">'
+        + '<div>'
+        + '<div style="font-weight:700;font-size:0.98rem;">' + escHtml(t.name || 'Untitled') + '</div>'
+        + '<div style="font-size:0.78rem;color:var(--muted-color);">ID: <code>' + t.tournamentId + '</code> &bull; Created: ' + U.formatDate(t.createdAt ? t.createdAt.split('T')[0] : '') + '</div>'
+        + '</div>'
+        + '<span class="status-badge ' + badgeClass + '">' + aStatus + '</span>'
+        + '</div>'
+        + '<div class="tournament-admin-card-body d-flex flex-wrap gap-3 align-items-center justify-content-between">'
+        + '<div style="font-size:0.85rem;color:var(--muted-color);">'
+        + '<i class="bi bi-people me-1"></i>' + (t.totalTeams || 0) + ' teams &nbsp;'
+        + '<i class="bi bi-person me-1"></i>' + players + ' players &nbsp;'
+        + '<i class="bi bi-calendar me-1"></i>' + U.formatDate(t.startDate)
+        + '</div>'
+        + '<div class="d-flex gap-2 flex-wrap">'
+        + '<a href="tournament-view.html?t=' + t.tournamentId + '" class="btn btn-sm btn-outline-success" target="_blank"><i class="bi bi-eye me-1"></i>View</a>'
+        + '<button class="btn btn-sm btn-outline-primary" onclick="openEditTournament(\'' + t.tournamentId + '\')"><i class="bi bi-pencil me-1"></i>Edit</button>'
+        + '<button class="btn btn-sm btn-outline-danger" onclick="deleteTournament(\'' + t.tournamentId + '\', \'' + escHtml(t.name || '') + '\')"><i class="bi bi-trash me-1"></i>Delete</button>'
+        + '</div></div></div>';
+    }
+
+    async function loadConfig() {
+      try {
+        const cfg = await F.get('configuration');
+        if (cfg) {
+          document.getElementById('cfgCreateFlag').value = String(cfg.accountCreateFlag) === 'true' ? 'true' : 'false';
+          document.getElementById('cfgMaxTeams').value = cfg.maxNoOfTeam || 32;
+          document.getElementById('cfgMaxPlayers').value = cfg.maxNumberOfPlayers || 200;
+          document.getElementById('cfgMessage').value = cfg.message || '';
+        } else {
+          // Set defaults
+          document.getElementById('cfgCreateFlag').value = 'true';
+          document.getElementById('cfgMaxTeams').value = 32;
+          document.getElementById('cfgMaxPlayers').value = 200;
+        }
+      } catch (e) {}
+    }
+
+    window.saveConfig = async function () {
+      const errEl = document.getElementById('configError');
+      errEl.style.display = 'none';
+      U.showLoading('Saving configuration...');
+      try {
+        await F.patch('configuration', {
+          accountCreateFlag: document.getElementById('cfgCreateFlag').value === 'true' ? true : false,
+          maxNoOfTeam: parseInt(document.getElementById('cfgMaxTeams').value, 10),
+          maxNumberOfPlayers: parseInt(document.getElementById('cfgMaxPlayers').value, 10),
+          message: document.getElementById('cfgMessage').value.trim(),
+          updatedAt: new Date().toISOString()
+        });
+        U.hideLoading();
+        U.showToast('Configuration saved!', 'success');
+      } catch (e) {
+        U.hideLoading();
+        errEl.textContent = 'Failed to save configuration.';
+        errEl.style.display = 'block';
+      }
+    };
+
+    window.openEditTournament = function (tid) {
+      const t = allTournaments[tid];
+      if (!t) return;
+      document.getElementById('editTId').value = tid;
+      document.getElementById('etName').value = t.name || '';
+      document.getElementById('etStartDate').value = t.startDate || '';
+      document.getElementById('etEndDate').value = t.endDate || '';
+      document.getElementById('etAuctionDate').value = t.auction ? t.auction.date : '';
+      document.getElementById('etAuctionTime').value = t.auction ? t.auction.time : '';
+      document.getElementById('etRegLast').value = t.playerRegistrationLastDate || '';
+      document.getElementById('etMaxPurse').value = t.maxPurseAmountForTeam || 100000;
+      new bootstrap.Modal(document.getElementById('editTournamentModal')).show();
+    };
+
+    window.saveEditTournament = async function () {
+      const tid = document.getElementById('editTId').value;
+      U.showLoading('Saving...');
+      try {
+        const updates = {
+          name: document.getElementById('etName').value.trim(),
+          startDate: document.getElementById('etStartDate').value,
+          endDate: document.getElementById('etEndDate').value,
+          playerRegistrationLastDate: document.getElementById('etRegLast').value,
+          maxPurseAmountForTeam: parseInt(document.getElementById('etMaxPurse').value, 10),
+          updatedAt: new Date().toISOString()
+        };
+        await F.patch(tid, updates);
+        await F.patch(tid + '/auction', {
+          date: document.getElementById('etAuctionDate').value,
+          time: document.getElementById('etAuctionTime').value
+        });
+        Object.assign(allTournaments[tid], updates);
+        bootstrap.Modal.getInstance(document.getElementById('editTournamentModal')).hide();
+        document.getElementById('tournamentsContainer').innerHTML = Object.values(allTournaments)
+          .filter(t => t && t.tournamentId)
+          .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
+          .map(t => renderTournamentCard(t)).join('');
+        U.hideLoading();
+        U.showToast('Tournament updated!', 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to save.', 'error');
+      }
+    };
+
+    window.deleteTournament = function (tid, name) {
+      U.showConfirm('DELETE tournament "' + name + '" (ID: ' + tid + ')?\n\nThis will permanently delete ALL data including players, teams, and auction history. This CANNOT be undone.', async () => {
+        U.showLoading('Deleting tournament...');
+        try {
+          await F.delete(tid);
+          delete allTournaments[tid];
+          const items = Object.values(allTournaments).filter(t => t && t.tournamentId).sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+          document.getElementById('tournamentsCount').textContent = items.length + ' tournaments';
+          document.getElementById('tournamentsContainer').innerHTML = items.length
+            ? items.map(t => renderTournamentCard(t)).join('')
+            : '<div class="empty-state"><i class="bi bi-trophy"></i><h5>No tournaments yet</h5></div>';
+          U.hideLoading();
+          U.showToast('Tournament deleted.', 'success');
+        } catch (e) {
+          U.hideLoading();
+          U.showToast('Failed to delete tournament.', 'error');
+        }
+      });
+    };
+
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = String(str || '');
+      return d.innerHTML;
+    }
+  })();
+  </script>
+</body>
+</html>

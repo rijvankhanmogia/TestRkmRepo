@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Registration — CrickAdda</title>
+  <meta name="description" content="Register as a player for a CrickAdda cricket tournament auction." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/tournament.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="tournament.html"><i class="bi bi-trophy-fill me-1"></i>Tournament</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div style="padding-top:70px;min-height:100vh;background:#f8fafc;padding-bottom:3rem;">
+    <div id="errorView" class="container py-5 text-center" style="display:none;">
+      <i class="bi bi-exclamation-triangle text-danger" style="font-size:3rem;"></i>
+      <h3 class="mt-3" id="errorTitle">Error</h3>
+      <p class="text-muted" id="errorMsg">Tournament not found.</p>
+      <a href="tournament.html" class="btn btn-success mt-2">Browse Tournaments</a>
+    </div>
+
+    <div id="closedView" class="container py-5 text-center" style="display:none;">
+      <i class="bi bi-calendar-x text-warning" style="font-size:3rem;"></i>
+      <h3 class="mt-3 text-warning">Registration Closed</h3>
+      <p class="text-muted">Player registration for this tournament has closed.</p>
+      <a id="viewTournamentBtn" href="#" class="btn btn-success mt-2">View Tournament</a>
+    </div>
+
+    <div id="successView" class="container py-5 text-center" style="display:none;">
+      <div class="success-icon mx-auto"><i class="bi bi-person-check-fill"></i></div>
+      <h3 class="text-success mt-3">Registered Successfully!</h3>
+      <p class="text-muted">You have been registered for the auction. Good luck!</p>
+      <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap">
+        <a id="viewTournamentBtn2" href="#" class="btn btn-success">View Tournament</a>
+        <a href="tournament.html" class="btn btn-outline-secondary">Tournament Hub</a>
+      </div>
+    </div>
+
+    <div id="mainView" class="container py-4" style="display:none;">
+      <!-- Tournament Header -->
+      <div id="tournamentHeader" class="mb-4"></div>
+
+      <div class="registration-card">
+        <div class="registration-header">
+          <h2><i class="bi bi-person-plus-fill me-2"></i>Player Registration</h2>
+          <p style="margin:0;font-size:0.9rem;color:rgba(255,255,255,0.82);">Register yourself for the player auction</p>
+        </div>
+        <div class="registration-body">
+          <div id="formError" class="alert alert-danger py-2" style="display:none;font-size:0.85rem;"></div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name*</label>
+              <input type="text" class="form-control" id="pName" placeholder="Your full name" />
+              <div class="invalid-feedback">Name is required.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Contact Number* <small class="text-muted">(used as your Player ID)</small></label>
+              <input type="tel" class="form-control" id="pContact" placeholder="10-digit mobile number" maxlength="10" />
+              <div class="invalid-feedback">Valid 10-digit mobile number required.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Photo* <small class="text-muted">(clear face photo, JPEG)</small></label>
+              <input type="file" class="form-control" id="pPhoto" accept="image/*" />
+              <div class="invalid-feedback">Photo is required.</div>
+              <div class="mt-2">
+                <div class="image-preview-wrap" id="photoPreview">
+                  <span style="font-size:0.75rem;"><i class="bi bi-camera me-1"></i>Preview</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Age* <small class="text-muted">(10–60)</small></label>
+              <input type="number" class="form-control" id="pAge" placeholder="Your age" min="10" max="60" />
+              <div class="invalid-feedback">Age must be between 10 and 60.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Category*</label>
+              <select class="form-select" id="pCategory">
+                <option value="">Select Category</option>
+                <option value="A">Category A</option>
+                <option value="B">Category B</option>
+                <option value="C">Category C</option>
+                <option value="D">Category D</option>
+              </select>
+              <div class="invalid-feedback">Category is required.</div>
+              <div id="basePriceDisplay" class="base-price-display mt-2" style="display:none;">
+                <i class="bi bi-currency-rupee"></i>
+                <span id="basePriceText">Base Price: ₹0</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Role*</label>
+              <select class="form-select" id="pRole">
+                <option value="">Select Role</option>
+                <option value="Batsman">Batsman</option>
+                <option value="Bowler">Bowler</option>
+                <option value="All-Rounder">All-Rounder</option>
+                <option value="Wicket-Keeper">Wicket-Keeper</option>
+                <option value="Wicket-Keeper Batsman">Wicket-Keeper Batsman</option>
+              </select>
+              <div class="invalid-feedback">Role is required.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Batting Style*</label>
+              <select class="form-select" id="pBatStyle">
+                <option value="">Select Batting Style</option>
+                <option value="Right Hand">Right Hand</option>
+                <option value="Left Hand">Left Hand</option>
+              </select>
+              <div class="invalid-feedback">Batting style is required.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Bowling Style*</label>
+              <select class="form-select" id="pBowlStyle">
+                <option value="">Select Bowling Style</option>
+                <option value="Right Arm Fast">Right Arm Fast</option>
+                <option value="Right Arm Medium Fast">Right Arm Medium Fast</option>
+                <option value="Right Arm Medium">Right Arm Medium</option>
+                <option value="Right Arm Off Spin">Right Arm Off Spin</option>
+                <option value="Left Arm Fast">Left Arm Fast</option>
+                <option value="Left Arm Medium">Left Arm Medium</option>
+                <option value="Left Arm Spin (Orthodox)">Left Arm Spin (Orthodox)</option>
+                <option value="Left Arm Wrist Spin (Chinaman)">Left Arm Wrist Spin (Chinaman)</option>
+              </select>
+              <div class="invalid-feedback">Bowling style is required.</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="pWK" />
+                <label class="form-check-label" for="pWK" style="font-size:0.9rem;font-weight:500;">I am a Wicket-Keeper</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button class="btn btn-success w-100 py-2" id="submitBtn" style="font-weight:700;font-size:1rem;" onclick="submitRegistration()">
+              <i class="bi bi-person-plus me-1"></i> Submit Registration
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4"><div class="footer-brand"><i class="bi bi-trophy footer-brand-icon"></i><span class="footer-brand-name">Crick<span>Adda</span></span></div><p class="footer-desc">CrickAdda Tournament & Auction Platform.</p></div>
+        <div class="col-lg-4"><h4 class="footer-heading">Contact</h4><div class="footer-contact-item"><i class="bi bi-envelope"></i><a href="mailto:contact@indianai.in" style="color:rgba(255,255,255,0.65);">contact@indianai.in</a></div></div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom"><p class="footer-copyright">&copy; <span class="footer-year"></span> CrickAdda. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="toastContainer"></div>
+  <div id="loadingOverlay"><div class="spinner-border" role="status"></div><div class="loading-message" id="loadingMessage">Loading...</div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/tournament-firebase.js"></script>
+  <script src="js/tournament-utils.js"></script>
+  <script src="js/tournament-auth.js"></script>
+  <script>
+  (function () {
+    const U = window.TournamentUtils;
+    const F = window.TournamentFirebase;
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    const params = new URLSearchParams(window.location.search);
+    const tid = params.get('t');
+    let tData = null;
+    let photoBase64 = null;
+    let maxPlayers = 200;
+
+    if (!tid) { showError('Error', 'No tournament specified.'); return; }
+
+    document.getElementById('pPhoto').addEventListener('change', async function (e) {
+      if (!e.target.files[0]) return;
+      U.showLoading('Processing photo...');
+      try {
+        photoBase64 = await U.compressImageToLimit(e.target.files[0], 80, 300, 300);
+        const prev = document.getElementById('photoPreview');
+        prev.innerHTML = '<img src="' + photoBase64 + '" style="width:100%;height:100%;object-fit:cover;">';
+      } catch (e) {
+        U.showToast('Failed to process photo.', 'error');
+      }
+      U.hideLoading();
+    });
+
+    document.getElementById('pCategory').addEventListener('change', function () {
+      const cat = this.value;
+      const disp = document.getElementById('basePriceDisplay');
+      if (cat) {
+        const price = U.getPlayerBasePriceByCategory(cat);
+        document.getElementById('basePriceText').textContent = 'Base Price: ' + U.formatINR(price);
+        disp.style.display = 'flex';
+      } else {
+        disp.style.display = 'none';
+      }
+    });
+
+    async function init() {
+      U.showLoading('Loading tournament...');
+      try {
+        tData = await F.get(tid);
+        if (!tData) { U.hideLoading(); showError('Not Found', 'Tournament not found.'); return; }
+
+        // Check registration last date
+        const today = new Date().toISOString().split('T')[0];
+        if (tData.playerRegistrationLastDate && today > tData.playerRegistrationLastDate) {
+          U.hideLoading();
+          document.getElementById('closedView').style.display = 'block';
+          document.getElementById('viewTournamentBtn').href = 'tournament-view.html?t=' + tid;
+          return;
+        }
+
+        // Load config for max players
+        try {
+          const cfg = await F.get('configuration');
+          if (cfg && cfg.maxNumberOfPlayers) maxPlayers = parseInt(cfg.maxNumberOfPlayers, 10);
+        } catch (e) {}
+
+        // Render tournament header
+        const headerHtml = '<div class="d-flex align-items-center gap-3 p-3 bg-white rounded shadow-sm border mb-3">'
+          + (tData.logo ? '<img src="' + tData.logo + '" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--border-color);">' : '<div style="width:56px;height:56px;border-radius:50%;background:var(--light-background);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--primary-color);border:2px solid var(--border-color);"><i class="bi bi-trophy-fill"></i></div>')
+          + '<div><div style="font-weight:700;font-size:1.05rem;color:var(--secondary-color);">' + escHtml(tData.name) + '</div>'
+          + '<div style="font-size:0.82rem;color:var(--muted-color);"><i class="bi bi-calendar me-1"></i>Reg. Closes: ' + U.formatDate(tData.playerRegistrationLastDate) + '</div></div>'
+          + '<a href="tournament-view.html?t=' + tid + '" class="btn btn-sm btn-outline-success ms-auto">View Tournament</a>'
+          + '</div>';
+        document.getElementById('tournamentHeader').innerHTML = headerHtml;
+        document.getElementById('mainView').style.display = 'block';
+        U.hideLoading();
+      } catch (e) {
+        U.hideLoading();
+        showError('Error', 'Failed to load tournament.');
+      }
+    }
+
+    function showError(title, msg) {
+      document.getElementById('errorTitle').textContent = title || 'Error';
+      document.getElementById('errorMsg').textContent = msg || 'An error occurred.';
+      document.getElementById('errorView').style.display = 'block';
+    }
+
+    window.submitRegistration = async function () {
+      const name = document.getElementById('pName').value.trim();
+      const contact = document.getElementById('pContact').value.trim();
+      const age = document.getElementById('pAge').value.trim();
+      const category = document.getElementById('pCategory').value;
+      const role = document.getElementById('pRole').value;
+      const batStyle = document.getElementById('pBatStyle').value;
+      const bowlStyle = document.getElementById('pBowlStyle').value;
+      const wk = document.getElementById('pWK').checked;
+      const errEl = document.getElementById('formError');
+      errEl.style.display = 'none';
+
+      let ok = true;
+      if (!name) { markInvalid('pName'); ok = false; } else markValid('pName');
+      if (!U.validatePhone(contact)) { markInvalid('pContact'); ok = false; } else markValid('pContact');
+      if (!photoBase64) { markInvalid('pPhoto'); ok = false; } else markValid('pPhoto');
+      if (!U.validateAge(age)) { markInvalid('pAge'); ok = false; } else markValid('pAge');
+      if (!category) { markInvalid('pCategory'); ok = false; } else markValid('pCategory');
+      if (!role) { markInvalid('pRole'); ok = false; } else markValid('pRole');
+      if (!batStyle) { markInvalid('pBatStyle'); ok = false; } else markValid('pBatStyle');
+      if (!bowlStyle) { markInvalid('pBowlStyle'); ok = false; } else markValid('pBowlStyle');
+      if (!ok) { errEl.textContent = 'Please fill all required fields correctly.'; errEl.style.display = 'block'; return; }
+
+      const sanitizedContact = contact.replace(/\D/g, '');
+      U.showLoading('Checking registration...');
+
+      try {
+        // Check duplicate
+        const existing = await F.get(tid + '/playerList/' + sanitizedContact);
+        if (existing !== null) {
+          U.hideLoading();
+          errEl.textContent = 'This mobile number is already registered for this tournament.';
+          errEl.style.display = 'block';
+          return;
+        }
+
+        // Check player count
+        const playerList = await F.get(tid + '/playerList');
+        const currentCount = playerList ? Object.keys(playerList).length : 0;
+        if (currentCount >= maxPlayers) {
+          U.hideLoading();
+          errEl.textContent = 'Maximum player registrations reached for this tournament.';
+          errEl.style.display = 'block';
+          return;
+        }
+
+        const basePrice = U.getPlayerBasePriceByCategory(category);
+        const player = {
+          name,
+          contact: sanitizedContact,
+          photo: photoBase64,
+          age: parseInt(age, 10),
+          team: null,
+          category,
+          role,
+          battingStyle: batStyle,
+          bowlingStyle: bowlStyle,
+          wicketKeeper: wk,
+          basePrice,
+          soldPrice: null,
+          status: 'AVAILABLE',
+          registeredAt: new Date().toISOString()
+        };
+
+        await F.patch(tid + '/playerList/' + sanitizedContact, player);
+        U.hideLoading();
+        document.getElementById('mainView').style.display = 'none';
+        document.getElementById('successView').style.display = 'block';
+        document.getElementById('viewTournamentBtn2').href = 'tournament-view.html?t=' + tid;
+      } catch (e) {
+        U.hideLoading();
+        errEl.textContent = 'Registration failed. Please check your connection and try again.';
+        errEl.style.display = 'block';
+      }
+    };
+
+    function markInvalid(id) { const el = document.getElementById(id); if (el) el.classList.add('is-invalid'); }
+    function markValid(id) { const el = document.getElementById(id); if (el) el.classList.remove('is-invalid'); }
+    function escHtml(str) { const d = document.createElement('div'); d.textContent = String(str || ''); return d.innerHTML; }
+
+    document.querySelectorAll('.form-control, .form-select').forEach(el => {
+      el.addEventListener('input', () => el.classList.remove('is-invalid'));
+      el.addEventListener('change', () => el.classList.remove('is-invalid'));
+    });
+
+    init();
+  })();
+  </script>
+</body>
+</html>

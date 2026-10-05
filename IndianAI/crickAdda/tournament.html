@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tournament & Auction — CrickAdda</title>
+  <meta name="description" content="Create and manage cricket player auctions and tournaments with CrickAdda's Tournament & Auction platform." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/tournament.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-trophy brand-icon"></i>
+        <span class="brand-name">Crick<span>Adda</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarMain" aria-controls="navbarMain"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="tournament.html"><i class="bi bi-trophy-fill me-1"></i>Tournament</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-info-circle me-1"></i>About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- VIEWS -->
+  <div id="viewListing">
+    <!-- Hero -->
+    <section class="tournament-hero">
+      <div class="container text-center">
+        <div class="hero-badge mb-3"><i class="bi bi-trophy-fill me-1"></i> Cricket Auction Platform</div>
+        <h1 class="hero-title">CrickAdda <span class="highlight">Tournament</span><br>&amp; Auction Platform</h1>
+        <p class="hero-subtitle">Create tournaments, register players, and run live auctions — all in one place.</p>
+      </div>
+    </section>
+
+    <!-- Hub Cards -->
+    <section style="background:#f8fafc;padding:3rem 0;">
+      <div class="container">
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-3 col-md-6">
+            <a href="?view=create" class="hub-card">
+              <div class="hub-icon"><i class="bi bi-plus-circle-fill"></i></div>
+              <h3>Create Tournament</h3>
+              <p>Set up a new cricket tournament with teams and auction settings</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <a href="?view=login" class="hub-card hub-card-accent">
+              <div class="hub-icon"><i class="bi bi-shield-lock-fill"></i></div>
+              <h3>Tournament Login</h3>
+              <p>Access your tournament admin dashboard to manage players and auctions</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <a href="super-admin.html" class="hub-card hub-card-dark">
+              <div class="hub-icon"><i class="bi bi-person-badge-fill"></i></div>
+              <h3>Super Admin</h3>
+              <p>Platform-level management, configuration, and all tournament oversight</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent Tournaments -->
+        <div class="mt-5">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 style="font-weight:700;color:var(--secondary-color);margin:0;"><i class="bi bi-list-ul me-2"></i>Recent Tournaments</h4>
+          </div>
+          <div id="tournamentListContainer">
+            <div class="text-center py-4 text-muted">
+              <div class="spinner-border spinner-border-sm me-2"></div> Loading tournaments...
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- VIEW: CREATE -->
+  <div id="viewCreate" style="display:none;padding-top:70px;background:#f8fafc;min-height:100vh;padding-bottom:3rem;">
+    <div class="container py-4">
+      <div class="mb-3">
+        <a href="tournament.html" class="text-muted text-decoration-none" style="font-size:0.88rem;">
+          <i class="bi bi-arrow-left me-1"></i> Back to Tournament Hub
+        </a>
+      </div>
+
+      <!-- Registration Closed Notice -->
+      <div id="createClosedNotice" class="alert alert-warning" style="display:none;"></div>
+
+      <div id="createFormWrap">
+        <div class="wizard-container">
+          <div class="wizard-header">
+            <h2><i class="bi bi-trophy-fill me-2"></i>Create New Tournament</h2>
+            <p>Fill in the details to set up your cricket tournament with player auction</p>
+          </div>
+
+          <!-- Step Indicators -->
+          <div class="step-indicators">
+            <div class="step-item active" id="stepInd1">
+              <div class="step-circle">1</div>
+              <div class="step-label">Owner Info</div>
+            </div>
+            <div class="step-connector" id="stepConn1"></div>
+            <div class="step-item" id="stepInd2">
+              <div class="step-circle">2</div>
+              <div class="step-label">Tournament</div>
+            </div>
+            <div class="step-connector" id="stepConn2"></div>
+            <div class="step-item" id="stepInd3">
+              <div class="step-circle">3</div>
+              <div class="step-label">Teams</div>
+            </div>
+            <div class="step-connector" id="stepConn3"></div>
+            <div class="step-item" id="stepInd4">
+              <div class="step-circle">4</div>
+              <div class="step-label">Review</div>
+            </div>
+            <div class="step-connector" id="stepConn4"></div>
+            <div class="step-item" id="stepInd5">
+              <div class="step-circle"><i class="bi bi-check"></i></div>
+              <div class="step-label">Done</div>
+            </div>
+          </div>
+
+          <!-- Step Content -->
+          <div class="step-content">
+
+            <!-- Step 1: Owner Info -->
+            <div class="step-pane active" id="stepPane1">
+              <h3><i class="bi bi-person-circle me-2"></i>Owner Contact Information</h3>
+              <p class="step-desc">Provide the tournament owner's contact details</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Owner Phone Number*</label>
+                  <input type="tel" class="form-control" id="ownerPhone" placeholder="10-digit mobile number" maxlength="10" />
+                  <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Owner Email*</label>
+                  <input type="email" class="form-control" id="ownerEmail" placeholder="owner@email.com" />
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Tournament Details -->
+            <div class="step-pane" id="stepPane2">
+              <h3><i class="bi bi-trophy me-2"></i>Tournament Details</h3>
+              <p class="step-desc">Configure your tournament settings</p>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label">Tournament Name*</label>
+                  <input type="text" class="form-control" id="tournamentName" placeholder="e.g. Summer Premier League 2026" />
+                  <div class="invalid-feedback">Tournament name is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Tournament Logo (JPEG, optional)</label>
+                  <input type="file" class="form-control" id="tournamentLogo" accept="image/*" />
+                  <div id="logoPreview" class="mt-2"></div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Tournament Banner (JPEG, optional)</label>
+                  <input type="file" class="form-control" id="tournamentBanner" accept="image/*" />
+                  <div id="bannerPreview" class="mt-2"></div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Start Date*</label>
+                  <input type="date" class="form-control" id="startDate" />
+                  <div class="invalid-feedback">Start date is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">End Date*</label>
+                  <input type="date" class="form-control" id="endDate" />
+                  <div class="invalid-feedback">End date is required.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Auction Date*</label>
+                  <input type="date" class="form-control" id="auctionDate" />
+                  <div class="invalid-feedback">Auction date is required.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Auction Time*</label>
+                  <input type="time" class="form-control" id="auctionTime" />
+                  <div class="invalid-feedback">Auction time is required.</div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Registration Last Date*</label>
+                  <input type="date" class="form-control" id="regLastDate" />
+                  <div class="invalid-feedback">Registration last date is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Max Purse Per Team (₹)*</label>
+                  <input type="number" class="form-control" id="maxPurse" value="100000" min="1000" step="1000" />
+                  <div class="invalid-feedback">Valid max purse amount is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Total Teams*</label>
+                  <input type="number" class="form-control" id="totalTeams" value="8" min="2" max="32" />
+                  <div class="invalid-feedback" id="totalTeamsError">Total teams is required.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Teams Setup -->
+            <div class="step-pane" id="stepPane3">
+              <h3><i class="bi bi-people-fill me-2"></i>Teams Setup</h3>
+              <p class="step-desc">Add details for each team. Count must match Total Teams set in previous step.</p>
+              <div id="teamsContainer"></div>
+              <button type="button" class="btn-add-team mt-2" id="addTeamBtn">
+                <i class="bi bi-plus-circle me-1"></i> Add Team
+              </button>
+              <div class="alert alert-info mt-3 py-2" style="font-size:0.85rem;">
+                <i class="bi bi-info-circle me-1"></i>
+                <span id="teamCountMessage">Add 0 teams. Required: <span id="requiredTeamCount">0</span></span>
+              </div>
+            </div>
+
+            <!-- Step 4: Review -->
+            <div class="step-pane" id="stepPane4">
+              <h3><i class="bi bi-eye me-2"></i>Review Your Tournament</h3>
+              <p class="step-desc">Please review all details before creating</p>
+              <div id="reviewContent"></div>
+            </div>
+
+            <!-- Step 5: Success -->
+            <div class="step-pane" id="stepPane5">
+              <div class="success-step">
+                <div class="success-icon"><i class="bi bi-trophy-fill"></i></div>
+                <h3 class="text-success">Tournament Created Successfully!</h3>
+                <p class="text-muted">Save your Tournament ID and Password. You will need them to access the admin dashboard.</p>
+
+                <div class="credential-box">
+                  <div class="credential-item">
+                    <span class="credential-label"><i class="bi bi-hash me-1"></i>Tournament ID</span>
+                    <span class="credential-value" id="successTId">—</span>
+                    <button class="btn-copy" onclick="copyCredential('successTId', this)">Copy</button>
+                  </div>
+                  <div class="credential-item">
+                    <span class="credential-label"><i class="bi bi-key me-1"></i>Password</span>
+                    <span class="credential-value" id="successPass">—</span>
+                    <button class="btn-copy" onclick="copyCredential('successPass', this)">Copy</button>
+                  </div>
+                </div>
+
+                <div class="alert alert-warning" style="font-size:0.85rem;">
+                  <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                  <strong>Important:</strong> This password will not be shown again. Save it now.
+                </div>
+
+                <div class="d-flex gap-2 justify-content-center flex-wrap mt-3">
+                  <a id="goToAdminBtn" href="#" class="btn btn-success">
+                    <i class="bi bi-speedometer2 me-1"></i> Go to Admin Dashboard
+                  </a>
+                  <a href="tournament.html" class="btn btn-outline-secondary">
+                    <i class="bi bi-house me-1"></i> Back to Hub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /step-content -->
+
+          <!-- Wizard Navigation -->
+          <div class="wizard-nav" id="wizardNav">
+            <button class="btn-wizard-prev" id="prevBtn" onclick="wizardPrev()" style="visibility:hidden;">
+              <i class="bi bi-arrow-left me-1"></i> Previous
+            </button>
+            <button class="btn-wizard-next" id="nextBtn" onclick="wizardNext()">
+              Next <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: LOGIN -->
+  <div id="viewLogin" style="display:none;padding-top:70px;background:#f8fafc;min-height:100vh;">
+    <div class="container py-5">
+      <div class="mb-3 text-center">
+        <a href="tournament.html" class="text-muted text-decoration-none" style="font-size:0.88rem;">
+          <i class="bi bi-arrow-left me-1"></i> Back to Tournament Hub
+        </a>
+      </div>
+      <div class="login-card">
+        <div class="login-header">
+          <div class="login-icon"><i class="bi bi-shield-lock-fill"></i></div>
+          <h3 style="font-weight:700;margin-bottom:0.25rem;">Tournament Admin Login</h3>
+          <p style="font-size:0.88rem;color:var(--muted-color);margin:0;">Enter your Tournament ID and password to access the dashboard</p>
+        </div>
+        <div id="loginError" class="alert alert-danger py-2" style="display:none;font-size:0.85rem;"></div>
+        <div class="mb-3">
+          <label class="form-label">Tournament ID*</label>
+          <input type="text" class="form-control" id="loginTId" placeholder="8-character Tournament ID" maxlength="20" style="text-transform:uppercase;" />
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Password*</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="loginPass" placeholder="Your tournament password" />
+            <button type="button" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted-color);cursor:pointer;" onclick="toggleLoginPass()">
+              <i class="bi bi-eye" id="loginPassEye"></i>
+            </button>
+          </div>
+        </div>
+        <button class="btn btn-success w-100 py-2 fw-700" id="loginBtn" onclick="doLogin()" style="font-weight:700;">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Login to Dashboard
+        </button>
+        <div class="text-center mt-3" style="font-size:0.82rem;color:var(--muted-color);">
+          Don't have a tournament? <a href="?view=create">Create one</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo" id="mainFooter">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <i class="bi bi-trophy footer-brand-icon"></i>
+            <span class="footer-brand-name">Crick<span>Adda</span></span>
+          </div>
+          <p class="footer-desc">CrickAdda Tournament & Auction Platform — manage cricket player auctions with ease.</p>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-right me-1"></i>Home</a></li>
+            <li><a href="tournament.html"><i class="bi bi-chevron-right me-1"></i>Tournament</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right me-1"></i>About</a></li>
+            <li><a href="privacy-policy.html"><i class="bi bi-chevron-right me-1"></i>Privacy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-item"><i class="bi bi-person-circle"></i><span>Mohd Rijvan Khan Mogia</span></div>
+          <div class="footer-contact-item"><i class="bi bi-envelope"></i><a href="mailto:contact@indianai.in" style="color:rgba(255,255,255,0.65);">contact@indianai.in</a></div>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="footer-year"></span> CrickAdda &mdash; Mohd Rijvan Khan Mogia. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="loadingOverlay">
+    <div class="spinner-border" role="status"></div>
+    <div class="loading-message" id="loadingMessage">Please wait...</div>
+  </div>
+  <div id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/tournament-firebase.js"></script>
+  <script src="js/tournament-utils.js"></script>
+  <script src="js/tournament-auth.js"></script>
+  <script>
+  (function () {
+    const U = window.TournamentUtils;
+    const F = window.TournamentFirebase;
+
+    // Footer year
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    // View routing
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') || 'listing';
+
+    document.getElementById('viewListing').style.display = 'none';
+    document.getElementById('viewCreate').style.display = 'none';
+    document.getElementById('viewLogin').style.display = 'none';
+
+    if (view === 'create') {
+      document.getElementById('viewCreate').style.display = 'block';
+      document.getElementById('mainFooter').style.display = 'none';
+      initCreateForm();
+    } else if (view === 'login') {
+      document.getElementById('viewLogin').style.display = 'block';
+      // Pre-fill tournament ID from redirect param
+      const redir = params.get('redirect');
+      if (redir) document.getElementById('loginTId').value = redir;
+    } else {
+      document.getElementById('viewListing').style.display = 'block';
+      loadRecentTournaments();
+    }
+
+    // ---- Listing ----
+    async function loadRecentTournaments() {
+      const container = document.getElementById('tournamentListContainer');
+      try {
+        const data = await F.get('');
+        if (!data) {
+          container.innerHTML = '<div class="empty-state"><i class="bi bi-trophy"></i><h5>No tournaments yet</h5><p>Be the first to <a href="?view=create">create a tournament</a>!</p></div>';
+          return;
+        }
+        const items = [];
+        Object.keys(data).forEach(key => {
+          if (key === 'configuration' || key === 'superAdmin') return;
+          const t = data[key];
+          if (t && t.tournamentId) items.push(t);
+        });
+        items.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+        if (items.length === 0) {
+          container.innerHTML = '<div class="empty-state"><i class="bi bi-trophy"></i><h5>No tournaments yet</h5><p>Be the first to <a href="?view=create">create a tournament</a>!</p></div>';
+          return;
+        }
+        const recent = items.slice(0, 10);
+        container.innerHTML = recent.map(t => {
+          const aStatus = t.auction ? t.auction.status : 'NOT_STARTED';
+          const statusMap = { LIVE: 'status-live', NOT_STARTED: 'status-not-started', PAUSED: 'status-paused', ENDED: 'status-ended' };
+          const badgeClass = statusMap[aStatus] || 'status-not-started';
+          const logoHtml = t.logo
+            ? '<img src="' + t.logo + '" alt="logo" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">'
+            : '<i class="bi bi-trophy-fill"></i>';
+          return '<a href="tournament-view.html?t=' + t.tournamentId + '" class="tournament-list-card">'
+            + '<div class="tournament-list-logo">' + logoHtml + '</div>'
+            + '<div class="tournament-list-info">'
+            + '<div class="tournament-list-name">' + escHtml(t.name || 'Untitled') + '</div>'
+            + '<div class="tournament-list-meta">'
+            + '<span><i class="bi bi-calendar3 me-1"></i>' + U.formatDate(t.startDate) + '</span>'
+            + '<span><i class="bi bi-people me-1"></i>' + (t.totalTeams || 0) + ' Teams</span>'
+            + '<span class="status-badge ' + badgeClass + '">' + aStatus + '</span>'
+            + '</div></div>'
+            + '<i class="bi bi-chevron-right text-muted"></i>'
+            + '</a>';
+        }).join('');
+      } catch (e) {
+        container.innerHTML = '<div class="alert alert-danger">Failed to load tournaments. Please refresh.</div>';
+      }
+    }
+
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = String(str || '');
+      return d.innerHTML;
+    }
+
+    // ---- Login ----
+    window.toggleLoginPass = function () {
+      const inp = document.getElementById('loginPass');
+      const eye = document.getElementById('loginPassEye');
+      if (inp.type === 'password') { inp.type = 'text'; eye.className = 'bi bi-eye-slash'; }
+      else { inp.type = 'password'; eye.className = 'bi bi-eye'; }
+    };
+
+    window.doLogin = async function () {
+      const tid = document.getElementById('loginTId').value.trim().toUpperCase();
+      const pass = document.getElementById('loginPass').value.trim();
+      const errEl = document.getElementById('loginError');
+      errEl.style.display = 'none';
+      if (!tid || !pass) { errEl.textContent = 'Please enter Tournament ID and Password.'; errEl.style.display = 'block'; return; }
+      U.showLoading('Logging in...');
+      const result = await window.TournamentAuth.loginTournamentAdmin(tid, pass);
+      U.hideLoading();
+      if (result.success) {
+        window.location.href = 'tournament-admin.html?t=' + tid;
+      } else {
+        errEl.textContent = result.error;
+        errEl.style.display = 'block';
+      }
+    };
+
+    document.getElementById('loginPass') && document.getElementById('loginPass').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') window.doLogin();
+    });
+
+    // ---- Create Form ----
+    let currentStep = 1;
+    const totalSteps = 5;
+    let logoBase64 = null;
+    let bannerBase64 = null;
+    let teamLogoMap = {};
+    let maxNoOfTeam = 32;
+    let config = {};
+
+    async function initCreateForm() {
+      try {
+        config = await F.get('configuration') || {};
+        const createFlag = config.accountCreateFlag;
+        if (createFlag === false || createFlag === 'false') {
+          const msg = config.message || 'Tournament creation is currently disabled.';
+          document.getElementById('createClosedNotice').textContent = msg;
+          document.getElementById('createClosedNotice').style.display = 'block';
+          document.getElementById('createFormWrap').style.display = 'none';
+          return;
+        }
+        if (config.maxNoOfTeam) maxNoOfTeam = parseInt(config.maxNoOfTeam, 10);
+        document.getElementById('totalTeams').setAttribute('max', maxNoOfTeam);
+      } catch (e) {
+        // Continue without config
+      }
+
+      // Image previews
+      document.getElementById('tournamentLogo').addEventListener('change', async function (e) {
+        if (!e.target.files[0]) return;
+        logoBase64 = await U.compressImageToLimit(e.target.files[0], 100, 300, 300);
+        document.getElementById('logoPreview').innerHTML = '<img src="' + logoBase64 + '" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border-color);">';
+      });
+      document.getElementById('tournamentBanner').addEventListener('change', async function (e) {
+        if (!e.target.files[0]) return;
+        bannerBase64 = await U.compressImageToLimit(e.target.files[0], 100, 800, 250);
+        document.getElementById('bannerPreview').innerHTML = '<img src="' + bannerBase64 + '" style="max-width:200px;height:60px;object-fit:cover;border-radius:8px;border:2px solid var(--border-color);">';
+      });
+
+      updateTeamCount();
+      document.getElementById('addTeamBtn').addEventListener('click', addTeamEntry);
+    }
+
+    function updateTeamCount() {
+      const req = parseInt(document.getElementById('totalTeams').value, 10) || 0;
+      const cur = document.querySelectorAll('.team-add-card').length;
+      document.getElementById('requiredTeamCount').textContent = req;
+      document.getElementById('teamCountMessage').innerHTML = 'Added ' + cur + ' teams. Required: <span id="requiredTeamCount">' + req + '</span>';
+    }
+
+    function addTeamEntry(logoData) {
+      const container = document.getElementById('teamsContainer');
+      const idx = container.querySelectorAll('.team-add-card').length + 1;
+      const cardId = 'team_' + idx + '_' + Date.now();
+      const card = document.createElement('div');
+      card.className = 'team-add-card';
+      card.dataset.teamIdx = idx;
+      card.innerHTML = '<div class="team-card-header">'
+        + '<span class="team-card-number"><i class="bi bi-people-fill me-1"></i>Team ' + idx + '</span>'
+        + '<button type="button" class="team-remove-btn" onclick="removeTeamCard(this)" title="Remove team"><i class="bi bi-x"></i></button>'
+        + '</div>'
+        + '<div class="row g-3">'
+        + '<div class="col-md-6"><label class="form-label">Team Name*</label><input type="text" class="form-control team-name-field" placeholder="e.g. Mumbai Strikers" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Team Logo (optional)</label><input type="file" class="form-control team-logo-field" accept="image/*" data-card="' + cardId + '" /><div class="team-logo-preview mt-1"></div></div>'
+        + '<div class="col-md-6"><label class="form-label">Captain Name*</label><input type="text" class="form-control captain-name-field" placeholder="Captain\'s full name" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Captain Contact*</label><input type="tel" class="form-control captain-contact-field" placeholder="10-digit" maxlength="10" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Owner Name</label><input type="text" class="form-control owner-name-field" placeholder="Team owner name" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Owner Contact</label><input type="tel" class="form-control owner-contact-field" placeholder="10-digit" maxlength="10" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Sponsor Name</label><input type="text" class="form-control sponsor-name-field" placeholder="Sponsor name" /></div>'
+        + '<div class="col-md-6"><label class="form-label">Sponsor Contact</label><input type="tel" class="form-control sponsor-contact-field" placeholder="10-digit" maxlength="10" /></div>'
+        + '</div>';
+      card.dataset.cardId = cardId;
+      container.appendChild(card);
+
+      // Team logo upload
+      card.querySelector('.team-logo-field').addEventListener('change', async function (e) {
+        if (!e.target.files[0]) return;
+        const b64 = await U.compressImageToLimit(e.target.files[0], 80, 200, 200);
+        teamLogoMap[cardId] = b64;
+        card.querySelector('.team-logo-preview').innerHTML = '<img src="' + b64 + '" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--border-color);">';
+      });
+
+      updateTeamCount();
+    }
+
+    window.removeTeamCard = function (btn) {
+      btn.closest('.team-add-card').remove();
+      updateTeamCount();
+    };
+
+    // Wizard logic
+    window.wizardNext = async function () {
+      if (currentStep === 1 && !validateStep1()) return;
+      if (currentStep === 2 && !validateStep2()) return;
+      if (currentStep === 3 && !validateStep3()) return;
+      if (currentStep === 4) {
+        await submitTournament();
+        return;
+      }
+      if (currentStep === 3) buildReview();
+      if (currentStep < totalSteps - 1) {
+        goToStep(currentStep + 1);
+      }
+    };
+
+    window.wizardPrev = function () {
+      if (currentStep > 1) goToStep(currentStep - 1);
+    };
+
+    function goToStep(n) {
+      document.getElementById('stepPane' + currentStep).classList.remove('active');
+      document.getElementById('stepInd' + currentStep).classList.remove('active');
+      if (n < currentStep) {
+        // going back, don't mark as completed
+      } else {
+        document.getElementById('stepInd' + currentStep).classList.add('completed');
+        if (currentStep > 1) document.getElementById('stepConn' + (currentStep - 1)).classList.add('completed');
+      }
+      currentStep = n;
+      document.getElementById('stepPane' + currentStep).classList.add('active');
+      document.getElementById('stepInd' + currentStep).classList.remove('completed');
+      document.getElementById('stepInd' + currentStep).classList.add('active');
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+      if (currentStep === 5) {
+        document.getElementById('wizardNav').style.display = 'none';
+      } else if (currentStep === 4) {
+        nextBtn.innerHTML = '<i class="bi bi-check2-circle me-1"></i> Create Tournament';
+      } else {
+        nextBtn.innerHTML = 'Next <i class="bi bi-arrow-right ms-1"></i>';
+      }
+
+      if (currentStep === 3) {
+        const req = parseInt(document.getElementById('totalTeams').value, 10) || 0;
+        updateTeamCount();
+        // Auto-add team cards if needed
+        const cur = document.querySelectorAll('.team-add-card').length;
+        for (let i = cur; i < req; i++) addTeamEntry();
+      }
+    }
+
+    function validateStep1() {
+      const phone = document.getElementById('ownerPhone').value.trim();
+      const email = document.getElementById('ownerEmail').value.trim();
+      let ok = true;
+      if (!U.validatePhone(phone)) { markInvalid('ownerPhone'); ok = false; } else markValid('ownerPhone');
+      if (!U.validateEmail(email)) { markInvalid('ownerEmail'); ok = false; } else markValid('ownerEmail');
+      return ok;
+    }
+
+    function validateStep2() {
+      const fields = [
+        ['tournamentName', v => v.trim().length >= 3],
+        ['startDate', v => !!v],
+        ['endDate', v => !!v],
+        ['auctionDate', v => !!v],
+        ['auctionTime', v => !!v],
+        ['regLastDate', v => !!v],
+        ['maxPurse', v => parseInt(v, 10) >= 100],
+        ['totalTeams', v => { const n = parseInt(v, 10); return n >= 2 && n <= maxNoOfTeam; }]
+      ];
+      let ok = true;
+      fields.forEach(([id, fn]) => {
+        const el = document.getElementById(id);
+        if (!fn(el.value)) { markInvalid(id); ok = false; } else markValid(id);
+      });
+      if (!ok) return false;
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+      if (end < start) { markInvalid('endDate'); document.querySelector('#endDate + .invalid-feedback').textContent = 'End date must be after start date.'; ok = false; }
+      return ok;
+    }
+
+    function validateStep3() {
+      const req = parseInt(document.getElementById('totalTeams').value, 10) || 0;
+      const cards = document.querySelectorAll('.team-add-card');
+      if (cards.length !== req) {
+        U.showToast('Please add exactly ' + req + ' teams.', 'error');
+        return false;
+      }
+      let ok = true;
+      cards.forEach((card, idx) => {
+        const name = card.querySelector('.team-name-field').value.trim();
+        const cap = card.querySelector('.captain-name-field').value.trim();
+        const capC = card.querySelector('.captain-contact-field').value.trim();
+        if (!name) { U.showToast('Team ' + (idx + 1) + ': name is required.', 'error'); ok = false; }
+        if (!cap) { U.showToast('Team ' + (idx + 1) + ': captain name is required.', 'error'); ok = false; }
+        if (!U.validatePhone(capC)) { U.showToast('Team ' + (idx + 1) + ': valid captain contact required.', 'error'); ok = false; }
+      });
+      return ok;
+    }
+
+    function buildReview() {
+      const phone = document.getElementById('ownerPhone').value.trim();
+      const email = document.getElementById('ownerEmail').value.trim();
+      const tName = document.getElementById('tournamentName').value.trim();
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      const aDate = document.getElementById('auctionDate').value;
+      const aTime = document.getElementById('auctionTime').value;
+      const regLast = document.getElementById('regLastDate').value;
+      const purse = document.getElementById('maxPurse').value;
+      const total = document.getElementById('totalTeams').value;
+
+      const cards = document.querySelectorAll('.team-add-card');
+      let teamsHtml = '';
+      cards.forEach((card, idx) => {
+        teamsHtml += '<div class="review-row"><span class="review-label">Team ' + (idx + 1) + '</span>'
+          + '<span class="review-value">' + escHtml(card.querySelector('.team-name-field').value.trim())
+          + ' — Captain: ' + escHtml(card.querySelector('.captain-name-field').value.trim()) + '</span></div>';
+      });
+
+      document.getElementById('reviewContent').innerHTML = ''
+        + reviewSec('Owner Info', [
+          ['Phone', phone], ['Email', email]
+        ])
+        + reviewSec('Tournament', [
+          ['Name', tName],
+          ['Dates', U.formatDate(startDate) + ' to ' + U.formatDate(endDate)],
+          ['Auction', U.formatDateTime(aDate, aTime)],
+          ['Reg. Closes', U.formatDate(regLast)],
+          ['Max Purse', U.formatINR(parseInt(purse, 10))],
+          ['Total Teams', total]
+        ])
+        + '<div class="review-section"><h5><i class="bi bi-people-fill me-1"></i>Teams</h5>' + teamsHtml + '</div>';
+    }
+
+    function reviewSec(title, rows) {
+      return '<div class="review-section"><h5><i class="bi bi-info-circle me-1"></i>' + title + '</h5>'
+        + rows.map(([l, v]) => '<div class="review-row"><span class="review-label">' + l + '</span><span class="review-value">' + escHtml(v) + '</span></div>').join('')
+        + '</div>';
+    }
+
+    async function submitTournament() {
+      U.showLoading('Creating your tournament...');
+      try {
+        const tid = await F.generateUniqueId();
+        const password = F.generatePassword();
+        const passwordHash = await F.hashPassword(password);
+        const purse = parseInt(document.getElementById('maxPurse').value, 10);
+        const now = new Date().toISOString();
+
+        const teams = {};
+        document.querySelectorAll('.team-add-card').forEach((card, idx) => {
+          const teamId = 'TEAM' + String(idx + 1).padStart(3, '0');
+          const cardId = card.dataset.cardId;
+          teams[teamId] = {
+            teamId,
+            name: card.querySelector('.team-name-field').value.trim(),
+            logo: teamLogoMap[cardId] || null,
+            captainName: card.querySelector('.captain-name-field').value.trim(),
+            captainContact: card.querySelector('.captain-contact-field').value.trim(),
+            ownerName: card.querySelector('.owner-name-field').value.trim(),
+            ownerContact: card.querySelector('.owner-contact-field').value.trim(),
+            sponsorName: card.querySelector('.sponsor-name-field').value.trim(),
+            sponsorContact: card.querySelector('.sponsor-contact-field').value.trim(),
+            purseAmount: purse,
+            remainingPurse: purse,
+            players: {}
+          };
+        });
+
+        const tournament = {
+          tournamentId: tid,
+          name: document.getElementById('tournamentName').value.trim(),
+          owner: {
+            contact: document.getElementById('ownerPhone').value.trim(),
+            email: document.getElementById('ownerEmail').value.trim()
+          },
+          logo: logoBase64,
+          banner: bannerBase64,
+          startDate: document.getElementById('startDate').value,
+          endDate: document.getElementById('endDate').value,
+          auction: {
+            date: document.getElementById('auctionDate').value,
+            time: document.getElementById('auctionTime').value,
+            status: 'NOT_STARTED',
+            paused: false,
+            pauseReason: null,
+            currentPlayerId: null,
+            currentBid: null,
+            currentTeamId: null,
+            startedAt: null,
+            endedAt: null
+          },
+          playerRegistrationLastDate: document.getElementById('regLastDate').value,
+          maxPurseAmountForTeam: purse,
+          totalTeams: parseInt(document.getElementById('totalTeams').value, 10),
+          teams,
+          playerList: {},
+          auctionHistory: {},
+          createdAt: now,
+          updatedAt: now,
+          auth: { passwordHash }
+        };
+
+        await F.put(tid, tournament);
+        U.hideLoading();
+
+        document.getElementById('successTId').textContent = tid;
+        document.getElementById('successPass').textContent = password;
+        document.getElementById('goToAdminBtn').href = 'tournament-admin.html?t=' + tid;
+
+        // Set session
+        U.setAdminSession(tid, passwordHash);
+
+        // Go to step 5
+        document.getElementById('stepPane4').classList.remove('active');
+        document.getElementById('stepInd4').classList.remove('active');
+        document.getElementById('stepInd4').classList.add('completed');
+        document.getElementById('stepConn4').classList.add('completed');
+        document.getElementById('stepPane5').classList.add('active');
+        document.getElementById('stepInd5').classList.add('active');
+        document.getElementById('wizardNav').style.display = 'none';
+        currentStep = 5;
+
+        U.showToast('Tournament created successfully!', 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to create tournament: ' + (e.message || 'Unknown error'), 'error');
+      }
+    }
+
+    window.copyCredential = function (elId, btn) {
+      const text = document.getElementById(elId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    };
+
+    function markInvalid(id) { const el = document.getElementById(id); if (el) { el.classList.add('is-invalid'); } }
+    function markValid(id) { const el = document.getElementById(id); if (el) { el.classList.remove('is-invalid'); } }
+
+    // Clear invalid on input
+    document.querySelectorAll('.form-control, .form-select').forEach(el => {
+      el.addEventListener('input', () => el.classList.remove('is-invalid'));
+    });
+
+  })();
+  </script>
+</body>
+</html>
