@@ -352,6 +352,15 @@
     let editPhotoBase64 = null;
     let opLock = false;
 
+    // Normalise Firebase bidStack (may come back as object with numeric keys)
+    function getBidStack() {
+      const raw = tData && tData.auction && tData.auction.bidStack;
+      if (!raw) return [];
+      if (Array.isArray(raw)) return [...raw];
+      // Firebase stored it as {0:{...},1:{...},...}
+      return Object.keys(raw).sort((a, b) => parseInt(a) - parseInt(b)).map(k => raw[k]);
+    }
+
     // Nav tabs
     document.querySelectorAll('[data-tab]').forEach(btn => {
       btn.addEventListener('click', function () {
@@ -587,25 +596,69 @@
         container.innerHTML = '<div class="empty-state"><i class="bi bi-people"></i><h5>No teams</h5></div>';
         return;
       }
+      const maxPurse = tData.maxPurseAmountForTeam || 0;
+
+      function roleBlock(icon, label, players) {
+        if (!players.length) return '';
+        return '<div style="border:1px solid var(--border-color);border-radius:8px;overflow:hidden;margin-bottom:0.4rem;">'
+          + '<div style="padding:0.3rem 0.75rem;font-size:0.72rem;font-weight:700;color:var(--secondary-color);background:var(--light-background);border-bottom:1px solid var(--border-color);text-transform:uppercase;letter-spacing:0.04em;">'
+          + '<i class="bi ' + icon + ' me-1"></i>' + label + ' (' + players.length + ')</div>'
+          + players.map(p =>
+            '<div style="display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.75rem;border-bottom:1px solid var(--border-color);">'
+            + (p.photo ? '<img src="' + p.photo + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;">'
+                       : '<div style="width:28px;height:28px;border-radius:50%;background:var(--light-background);display:flex;align-items:center;justify-content:center;font-size:0.78rem;color:var(--muted-color);flex-shrink:0;"><i class="bi bi-person"></i></div>')
+            + '<div style="display:flex;flex-direction:column;flex:1;min-width:0;">'
+            + '<span style="font-size:0.8rem;font-weight:600;color:var(--secondary-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escHtml(p.name) + '</span>'
+            + '<span style="font-size:0.7rem;font-weight:600;color:var(--primary-color);">' + U.formatINR(p.soldPrice || p.basePrice) + '</span>'
+            + '</div></div>'
+          ).join('')
+          + '</div>';
+      }
+
       container.innerHTML = '<div class="row g-3">' + teams.map(t => {
-        const playerCount = t.players ? Object.keys(t.players).length : 0;
         const logoHtml = t.logo
           ? '<img src="' + t.logo + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">'
           : '<i class="bi bi-people-fill"></i>';
         const teamPlayers = t.players ? Object.keys(t.players).map(pid => allPlayers[pid]).filter(Boolean) : [];
-        const playersHtml = teamPlayers.length ? '<div class="mt-2 pt-2" style="border-top:1px solid var(--border-color);">'
-          + teamPlayers.map(p => '<span class="me-2" style="font-size:0.78rem;"><i class="bi bi-person me-1"></i>' + escHtml(p.name) + ' <span style="color:var(--primary-color);">(' + U.formatINR(p.soldPrice) + ')</span></span>').join('')
-          + '</div>' : '';
-        return '<div class="col-sm-6 col-lg-4"><div class="team-card">'
+        const spent = maxPurse - (t.remainingPurse || 0);
+        const highestBid = teamPlayers.reduce((mx, p) => Math.max(mx, p.soldPrice || 0), 0);
+        const highestPlayer = teamPlayers.find(p => p.soldPrice === highestBid && highestBid > 0);
+        const batsmen    = teamPlayers.filter(p => p.role === 'Batsman');
+        const bowlers    = teamPlayers.filter(p => p.role === 'Bowler');
+        const allRounders = teamPlayers.filter(p => p.role === 'All-Rounder');
+        const wks = teamPlayers.filter(p => p.role === 'Wicket-Keeper' || p.role === 'Wicket-Keeper Batsman' || (p.wicketKeeper && p.role !== 'Wicket-Keeper' && p.role !== 'Wicket-Keeper Batsman'));
+
+        return '<div class="col-12 col-lg-6"><div class="team-card">'
           + '<div class="team-card-header"><div class="team-logo">' + logoHtml + '</div>'
-          + '<div><p class="team-card-name">' + escHtml(t.name) + '</p>'
-          + '<div style="font-size:0.72rem;color:rgba(255,255,255,0.7);">Captain: ' + escHtml(t.captainName || '—') + '</div></div></div>'
+          + '<div>'
+          + '<p class="team-card-name">' + escHtml(t.name) + '</p>'
+          + '<div style="font-size:0.7rem;color:rgba(255,255,255,0.75);">Capt: ' + escHtml(t.captainName || '—') + '</div>'
+          + '<div style="font-size:0.7rem;color:rgba(255,255,255,0.65);">Owner: ' + escHtml(t.ownerName || '—') + '</div>'
+          + '</div></div>'
           + '<div class="team-card-body">'
-          + '<div class="team-info-row"><span class="team-info-label">Remaining Purse</span><span class="team-info-value purse-remaining">' + U.formatINR(t.remainingPurse) + '</span></div>'
-          + '<div class="team-info-row"><span class="team-info-label">Players Bought</span><span class="team-info-value">' + playerCount + '</span></div>'
-          + '<div class="team-info-row"><span class="team-info-label">Owner</span><span class="team-info-value" style="font-size:0.78rem;">' + escHtml(t.ownerName || '—') + '</span></div>'
-          + '<div class="team-info-row"><span class="team-info-label">Sponsor</span><span class="team-info-value" style="font-size:0.78rem;">' + escHtml(t.sponsorName || '—') + '</span></div>'
-          + playersHtml
+
+          // Purse stats 3-column grid
+          + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:0.75rem;padding:0.6rem;background:var(--light-background);border-radius:8px;">'
+          + '<div style="text-align:center;"><div style="font-size:0.67rem;color:var(--muted-color);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.15rem;">Total Purse</div><div style="font-size:0.85rem;font-weight:700;color:var(--secondary-color);">' + U.formatINR(maxPurse) + '</div></div>'
+          + '<div style="text-align:center;"><div style="font-size:0.67rem;color:var(--muted-color);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.15rem;">Spent</div><div style="font-size:0.85rem;font-weight:700;color:#ef4444;">' + U.formatINR(spent) + '</div></div>'
+          + '<div style="text-align:center;"><div style="font-size:0.67rem;color:var(--muted-color);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.15rem;">Remaining</div><div style="font-size:0.85rem;font-weight:700;color:var(--primary-color);">' + U.formatINR(t.remainingPurse || 0) + '</div></div>'
+          + '</div>'
+
+          // Quick stats
+          + '<div style="display:flex;flex-wrap:wrap;gap:0.5rem 1rem;margin-bottom:0.75rem;font-size:0.78rem;color:var(--muted-color);padding-bottom:0.5rem;border-bottom:1px solid var(--border-color);">'
+          + '<span><i class="bi bi-people me-1"></i><strong>' + teamPlayers.length + '</strong> Players</span>'
+          + '<span><i class="bi bi-trophy me-1"></i>Top bid: <strong>' + (highestBid ? U.formatINR(highestBid) : '—') + '</strong>' + (highestPlayer ? ' (' + escHtml(highestPlayer.name) + ')' : '') + '</span>'
+          + (t.sponsorName ? '<span><i class="bi bi-award me-1"></i>' + escHtml(t.sponsorName) + '</span>' : '')
+          + '</div>'
+
+          // Role-wise player breakdown
+          + (teamPlayers.length
+            ? roleBlock('bi-person-fill', 'Batsmen', batsmen)
+              + roleBlock('bi-arrow-up-right-circle-fill', 'Bowlers', bowlers)
+              + roleBlock('bi-star-fill', 'All-Rounders', allRounders)
+              + roleBlock('bi-shield-fill', 'Wicket-Keepers', wks)
+            : '<div style="text-align:center;padding:1rem 0 0.5rem;color:var(--muted-color);font-size:0.82rem;"><i class="bi bi-inbox me-1"></i>No players bought yet</div>')
+
           + '</div></div></div>';
       }).join('') + '</div>';
     }
@@ -738,8 +791,29 @@
         + '<div class="current-bid-label">Current Bid</div>'
         + '<div class="current-bid-amount">' + U.formatINR(currentBid) + '</div>'
         + '<div class="current-bid-team">Highest: <strong>' + escHtml(currentTeamName) + '</strong></div>'
+        + (!paused
+            ? (function() {
+                const _stack = getBidStack();
+                const _canUndo = !!currentTeamId || _stack.length > 0;
+                const _left = _stack.length + (currentTeamId ? 1 : 0);
+                return '<button onclick="undoBid()" ' + (!_canUndo ? 'disabled' : '') + ' style="display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.8rem;background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.35);border-radius:6px;font-size:0.78rem;font-weight:600;cursor:pointer;margin-top:0.5rem;transition:all 0.2s;"><i class="bi bi-arrow-counterclockwise"></i> Undo Last Bid' + (_left > 0 ? ' <span style="background:rgba(239,68,68,0.2);border-radius:4px;padding:0 4px;font-size:0.72rem;">' + _left + '</span>' : '') + '</button>';
+              })()
+            : '')
         + '</div>'
         + '<div class="teams-bid-grid">' + teamsHtml + '</div>'
+        + (!paused
+          ? '<div style="margin-top:0.75rem;padding:0.75rem;background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.3);border-radius:8px;">'
+            + '<div style="font-size:0.8rem;font-weight:700;color:var(--secondary-color);margin-bottom:0.5rem;"><i class="bi bi-pencil-square me-1"></i>Manual Bid Override</div>'
+            + '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:flex-end;">'
+            + '<div style="flex:1;min-width:130px;"><label style="font-size:0.72rem;font-weight:600;color:var(--muted-color);display:block;margin-bottom:0.25rem;">Team</label>'
+            + '<select class="form-select form-select-sm" id="manualBidTeam">'
+            + teams.map(t => '<option value="' + t.teamId + '">' + escHtml(t.name) + ' (' + U.formatINR(t.remainingPurse) + ')</option>').join('')
+            + '</select></div>'
+            + '<div style="flex:1;min-width:120px;"><label style="font-size:0.72rem;font-weight:600;color:var(--muted-color);display:block;margin-bottom:0.25rem;">Amount (min ' + U.formatINR(nextBid) + ')</label>'
+            + '<input type="number" class="form-control form-control-sm" id="manualBidInput" min="' + nextBid + '" step="500" placeholder="' + nextBid + '" /></div>'
+            + '<button class="btn btn-warning btn-sm" onclick="placeManualBid()"><i class="bi bi-check2-circle me-1"></i>Place</button>'
+            + '</div></div>'
+          : '')
         + '<div class="auction-actions">'
         + '<button class="btn-sell" onclick="sellPlayer()" ' + (!currentTeamId || paused ? 'disabled' : '') + '><i class="bi bi-hammer me-1"></i>Sell to ' + escHtml(currentTeamName) + '</button>'
         + '<button class="btn-unsold" onclick="markUnsold()" ' + (paused ? 'disabled' : '') + '><i class="bi bi-x-lg me-1"></i>Mark UNSOLD</button>'
@@ -792,13 +866,15 @@
         await F.patch(tid + '/auction', {
           currentPlayerId: pid,
           currentBid: player.basePrice || 500,
-          currentTeamId: null
+          currentTeamId: null,
+          bidStack: null
         });
         await F.patch(tid + '/playerList/' + pid, { status: 'IN_AUCTION' });
         allPlayers[pid] = { ...allPlayers[pid], status: 'IN_AUCTION' };
         tData.auction.currentPlayerId = pid;
         tData.auction.currentBid = player.basePrice || 500;
         tData.auction.currentTeamId = null;
+        tData.auction.bidStack = null;
         renderAuctionTab();
         U.hideLoading();
       } catch (e) {
@@ -817,12 +893,90 @@
       if (!team || team.remainingPurse < nextBid) { U.showToast('Team cannot afford this bid.', 'warning'); return; }
       opLock = true;
       try {
-        await F.patch(tid + '/auction', { currentBid: nextBid, currentTeamId: teamId });
+        const stack = getBidStack();
+        stack.push({ bid: currentBid, teamId: auction.currentTeamId || null });
+        if (stack.length > 10) stack.shift();
+        await F.patch(tid + '/auction', { currentBid: nextBid, currentTeamId: teamId, bidStack: stack });
+        tData.auction.bidStack = stack;
         tData.auction.currentBid = nextBid;
         tData.auction.currentTeamId = teamId;
         renderAuctionTab();
       } catch (e) {
         U.showToast('Failed to place bid.', 'error');
+      }
+      opLock = false;
+    };
+
+    window.undoBid = async function () {
+      if (opLock) return;
+      const auction = tData.auction || {};
+      const pid = auction.currentPlayerId;
+      if (!pid) return;
+      const player = allPlayers[pid];
+      const stack = getBidStack();
+      if (stack.length === 0 && !auction.currentTeamId) {
+        U.showToast('Nothing to undo — already at starting bid.', 'info');
+        return;
+      }
+      let newBid, newTeamId, newStack;
+      if (stack.length > 0) {
+        const prev = stack[stack.length - 1];
+        newBid = prev.bid;
+        newTeamId = prev.teamId || null;
+        newStack = stack.slice(0, -1);
+      } else {
+        // Only one bid placed so far — go back to base price, no team
+        newBid = player ? player.basePrice : 500;
+        newTeamId = null;
+        newStack = [];
+      }
+      opLock = true;
+      U.showLoading('Reverting last bid...');
+      try {
+        await F.patch(tid + '/auction', { currentBid: newBid, currentTeamId: newTeamId, bidStack: newStack });
+        tData.auction.currentBid = newBid;
+        tData.auction.currentTeamId = newTeamId;
+        tData.auction.bidStack = newStack;
+        renderAuctionTab();
+        U.hideLoading();
+        const left = newStack.length + (newTeamId ? 1 : 0);
+        U.showToast('Bid reverted.' + (left > 0 ? ' ' + newStack.length + ' more undo available.' : ''), 'success');
+      } catch (e) {
+        U.hideLoading();
+        U.showToast('Failed to revert bid.', 'error');
+      }
+      opLock = false;
+    };
+
+    window.placeManualBid = async function () {
+      if (opLock) return;
+      const auction = tData.auction || {};
+      const currentBid = auction.currentBid || 0;
+      const manualAmount = parseInt(document.getElementById('manualBidInput').value, 10);
+      const manualTeamId = document.getElementById('manualBidTeam').value;
+      if (!manualTeamId) { U.showToast('Please select a team.', 'warning'); return; }
+      if (!manualAmount || manualAmount <= currentBid) {
+        U.showToast('Amount must be more than current bid (' + U.formatINR(currentBid) + ').', 'warning');
+        return;
+      }
+      const team = tData.teams && tData.teams[manualTeamId];
+      if (!team || team.remainingPurse < manualAmount) {
+        U.showToast('Team cannot afford ' + U.formatINR(manualAmount) + '. Remaining: ' + U.formatINR(team ? team.remainingPurse : 0), 'warning');
+        return;
+      }
+      opLock = true;
+      try {
+        const stack = getBidStack();
+        stack.push({ bid: currentBid, teamId: auction.currentTeamId || null });
+        if (stack.length > 10) stack.shift();
+        await F.patch(tid + '/auction', { currentBid: manualAmount, currentTeamId: manualTeamId, bidStack: stack });
+        tData.auction.bidStack = stack;
+        tData.auction.currentBid = manualAmount;
+        tData.auction.currentTeamId = manualTeamId;
+        renderAuctionTab();
+        U.showToast('Manual bid ' + U.formatINR(manualAmount) + ' placed for ' + escHtml(team.name) + '.', 'success');
+      } catch (e) {
+        U.showToast('Failed to place manual bid.', 'error');
       }
       opLock = false;
     };

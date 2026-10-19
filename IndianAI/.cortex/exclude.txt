@@ -1,0 +1,9 @@
+# Cortex Code — custom indexing exclusions
+# Add folder names (one per line) to exclude from the workspace index.
+# Lines starting with # are comments.
+# Run 'Cortex: Reindex Workspace' after editing this file.
+#
+# Examples:
+# generated
+# proto-out
+# fixtures
